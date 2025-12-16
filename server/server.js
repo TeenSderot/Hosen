@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
 
 dotenv.config();
 
@@ -13,18 +12,8 @@ app.get("/health", (_req, res) => {
   res.json({ ok: true, time: new Date().toISOString() });
 });
 
-async function start() {
-  const mongoUri = process.env.MONGODB_URI;
-  if (!mongoUri) throw new Error("Missing MONGODB_URI");
+const PORT = process.env.PORT || 3000;
 
-  await mongoose.connect(mongoUri);
-  console.log("Connected to MongoDB");
-
-  const port = process.env.PORT || 3000;
-  app.listen(port, () => console.log(`Listening on ${port}`));
-}
-
-start().catch((err) => {
-  console.error(err);
-  process.exit(1);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
