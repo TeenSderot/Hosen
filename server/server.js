@@ -1,11 +1,25 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
+import userRouter from "./routes/userRouter.js";
+import checklistsRouter from "./routes/checklistsRouter.js";
+import feelingsRouter from "./routes/feelingsRouter.js";
+import pressuresRouter from "./routes/pressuresRouter.js";
+
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors(
+  {
+    oprigin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content_type", "Authorization"],
+  }));
+  
+app.use(express.json({ limit: "50mb" }))
+app.use((express.urlencoded({ limit: "50mb" })))
 app.use(express.json());
 
 app.get("/health", (_req, res) => {
@@ -99,7 +113,10 @@ cron.schedule(
   }
 )
 const PORT = process.env.PORT || 3000;
+app.use("/feelings", feelingsRouter);
+app.use("/pressures", pressuresRouter);
+app.use("/checklists", checklistsRouter);
+app.use("/users", userRouter);
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`🚀 Listening on http://localhost:${port}`));
