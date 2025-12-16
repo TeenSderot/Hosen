@@ -8,6 +8,7 @@ import checklistsRouter from "./routes/checklistsRouter.js";
 import feelingsRouter from "./routes/feelingsRouter.js";
 import pressuresRouter from "./routes/pressuresRouter.js";
 import constraintsRouter from "./routes/constraintsRouter.js";
+import resourcesRouter from "./routes/resourcesRouter.js";
 
 dotenv.config();
 
@@ -119,6 +120,7 @@ app.use("/pressures", pressuresRouter);
 app.use("/checklists", checklistsRouter);
 app.use("/users", userRouter);
 app.use("/constraints", constraintsRouter);
+app.use("/resources", resourcesRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`🚀 Listening on http://localhost:${port}`));
