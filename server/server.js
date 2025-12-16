@@ -7,6 +7,7 @@ import userRouter from "./routes/userRouter.js";
 import checklistsRouter from "./routes/checklistsRouter.js";
 import feelingsRouter from "./routes/feelingsRouter.js";
 import pressuresRouter from "./routes/pressuresRouter.js";
+import constraintsRouter from "./routes/constraintsRouter.js";
 
 dotenv.config();
 
@@ -76,47 +77,48 @@ async function sendPushNotification(expoPushToken, title, body) {
 // -----------------------------------------------------------
 // ⏰ משימה מתוזמנת כל 3 שעות
 // -----------------------------------------------------------
-cron.schedule(
-  "0 */3 * * *", //כל 3 שעות 
-  async () => {
-    console.log("⏰ CRON HEARTBEAT START:", new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" }));
+// cron.schedule(
+//   "0 */3 * * *", //כל 3 שעות 
+//   async () => {
+//     console.log("⏰ CRON HEARTBEAT START:", new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" }));
 
-    try {
-      const users = await users_collection
-        .find({ pushtoken: { $ne: null } }) // בחר רק משתמשים עם pushtoken
-        .toArray();
+//     try {
+//       const users = await users_collection
+//         .find({ pushtoken: { $ne: null } }) // בחר רק משתמשים עם pushtoken
+//         .toArray();
 
-      console.log(`👥 Found ${users.length} users with push tokens`);
+//       console.log(`👥 Found ${users.length} users with push tokens`);
 
-      for (let u of users) {
-        console.log(`➡ Handling user ${u._id} – token: ${u.pushtoken}`);
+//       for (let u of users) {
+//         console.log(`➡ Handling user ${u._id} – token: ${u.pushtoken}`);
 
-        if (!u.pushtoken) {
-          console.warn(`⚠ User ${u._id} has no push token`);
-          continue;
-        }
+//         if (!u.pushtoken) {
+//           console.warn(`⚠ User ${u._id} has no push token`);
+//           continue;
+//         }
 
-        await sendPushNotification(
-          u.pushtoken,
-          "מטרה לא הושלמה",
-          "יש לך מטרות שדורשות תשומת לב!"
-        );
-      }
-    } catch (err) {
-      console.error("🔥 CRON ERROR:", err);
-    }
+//         await sendPushNotification(
+//           u.pushtoken,
+//           "מטרה לא הושלמה",
+//           "יש לך מטרות שדורשות תשומת לב!"
+//         );
+//       }
+//     } catch (err) {
+//       console.error("🔥 CRON ERROR:", err);
+//     }
 
-    console.log("⏳ CRON HEARTBEAT END\n");
-  },
-  {
-    timezone: "Asia/Jerusalem", // הפעלה לפי זמן ישראל
-  }
-)
+//     console.log("⏳ CRON HEARTBEAT END\n");
+//   },
+//   {
+//     timezone: "Asia/Jerusalem", // הפעלה לפי זמן ישראל
+//   }
+// )
 const PORT = process.env.PORT || 3000;
 app.use("/feelings", feelingsRouter);
 app.use("/pressures", pressuresRouter);
 app.use("/checklists", checklistsRouter);
 app.use("/users", userRouter);
+app.use("/constraints", constraintsRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`🚀 Listening on http://localhost:${port}`));
