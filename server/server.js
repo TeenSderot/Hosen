@@ -1,8 +1,7 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-
-dotenv.config();
+import userRoute from "./routes/userRoute.js";
 
 const app = express();
 app.use(cors());
@@ -12,8 +11,7 @@ app.get("/health", (_req, res) => {
   res.json({ ok: true, time: new Date().toISOString() });
 });
 
-const PORT = process.env.PORT || 3000;
+app.use("/users", userRoute);
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`🚀 Listening on http://localhost:${port}`));
