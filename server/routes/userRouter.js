@@ -1,12 +1,15 @@
+import express from "express";
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
 import { getDb } from "../db.js";
 
+const router = express.Router();
+
 const USERS_COLLECTION = "users";
 const SALT_ROUNDS = 12;
 
-// POST /users  (Create user)
-export async function createUser(req, res) {
+// POST /users  -> Create user
+router.post("/", async (req, res) => {
   try {
     const { email, password, role } = req.body;
 
@@ -19,7 +22,7 @@ export async function createUser(req, res) {
     const db = await getDb();
     const users = db.collection(USERS_COLLECTION);
 
-    // ייחודיות אימייל
+    // unique email check
     const existing = await users.findOne({ email: normalizedEmail });
     if (existing) {
       return res.status(409).json({ ok: false, error: "Email already exists" });
@@ -40,14 +43,16 @@ export async function createUser(req, res) {
     const result = await users.insertOne(doc);
     return res.status(201).json({ ok: true, id: result.insertedId });
   } catch (err) {
+    console.error("Create user error:", err);
     return res.status(500).json({ ok: false, error: "Server error" });
   }
-}
+});
 
-// PUT /users/:id (Update user)
-export async function updateUser(req, res) {
+// PUT /users/:id -> Update user
+router.put("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
     if (!ObjectId.isValid(id)) {
       return res.status(400).json({ ok: false, error: "Invalid id" });
     }
@@ -72,7 +77,7 @@ export async function updateUser(req, res) {
     const db = await getDb();
     const users = db.collection(USERS_COLLECTION);
 
-    // אם מעדכנים אימייל — לשמור על uniqueness
+    // If updating email, keep it unique
     if (updates.email) {
       const existing = await users.findOne({
         email: updates.email,
@@ -94,14 +99,16 @@ export async function updateUser(req, res) {
 
     return res.json({ ok: true });
   } catch (err) {
+    console.error("Update user error:", err);
     return res.status(500).json({ ok: false, error: "Server error" });
   }
-}
+});
 
-// DELETE /users/:id (Soft delete)
-export async function deleteUser(req, res) {
+// DELETE /users/:id -> Soft delete user (isActive=false)
+router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
     if (!ObjectId.isValid(id)) {
       return res.status(400).json({ ok: false, error: "Invalid id" });
     }
@@ -109,7 +116,6 @@ export async function deleteUser(req, res) {
     const db = await getDb();
     const users = db.collection(USERS_COLLECTION);
 
-    // מחיקה רכה
     const result = await users.updateOne(
       { _id: new ObjectId(id) },
       { $set: { isActive: false, updatedAt: new Date() } }
@@ -121,12 +127,13 @@ export async function deleteUser(req, res) {
 
     return res.json({ ok: true });
   } catch (err) {
+    console.error("Delete user error:", err);
     return res.status(500).json({ ok: false, error: "Server error" });
   }
-}
+});
 
-// POST /users/login (Login - בלי JWT בשלב הזה)
-export async function login(req, res) {
+// POST /users/login -> Login (NO JWT YET)
+router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -140,6 +147,8 @@ export async function login(req, res) {
     const users = db.collection(USERS_COLLECTION);
 
     const user = await users.findOne({ email: normalizedEmail });
+
+    // Don't leak which field is wrong
     if (!user || user.isActive === false) {
       return res.status(401).json({ ok: false, error: "Invalid credentials" });
     }
@@ -149,7 +158,7 @@ export async function login(req, res) {
       return res.status(401).json({ ok: false, error: "Invalid credentials" });
     }
 
-    // בלי AUTH כרגע: מחזירים רק פרטי משתמש בסיסיים
+    // return minimal user info
     return res.json({
       ok: true,
       user: {
@@ -159,6 +168,9 @@ export async function login(req, res) {
       },
     });
   } catch (err) {
+    console.error("Login error:", err);
     return res.status(500).json({ ok: false, error: "Server error" });
   }
-}
+});
+
+export default router;
