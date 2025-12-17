@@ -106,7 +106,7 @@ export default function SC36_Dashboard({ navigation }) {
   };
 
   return (
-    <AppLayout>
+    <AppLayout >
       <View style={styles.header}>
         <Text style={styles.headerIcon}>🛡️</Text>
         <Text style={styles.h1}>הערכה המוכנה שלכם</Text>
@@ -147,11 +147,11 @@ export default function SC36_Dashboard({ navigation }) {
       )}
 
       <View style={{ gap: 10, marginTop: 14 }}>
-        <Button title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
+        <Button style={{backgroundColor:"#FD954E"}}title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
         <Button
           title="חזרה למסך הבית"
-          variant="outline"
-          onPress={() => navigation.replace('Index')}
+          onPress={() => navigation.replace('Communication')}
+          style= {{color:"#1E2C41", backgroundColor:"white",borderColor:"#7f8997ff", borderWidth:1}}
         />
       </View>
     </AppLayout>
@@ -161,7 +161,7 @@ export default function SC36_Dashboard({ navigation }) {
 const styles = StyleSheet.create({
   header: { alignItems: 'center', paddingVertical: 6, gap: 6 },
   headerIcon: { fontSize: 28 },
-  h1: { color: '#E6EEF8', fontSize: 22, fontWeight: '900' },
+  h1: { color: '#0F1D33', fontSize: 22, fontWeight: '900' },
   hero: {
     backgroundColor: '#0F1D33',
     borderRadius: 18,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
   },
   sectionHeader: { marginTop: 6, marginBottom: 8 },
   sectionTitle: {
-    color: '#E6EEF8',
+    color: '#1E2C41',
     fontSize: 18,
     fontWeight: '900',
     textAlign: 'right',

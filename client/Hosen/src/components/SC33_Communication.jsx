@@ -7,8 +7,9 @@ import {
   ScrollView,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import Divider from "./ui/Divider";
+import { useNavigation } from "@react-navigation/native";
 
 /* --------- DATA --------- */
 
@@ -115,27 +116,31 @@ export default function Communication() {
       {/* Card */}
       <View style={styles.card}>
         <Text style={styles.cardTitle}>{currentTab.title}</Text>
-
         {currentTab.tip && (
           <Text style={styles.tip}>💡 {currentTab.tip}</Text>
         )}
 
-        {currentTab.phrases.map((phrase) => (
-          <TouchableOpacity
-            key={phrase}
-            style={styles.checkItem}
-            onPress={() => toggleCheck(phrase)}
-          >
-            <Ionicons
-              name={
-                checked[phrase] ? "checkbox-outline" : "square-outline"
-              }
-              size={24}
-              color="#007AFF"
-            />
-            <Text style={styles.checkText}>{phrase}</Text>
-          </TouchableOpacity>
-        ))}
+      {currentTab.phrases.map((phrase, index) => (
+  <View key={phrase} style={{ width: "100%" }}>
+    <TouchableOpacity
+      style={styles.checkItem}
+      onPress={() => toggleCheck(phrase)}
+    >
+      <Ionicons
+        name={checked[phrase] ? "radio-button-on" : "radio-button-off"}
+        size={26}
+        color="#898c8e"
+      />
+      <Text style={styles.checkText}>{phrase}</Text>
+    </TouchableOpacity>
+
+    {/* 🔽 DIVIDER בין איברים (לא אחרי האחרון) */}
+    {index < currentTab.phrases.length - 1 && (
+      <Divider />
+    )}
+  </View>
+))}
+        
       </View>
 
       {/* Button */}
@@ -143,7 +148,7 @@ export default function Communication() {
         style={styles.doneButton}
         onPress={() => {
           AsyncStorage.setItem("activeCategory", activeTab);
-          navigation.navigate("Dashboard");
+           navigation.navigate("Dashboard");
         }}
       >
         <Text style={styles.doneText}>סיימתי – מעבר לסיכום</Text>
@@ -156,19 +161,29 @@ export default function Communication() {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop:120,
+    width: "100%",
     padding: 16,
     backgroundColor: "#F8F9FB",
+    borderLeftColor: "#84C7DA",
+    borderLeftWidth: 1,
+   
   },
   header: {
+     padding:10,
     textAlign: "center",
     fontSize: 22,
     fontWeight: "700",
     marginBottom: 16,
+   
   },
   tabs: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 16,
+     flexDirection: "row-reverse",
+     height:'80',
+      paddingBottom:10
   },
   tab: {
     flex: 1,
@@ -177,12 +192,13 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: "center",
     backgroundColor: "#EEE",
+    justifyContent: "center",
   },
   tabActive: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#FD954E",
   },
   tabText: {
-    fontSize: 12,
+    fontSize: 14,
     marginTop: 4,
     color: "#666",
   },
@@ -194,9 +210,11 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     marginBottom: 20,
+    alignItems:"flex-end",
+    paddingBottom:30
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 26,
     fontWeight: "700",
     marginBottom: 12,
   },
@@ -205,19 +223,22 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 10,
     marginBottom: 12,
+    breaWord: "break-word",
+    direction: "rtl",
   },
   checkItem: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "center",
     marginBottom: 12,
   },
   checkText: {
+    textAlign: "right",
     marginRight: 8,
     flex: 1,
-    fontSize: 15,
+    fontSize: 18,
   },
   doneButton: {
-    backgroundColor: "#007AFF",
+    backgroundColor: "#FD954E",
     padding: 16,
     borderRadius: 30,
     alignItems: "center",
