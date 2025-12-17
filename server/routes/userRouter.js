@@ -3,15 +3,16 @@ import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
 import { getDb } from "../db.js";
-
+import "dotenv/config"; // ✔ מספיק
 const router = express.Router();
 
 const USERS_COLLECTION = "users";
 const SALT_ROUNDS = 12;
 // מומלץ לשים את זה בקובץ .env, אבל כרגע זה יעבוד
-const JWT_SECRET = process.env.JWT_SECRET || "my_super_secret_key_123"; 
+const JWT_SECRET = process.env.JWT_SECRET; 
 
-// ==========================================
+// =====================
+// =====================
 // 1. REGISTER (תוקן: שומר הצפנה)
 // ==========================================
 router.post("/register", async (req, res) => {
