@@ -4,6 +4,7 @@ import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
 import { getDb } from "../db.js";
 import "dotenv/config"; // ✔ מספיק
+import e from "express";
 const router = express.Router();
 
 const USERS_COLLECTION = "users";
@@ -30,7 +31,12 @@ router.post("/register", async (req, res) => {
     // בדיקה אם קיים
     const existing = await users.findOne({ email: normalizedEmail });
     if (existing) {
-
+      if(name&&name.length>0){
+        await users.updateOne(
+          { _id: existing._id },
+          { $set: { name: name } }
+        );
+      }
       return res.status(200).json({ message: "Success", id: existing._id });
     }
 
