@@ -40,6 +40,7 @@ router.post("/register", async (req, res) => {
     const doc = {
       email: normalizedEmail,
       password: passwordHash, // שומרים את ההצפנה!
+      name: name || "",
       createdAt: new Date(),
     };
 

@@ -109,7 +109,7 @@ export default function UserInfo() {
       await SecureStore.setItemAsync("access_token", String(token))
       await SecureStore.setItemAsync("exists", "true")
       await SecureStore.setItemAsync("full_name", full_name)
-  
+     
       success("ברוך הבא 🙌")
       navigate.navigate("Hand",{ userName: full_name  || name || "אורח" })
     } catch (err) {
