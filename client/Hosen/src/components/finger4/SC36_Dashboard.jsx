@@ -1,9 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, Share, StyleSheet, Text, View } from 'react-native';
-import Clipboard from '@react-native-clipboard/clipboard';
-import AppLayout from '../components/layout/AppLayout';
-import Button from '../components/ui/Button';
+import * as Clipboard from 'expo-clipboard';
+import AppLayout from '../layout/AppLayout';
+import Button from '../ui/Button';
 import { getString } from '../lib/storage';
+
+
+
 
 const categoryLabels = {
   leaving: 'יוצאים לדרך',
@@ -37,6 +40,9 @@ const phrasesToCategory = {
 export default function SC36_Dashboard({ navigation }) {
   const [slogan, setSlogan] = useState('אנחנו משפחה חזקה');
   const [selectedPhrases, setSelectedPhrases] = useState({});
+
+  
+
 
   useEffect(() => {
     let mounted = true;
@@ -93,7 +99,8 @@ export default function SC36_Dashboard({ navigation }) {
     try {
       await Share.share({ message: shareText });
     } catch (e) {
-      Clipboard.setString(shareText);
+      await Clipboard.setStringAsync(shareText);
+      
       Alert.alert('הועתק', 'הטקסט הועתק ללוח');
     }
   };
