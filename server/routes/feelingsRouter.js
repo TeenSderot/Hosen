@@ -8,8 +8,8 @@ const db = await getDb();
 const feelings = db.collection(FEELINGS_COLLECTION);
 
 
-router.get("/", (req, res) => {
-    res.status(200).json(feelings);
+router.post("/feeling", (req, res) => {
+    res.status(200).json(feeling);
 });
 
 
@@ -57,6 +57,40 @@ router.delete("/deletefeeling/:id", async (req, res) => {
   }
 });
 
+
+router.post("/updateFeeling", async (req, res) => {
+  try {
+    const { id, title, text } = req.body; 
+
+    if (!id) {
+      return res.status(400).json({ error: "id is required" });
+    }
+
+    const update = {};
+    if (title !== undefined) update.title = title;
+    if (text !== undefined) update.text = text;
+
+    if (Object.keys(update).length === 0) {
+      return res.status(400).json({ error: "send title and/or text" });
+    }
+
+    const result = await feelings.findOneAndUpdate(
+      { _id: new ObjectId(id) },
+      { $set: update },
+      { returnDocument: "after" }
+    );
+
+    
+    if (!result.title) {
+      return res.status(404).json({ error: "Feeling not found" });
+    }
+
+    return res.status(200).json(result.value);
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({ error: "Invalid id" });
+  }
+});
 
 
 export default router;
