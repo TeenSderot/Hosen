@@ -56,18 +56,20 @@ router.post("/updateresource", async (req, res) => {
     if (!title) {
       return res.status(400).json({ error: "title is required" });
     }
-    const result = await resources.updateOne(
+    const result = await resources.findOneAndUpdate(
       { _id: new ObjectId(id) },
-      { $set: { title, description: description ?? "" } }
+      { $set: update },
+      { returnDocument: "after" }
     );
-    if (result.matchedCount === 0) {
-      return res.status(404).json({ error: "Resource not found" });
+
+    if (!result.value) {
+      return res.status(404).json({ error: "constraints not found" });
     }
-    res.status(200).json({ message: "Updated successfully" });
-  }
-    catch (err) {
+
+    return res.status(200).json(result.value);
+  } catch (err) {
     console.error(err);
-    res.status(400).json({ error: "Invalid id" });
+    return res.status(400).json({ error: "Invalid id" });
   }
 });
 export default router;
