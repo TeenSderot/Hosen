@@ -68,9 +68,11 @@ const styles = StyleSheet.create({
   container: {
     width: 300,
     height: 450,
+    marginTop: 40,
     alignSelf: 'center',
     // חשוב כדי לוודא שה-absoluteFill עובד יחסית למכולה הזו
     position: 'relative', 
+    
   },
 });
 

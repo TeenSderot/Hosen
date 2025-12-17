@@ -2,7 +2,7 @@ import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import { useState } from "react";
 import MoodSelector from "./MoodSelector";
 import HandIllustration from "./HandIllustration";
-import BottomNav from "./BottomNav";
+// import BottomNav from "./BottomNav";
 import { Input } from "./Input";
 import { COLORS } from "./COLORS";
 
@@ -15,6 +15,7 @@ export default function HomeScreen({ route }) {
       {/* Header */}
       <View style={styles.header}>
         <Image source={require("../../../assets/lotus.png")} style={styles.logo} />
+        <Image source={require("../../../assets/menu-dots.png")}  />
       </View>
 
       <ScrollView contentContainerStyle={styles.content}>
@@ -35,7 +36,7 @@ export default function HomeScreen({ route }) {
         </View>
       </ScrollView>
 
-      <BottomNav />
+      {/* <BottomNav /> */}
     </View>
   );
 }
@@ -45,7 +46,11 @@ const styles = StyleSheet.create({
   header: {
     padding: 20,
     marginTop: 40,
-    alignItems: "flex-end",
+    alignItems: "center",
+    flexDirection: "row-reverse",
+    width: "100%",
+    justifyContent: "space-between",
+
   },
   logo: { width: 48, height: 48 },
   content: {
