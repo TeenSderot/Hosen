@@ -18,6 +18,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
+console.log(email,password);
 
     if (!email || !password) {
       return res.status(400).json({ ok: false, error: "email and password are required" });
@@ -30,7 +31,17 @@ router.post("/register", async (req, res) => {
     // בדיקה אם קיים
     const existing = await users.findOne({ email: normalizedEmail });
     if (existing) {
-      return res.status(409).json({ ok: false, error: "Email already exists" });
+          const passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
+
+      const doc = {
+            email: normalizedEmail,
+            password: passwordHash, // שומרים את ההצפנה!
+          };
+
+          
+      const result = await users.insertOne(doc);
+      
+      return res.status(200).json({ message: "Success", id: result.insertedId});
     }
 
     // יצירת הצפנה
@@ -42,8 +53,10 @@ router.post("/register", async (req, res) => {
       createdAt: new Date(),
     };
 
-    const result = await users.insertOne(doc);
-    return res.status(201).json({ ok: true, id: result.insertedId });
+    
+const result = await users.insertOne(doc);
+    
+    return res.status(200).json({ message: "Success", id: result.insertedId });
   } catch (err) {
     console.error("Create user error:", err);
     return res.status(500).json({ ok: false, error: "Server error" });

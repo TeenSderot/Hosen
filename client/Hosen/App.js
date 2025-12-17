@@ -7,11 +7,13 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import SC33_Communication from "./src/components/SC33_Communication";
 // import SC36_Dashboard from "./src/components/SC36_Dashboard";
 import UserInfo from "./src/components/UserInfo";
+import { ErrorProvider } from "./src/components/hooks/context/ErrorContext";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
+    <ErrorProvider>
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="UserInfo"
@@ -25,6 +27,6 @@ export default function App() {
         <Stack.Screen name="Slogan" component={SC35_Slogan} />
         <Stack.Screen name="Dashboard" component={SC36_Dashboard} /> */}
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer></ErrorProvider>
   );
 }

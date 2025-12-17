@@ -8,12 +8,12 @@ import {
   ScrollView,
   ActivityIndicator,
   Text,
+  TextInput,
 } from "react-native"
 import { useTheme } from 'react-native-paper'
 import { useError } from "./hooks/context/ErrorContext"
 import * as SecureStore from "expo-secure-store"
-import { useApi } from "./hooks/Api/useApiService"
-import TextInput from "./UI/TextInput"
+import { useApi } from "./hooks/useApiService"
 
 export default function UserInfo({ setUserExists }) {
   const [_id, setID] = useState(null)
@@ -24,7 +24,7 @@ export default function UserInfo({ setUserExists }) {
   const { API_BASE } = useApi()
   const theme = useTheme()
 
-  const passwordRegex = /^(?:\+972|0)(?:5\d|[23489])\d{7}$/
+  const passwordRegex = /^$/ ///^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
   useEffect(() => {
@@ -52,7 +52,8 @@ export default function UserInfo({ setUserExists }) {
     setTimeout(() => {
           setLoading(false)
 
-    }, 10000);    try {
+    }, 10000);    
+    try {
       const response = await fetch(API_BASE + "/gettoken", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -86,34 +87,67 @@ const validateFields = () => {
 
   return true
 }
-  const handleSave = async () => {
-  if (!validateFields()) return
+const handleSave = async () => {
+  setLoading(true);
 
-  setLoading(true)
   try {
-    const response = await fetch(API_BASE + "/user/register", {
+    console.log("REGISTER ->", API_BASE + "/users/register");
+
+    // 1) Register
+    const regRes = await fetch(API_BASE + "/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password, email }),
-    })
+      body: JSON.stringify({ email, password }),
+      
+    });
 
-    if (!response.ok) throw new Error("שגיאת נתונים/רשת")
+    const regText = await regRes.text();
+    console.log("REGISTER status:", regRes.status, "body:", regText);
 
-    const data = await response.json()
+    if (!regRes.ok) throw new Error("Register failed");
 
-    if (data.message === "Success" || data._id) {
-      success("ברוך הבא 🙌")
-      await SecureStore.setItemAsync("_id", data._id)
-      await SecureStore.setItemAsync("exists", "true")
-    } else {
-      warning("לא הצלחנו לצרף אותך כרגע")
+    const regData = regText ? JSON.parse(regText) : {};
+    // מספיק לנו לדעת שהצליח: או שהחזיר id/_id או הודעה
+    const registeredOk = !!(regData._id || regData.id || regData.message === "Success");
+    if (!registeredOk) throw new Error("Register response not recognized");
+
+    // 2) Login
+    console.log("LOGIN ->", API_BASE + "/users/login");
+
+    const loginRes = await fetch(API_BASE + "/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const loginText = await loginRes.text();
+    console.log("LOGIN status:", loginRes.status, "body:", loginText);
+
+    if (!loginRes.ok) throw new Error("Login failed");
+
+    const loginData = loginText ? JSON.parse(loginText) : {};
+
+    // ⚠️ כאן תתאים לפי מה שהשרת מחזיר בפועל
+    const token = loginData.token || loginData.access_token || loginData.accessToken;
+    const userId = loginData.userId || loginData.id || (loginData.user && loginData.user.id);
+
+    if (!token || !userId) {
+      throw new Error("Missing token/userId from login response");
     }
-  } catch {
-    error("משהו השתבש, אנא נסה שוב")
+
+    await SecureStore.setItemAsync("_id", String(userId));
+    await SecureStore.setItemAsync("access_token", String(token));
+    await SecureStore.setItemAsync("exists", "true");
+
+    success("ברוך הבא 🙌");
+  } catch (err) {
+    console.log("❌ handleSave error:", err);
+    error(err?.message || "משהו השתבש, אנא נסה שוב");
   } finally {
-    setLoading(false)
+    setLoading(false);
   }
-}
+};
+
 
   return (
     <KeyboardAvoidingView
@@ -126,15 +160,7 @@ const validateFields = () => {
 
          
 
-          <TextInput
-            style={styles.input}
-            placeholder='טלפון'
-            keyboardType='password-pad'
-            value={password}
-            onChangeText={setpassword}
-            placeholderTextColor={theme.dark ? "#9CA3AF" : "#6B7280"}
-            maxLength={10}
-          />
+     
 
           <TextInput
             style={styles.input}
@@ -145,6 +171,16 @@ const validateFields = () => {
             autoCapitalize="none"
             placeholderTextColor={theme.dark ? "#9CA3AF" : "#6B7280"}
 
+          />
+
+               <TextInput
+            style={styles.input}
+            placeholder='סיסמה'
+            keyboardType='password-pad'
+            value={password}
+            onChangeText={setpassword}
+            placeholderTextColor={theme.dark ? "#9CA3AF" : "#6B7280"}
+            maxLength={10}
           />
           {loading ? (
             <ActivityIndicator size='small' color={theme.colors?.primary || '#3B82F6'} />
