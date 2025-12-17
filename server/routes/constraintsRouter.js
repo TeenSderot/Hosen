@@ -1,74 +1,137 @@
-import { Router, text } from "express";
+import { Router } from "express";
 import { getDb } from "../db.js";
 import { ObjectId } from "mongodb";
 
 const CONSTRAINTS_COLLECTION = "constraints";
 const router = Router();
-const db = await getDb()
+const db = await getDb();
 const constraints = db.collection(CONSTRAINTS_COLLECTION);
 
-router.post("/getallconstraints", async (req, res) => {
-    const all = await constraints.find({}).toArray();
-    res.status(200).json(all);
-});
-router.post("/getconstraints", async (req, res) => {
-  const {id} = req.body;
-  const one = await constraints.findOne({_id: new ObjectId(id)});
-  if (!one) {
-    return res.status(404).json({err});
-  }
-  res.status(200).json(one);
-});
 
-router.post("/addconstraint", async (req, res) => {
-    const { title, description } = req.body;
-    if (!title) {
-        return res.status(400).json({ error: "title is required" });
+router.post("/constraints", async (req, res) => {
+  try {
+    const { user_id,constraints_id } = req.body;
+
+    if (!user_id) {
+      return res.status(200).json({ message: "No user id" });
     }
-    const newItem = {
-        title,
-        description: description ?? "",
-        createdAt: new Date().toISOString()
-    };
-    await constraints.insertOne({...newItem});
-    res.status(200).json({ message: "Success" });
+
+    const constraintsList = await constraints
+      .find({ user_id: user_id,constraints_id:constraints_id })
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    if (!constraints)
+      return res.status(200).json({ message: "No such user id" });
+
+    return res.status(200).json(constraintsList);
+
+
+  } catch (err) {
+    console.error(err);
+    return res.status(200).json({ message: err });
+  }
 });
 
-router.post("/deleteconstraint/", async (req, res) => {
+
+router.post("/constraintss", async (req, res) => {
+  try {
+    const { user_id } = req.body;
+
+    if (!user_id) {
+      return res.status(200).json({ message: "No user id" });
+    }
+
+    const constraintsList = await constraints
+      .find({ user_id: user_id })
+      .sort({ createdAt: -1 })
+      .toArray();
+
+    if (!constraintsList)
+      return res.status(200).json({ message: "No such user id" });
+
+    return res.status(200).json(constraintsList);
+
+
+  } catch (err) {
+    console.error(err);
+    return res.status(200).json({ message: err });
+  }
+});
+
+router.post("/addconstraints", async (req, res) => {
+  const { title, text, user_id } = req.body;
+
+  if (!title) {
+    return res.status(400).json({ error: "title is required" });
+  }
+
+  const newItem = {
+    user_id,
+    title,
+    text: text ?? "",
+    createdAt: new Date().toISOString()
+  };
+
+  await constraints.insertOne({ ...newItem });
+
+  res.status(200).json({ message: "Success" });
+
+});
+
+
+
+router.post("/deleteconstraints/", async (req, res) => {
   try {
     const { id } = req.body;
+
     const result = await constraints.deleteOne({
-        _id: new ObjectId(id)
+      _id: new ObjectId(id)
     });
+
     if (result.deletedCount === 0) {
-      return res.status(404).json({ error: "Constraint not found" });
+      return res.status(404).json({ error: "constraints not found" });
     }
+
     res.status(200).json({ message: "Deleted successfully" });
+
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: "Invalid id" });
   }
 });
-router.post("/updateconstraint", async (req, res) => {
+
+
+router.post("/updateconstraints", async (req, res) => {
   try {
-    const { id } = req.body;
-    const { title, description } = req.body;
-    if (!title) {
-      return res.status(400).json({ error: "title is required" });
+    const { id, field, value } = req.body;
+
+    if (!id) {
+      return res.status(400).json({ error: "id is required" });
     }
-    const result = await constraints.updateOne(
+
+    if (!field) {
+      return res.status(400).json({ error: "field is required" });
+    }
+
+    const update = { [field]: value };
+
+    const result = await constraintss.findOneAndUpdate(
       { _id: new ObjectId(id) },
-      { $set: { title, description: description ?? "" } }
+      { $set: update },
+      { returnDocument: "after" }
     );
-    if (result.matchedCount === 0) {
-      return res.status(404).json({ error: "Constraint not found" });
+
+    if (!result.value) {
+      return res.status(404).json({ error: "constraints not found" });
     }
-    res.status(200).json({ message: "Updated successfully" });
-  }
-    catch (err) {
+
+    return res.status(200).json(result.value);
+  } catch (err) {
     console.error(err);
-    res.status(400).json({ error: "Invalid id" });
+    return res.status(400).json({ error: "Invalid id" });
   }
 });
-router.get("/ping", (req, res) => res.json({ ok: true }))
+
+
 export default router;

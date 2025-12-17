@@ -9,6 +9,10 @@ import feelingsRouter from "./routes/feelingsRouter.js";
 import pressuresRouter from "./routes/pressuresRouter.js";
 import constraintsRouter from "./routes/constraintsRouter.js";
 import resourcesRouter from "./routes/resourcesRouter.js";
+import conversationRouter from "./routes/conversationRouter.js";
+import toolsRouter from "./routes/toolsRouter.js";
+import q_aRouter from "./routes/q_aRouter.js";
+
 
 dotenv.config();
 
@@ -140,6 +144,10 @@ app.use("/checklists", checklistsRouter);
 app.use("/users", userRouter);
 app.use("/constraints", constraintsRouter);
 app.use("/resources", resourcesRouter);
+app.use("/conversation",conversationRouter);
+app.use("/tools",toolsRouter);
+app.use("/q_a",q_aRouter);
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`🚀 Listening on http://localhost:${port}`));

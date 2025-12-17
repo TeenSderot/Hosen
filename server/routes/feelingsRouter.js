@@ -21,7 +21,7 @@ router.post("/feeling", async (req, res) => {
       .sort({ createdAt: -1 })
       .toArray();
 
-    if (!feelings)
+    if (!feelingsList)
       return res.status(200).json({ message: "No such user id" });
 
     return res.status(200).json(feelingsList);

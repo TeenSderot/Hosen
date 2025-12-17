@@ -2,29 +2,29 @@ import { Router } from "express";
 import { getDb } from "../db.js";
 import { ObjectId } from "mongodb";
 
-const PRESURE_COLLECTION = "feelings";
+const TOOLS_COLLECTION = "tools";
 const router = Router();
 const db = await getDb();
-const presure = db.collection(PRESURE_COLLECTION);
+const tools = db.collection(TOOLS_COLLECTION);
 
 
-router.post("/presure", async (req, res) => {
+router.post("/tool", async (req, res) => {
   try {
-    const { user_id,presure_id } = req.body;
+    const { user_id,tools_id } = req.body;
 
     if (!user_id) {
       return res.status(200).json({ message: "No user id" });
     }
 
-    const presureList = await presure
-      .find({ user_id: user_id,presure_id:presure_id })
+    const toolsList = await tools
+      .find({ user_id: user_id,tool_id:tool_id })
       .sort({ createdAt: -1 })
       .toArray();
 
-    if (!presure)
+    if (!tools)
       return res.status(200).json({ message: "No such user id" });
 
-    return res.status(200).json(presureList);
+    return res.status(200).json(toolsList);
 
 
   } catch (err) {
@@ -34,7 +34,7 @@ router.post("/presure", async (req, res) => {
 });
 
 
-router.post("/presures", async (req, res) => {
+router.post("/tools", async (req, res) => {
   try {
     const { user_id } = req.body;
 
@@ -42,15 +42,15 @@ router.post("/presures", async (req, res) => {
       return res.status(200).json({ message: "No user id" });
     }
 
-    const presureList = await presure
+    const toolsList = await tools
       .find({ user_id: user_id })
       .sort({ createdAt: -1 })
       .toArray();
 
-    if (!presureList)
+    if (!toolsList)
       return res.status(200).json({ message: "No such user id" });
 
-    return res.status(200).json(presureList);
+    return res.status(200).json(toolsList);
 
 
   } catch (err) {
@@ -59,7 +59,7 @@ router.post("/presures", async (req, res) => {
   }
 });
 
-router.post("/addpresure", async (req, res) => {
+router.post("/addtool", async (req, res) => {
   const { title, text, user_id } = req.body;
 
   if (!title) {
@@ -73,7 +73,7 @@ router.post("/addpresure", async (req, res) => {
     createdAt: new Date().toISOString()
   };
 
-  await presure.insertOne({ ...newItem });
+  await tools.insertOne({ ...newItem });
 
   res.status(200).json({ message: "Success" });
 
@@ -82,16 +82,16 @@ router.post("/addpresure", async (req, res) => {
 
 
 
-router.post("/deletepresure/", async (req, res) => {
+router.post("/deletetool/", async (req, res) => {
   try {
     const { id } = req.body;
 
-    const result = await presure.deleteOne({
+    const result = await tools.deleteOne({
       _id: new ObjectId(id)
     });
 
     if (result.deletedCount === 0) {
-      return res.status(404).json({ error: "presure not found" });
+      return res.status(404).json({ error: "tools not found" });
     }
 
     res.status(200).json({ message: "Deleted successfully" });
@@ -103,7 +103,7 @@ router.post("/deletepresure/", async (req, res) => {
 });
 
 
-router.post("/updatepresure", async (req, res) => {
+router.post("/updatetool", async (req, res) => {
   try {
     const { id, field, value } = req.body;
 
@@ -117,14 +117,14 @@ router.post("/updatepresure", async (req, res) => {
 
     const update = { [field]: value };
 
-    const result = await presures.findOneAndUpdate(
+    const result = await tools.findOneAndUpdate(
       { _id: new ObjectId(id) },
       { $set: update },
       { returnDocument: "after" }
     );
 
     if (!result.value) {
-      return res.status(404).json({ error: "presure not found" });
+      return res.status(404).json({ error: "tools not found" });
     }
 
     return res.status(200).json(result.value);
