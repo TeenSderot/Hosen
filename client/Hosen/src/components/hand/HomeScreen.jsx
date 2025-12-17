@@ -2,14 +2,14 @@ import { View, Text, Image, ScrollView, StyleSheet } from "react-native";
 import { useState } from "react";
 import MoodSelector from "./MoodSelector";
 import HandIllustration from "./HandIllustration";
-// import BottomNav from "./BottomNav";
+import BottomNav from "./BottomNav";
 import { Input } from "./Input";
 import { COLORS } from "./COLORS";
 
 export default function HomeScreen({ route }) {
   const [journal, setJournal] = useState("");
  const { userName } = route.params;
- 
+
   return (
     <View style={styles.root}>
       {/* Header */}
@@ -19,7 +19,7 @@ export default function HomeScreen({ route }) {
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.title}>
-          היי, {userName}{"\n"}איך היום שלך בינתיים?
+          היי, {userName || ""} טוב לראות אותך.{"\n"}איך היום שלך בינתיים?
         </Text>
 
         <Input
@@ -35,7 +35,7 @@ export default function HomeScreen({ route }) {
         </View>
       </ScrollView>
 
-      {/* <BottomNav /> */}
+      <BottomNav />
     </View>
   );
 }

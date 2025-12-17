@@ -25,7 +25,7 @@ export default function BottomNav() {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    bottom: 0,
+    bottom: 50,
     left: 0,
     right: 0,
     height: 64,
