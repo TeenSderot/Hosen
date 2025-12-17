@@ -14,4 +14,9 @@ export const COLORS = {
   },
 
   hand: "#EDE7E3",
+  ring: "#FACC15",
+    pinky: "#22D3EE",
+    middle: "#FB923C",
+    index: "#A3E635",
+    thumb: "#22C55E",
 };
