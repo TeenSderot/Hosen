@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import AppLayout from '../components/layout/AppLayout';
-import Button from '../components/ui/Button';
-import Input from '../components/ui/Input';
-import { setString } from '../lib/storage';
+import AppLayout from './layout/AppLayout';
+import Button from './ui/Button';
+import Input from './ui/Input';
+import { setString } from './lib/storage';
 
 const suggestions = ['ביחד ננצח', 'משפחה חזקה', 'אנחנו צוות', 'יש בנו כוח'];
 
@@ -42,7 +42,17 @@ export default function SC35_Slogan({ navigation }) {
         ))}
       </View>
 
-      <Button title="שמור סיסמה" onPress={handleSave} />
+      <Button
+  title="שמור סיסמה"
+  onPress={handleSave}
+  disabled={false}
+  loading={false}
+  style={undefined}
+  textStyle={undefined}
+  leftIcon={null}
+  rightIcon={null}
+/>
+
     </AppLayout>
   );
 }

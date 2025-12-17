@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import AppLayout from '../components/layout/AppLayout';
-import PrincipleCard from '../components/ui/PrincipleCard';
-import Button from '../components/ui/Button';
+import AppLayout from './layout/AppLayout';
+import PrincipleCard from './ui/PrincipleCard';
+import Button from './ui/Button';
 
 const principles = [
   {
