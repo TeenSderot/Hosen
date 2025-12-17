@@ -1,6 +1,6 @@
 import { useCallback } from "react"
 import * as SecureStore from "expo-secure-store"
-const API_BASE ="http://localhost:10000"//"https://hosen.onrender.com"//"http://10.0.0.14:5000"////////////
+const API_BASE ="http://72.23.128.1:10000"//"https://hosen.onrender.com"////"//"http://10.0.0.14:5000"////////////
 
 export function useApi() {
   // אחזור טוקן מה־AsyncStorage

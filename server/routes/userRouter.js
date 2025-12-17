@@ -17,8 +17,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 // ==========================================
 router.post("/register", async (req, res) => {
   try {
-    const { email, password } = req.body;
-console.log(email,password);
+    const { email, password ,name} = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ ok: false, error: "email and password are required" });
@@ -31,17 +30,8 @@ console.log(email,password);
     // בדיקה אם קיים
     const existing = await users.findOne({ email: normalizedEmail });
     if (existing) {
-          const passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
 
-      const doc = {
-            email: normalizedEmail,
-            password: passwordHash, // שומרים את ההצפנה!
-          };
-
-          
-      const result = await users.insertOne(doc);
-      
-      return res.status(200).json({ message: "Success", id: result.insertedId});
+      return res.status(200).json({ message: "Success", id: existing._id });
     }
 
     // יצירת הצפנה
@@ -54,7 +44,7 @@ console.log(email,password);
     };
 
     
-const result = await users.insertOne(doc);
+    const result = await users.insertOne(doc);
     
     return res.status(200).json({ message: "Success", id: result.insertedId });
   } catch (err) {
@@ -95,7 +85,7 @@ router.post("/login", async (req, res) => {
 
     // יצירת טוקן
     const token = jwt.sign(
-      { userId: user._id, email: user.email },
+      { userId: user._id, email: user.email,name: user.name },
       JWT_SECRET,
       { expiresIn: "12h" } // תוקף הטוקן
     );

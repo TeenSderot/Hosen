@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import SC36_Dashboard from "./src/components/SC36_Dashboard";
 import UserInfo from "./src/components/UserInfo";
 import { ErrorProvider } from "./src/components/hooks/context/ErrorContext";
+import HomeScreen from "./src/components/hand/HomeScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,8 @@ export default function App() {
         }}
       >
         <Stack.Screen name="UserInfo" component={UserInfo} />
+       <Stack.Screen name="Hand" component={HomeScreen} />
+
         {/* <Stack.Screen name="Communication" component={SC33_Communication} />
         <Stack.Screen name="Onboarding" component={SC32_Onboarding} />
         <Stack.Screen name="Slogan" component={SC35_Slogan} />
