@@ -8,8 +8,12 @@ const router = express.Router();
 
 const USERS_COLLECTION = "users";
 const SALT_ROUNDS = 12;
+// מומלץ לשים את זה בקובץ .env, אבל כרגע זה יעבוד
+const JWT_SECRET = process.env.JWT_SECRET || "my_super_secret_key_123"; 
 
-// POST /users  -> Create user 
+// ==========================================
+// 1. REGISTER (תוקן: שומר הצפנה)
+// ==========================================
 router.post("/register", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -19,22 +23,22 @@ router.post("/register", async (req, res) => {
     }
 
     const normalizedEmail = String(email).trim().toLowerCase();
-
     const db = await getDb();
     const users = db.collection(USERS_COLLECTION);
 
-    // unique email check
+    // בדיקה אם קיים
     const existing = await users.findOne({ email: normalizedEmail });
     if (existing) {
       return res.status(409).json({ ok: false, error: "Email already exists" });
     }
 
+    // יצירת הצפנה
     const passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
 
-    const now = new Date();
     const doc = {
       email: normalizedEmail,
-      password,
+      password: passwordHash, // שומרים את ההצפנה!
+      createdAt: new Date(),
     };
 
     const result = await users.insertOne(doc);
@@ -45,12 +49,60 @@ router.post("/register", async (req, res) => {
   }
 });
 
-// PUT /users/:id -> Update user
+// ==========================================
+// 2. LOGIN (חדש: נכתב עבורך)
+// ==========================================
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ ok: false, error: "Email and password are required" });
+    }
+
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const db = await getDb();
+    const users = db.collection(USERS_COLLECTION);
+
+    // חיפוש המשתמש
+    const user = await users.findOne({ email: normalizedEmail });
+    
+    // אם המשתמש לא קיים
+    if (!user) {
+      return res.status(401).json({ ok: false, error: "Invalid email or password" });
+    }
+
+    // השוואת סיסמה מול ההצפנה ב-DB
+    const isMatch = await bcrypt.compare(String(password), user.password);
+    
+    if (!isMatch) {
+      return res.status(401).json({ ok: false, error: "Invalid email or password" });
+    }
+
+    // יצירת טוקן
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      JWT_SECRET,
+      { expiresIn: "12h" } // תוקף הטוקן
+    );
+
+    // החזרת תשובה מוצלחת עם הטוקן
+    return res.json({ ok: true, token, userId: user._id });
+
+  } catch (err) {
+    console.error("Login error:", err);
+    return res.status(500).json({ ok: false, error: "Server error" });
+  }
+});
+
+// ==========================================
+// 3. UPDATE USER (תוקן: שמות שדות)
+// ==========================================
 router.post("/updateuser", async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.body; // עדיף לקבל ID מה-Token אבל נשאיר כרגע כמו שכתבת
 
-    if (!ObjectId.isValid(id)) {
+    if (!id || !ObjectId.isValid(id)) {
       return res.status(400).json({ ok: false, error: "Invalid id" });
     }
 
@@ -60,7 +112,8 @@ router.post("/updateuser", async (req, res) => {
     if (email) updates.email = String(email).trim().toLowerCase();
 
     if (password) {
-      updates.passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
+      // כאן תיקנתי שזה ישמור לשדה 'password' ולא 'passwordHash' כדי שיהיה תואם ל-Register
+      updates.password = await bcrypt.hash(String(password), SALT_ROUNDS);
     }
 
     if (Object.keys(updates).length === 0) {
@@ -72,7 +125,7 @@ router.post("/updateuser", async (req, res) => {
     const db = await getDb();
     const users = db.collection(USERS_COLLECTION);
 
-    // If updating email, keep it unique
+    // בדיקת ייחודיות אימייל בעדכון
     if (updates.email) {
       const existing = await users.findOne({
         email: updates.email,
@@ -99,12 +152,14 @@ router.post("/updateuser", async (req, res) => {
   }
 });
 
-// DELETE /users/:id -> Soft delete user (isActive=false)
+// ==========================================
+// 4. DELETE USER
+// ==========================================
 router.post("/deleteuser", async (req, res) => {
   try {
     const { id } = req.body;
 
-    if (!ObjectId.isValid(id)) {
+    if (!id || !ObjectId.isValid(id)) {
       return res.status(400).json({ ok: false, error: "Invalid id" });
     }
 
@@ -122,57 +177,6 @@ router.post("/deleteuser", async (req, res) => {
     return res.json({ ok: true });
   } catch (err) {
     console.error("Delete user error:", err);
-    return res.status(500).json({ ok: false, error: "Server error" });
-  }
-});
-
-// POST /users/login -> Login (NO JWT YET)
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    if (!email || !password) {
-      return res.status(400).json({ ok: false, error: "email and password are required" });
-    }
-
-    const normalizedEmail = String(email).trim().toLowerCase();
-
-    const db = await getDb();
-    const users = db.collection(USERS_COLLECTION);
-
-    const user = await users.findOne({ email: normalizedEmail });
-
-    // Don't leak which field is wrong
-    if (!user || user.isActive === false) {
-      return res.status(401).json({ ok: false, error: "Invalid credentials" });
-    }
-
-    const match = await bcrypt.compare(String(password), user.passwordHash);
-    if (!match) {
-      return res.status(401).json({ ok: false, error: "Invalid credentials" });
-    }
-    // create JWT token and return it along with the user id
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      console.error("JWT_SECRET is not set");
-      return res.status(500).json({ ok: false, error: "Server configuration error" });
-    }
-
-    const payload = { id: String(user._id), email: user.email, role: user.role };
-    const token = jwt.sign(payload, secret, { expiresIn: "1h" });
-
-    return res.json({
-      ok: true,
-      id: String(user._id),
-      token,
-      user: {
-        id: String(user._id),
-        email: user.email,
-        role: user.role,
-      },
-    });
-  } catch (err) {
-    console.error("Login error:", err);
     return res.status(500).json({ ok: false, error: "Server error" });
   }
 });
