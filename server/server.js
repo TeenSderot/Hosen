@@ -11,6 +11,7 @@ import constraintsRouter from "./routes/constraintsRouter.js";
 import resourcesRouter from "./routes/resourcesRouter.js";
 import conversationRouter from "./routes/conversationRouter.js";
 import toolsRouter from "./routes/toolsRouter.js";
+import favoritesRouter from "./routes/favoritesRouter.js";
 import q_aRouter from "./routes/q_aRouter.js";
 
 
@@ -147,6 +148,7 @@ app.use("/resources", resourcesRouter);
 app.use("/conversation",conversationRouter);
 app.use("/tools",toolsRouter);
 app.use("/q_a",q_aRouter);
+app.use("/favorites",favoritesRouter);
 
 
 const port = process.env.PORT || 3000;
