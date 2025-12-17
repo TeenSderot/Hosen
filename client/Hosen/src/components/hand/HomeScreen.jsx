@@ -9,6 +9,7 @@ import { COLORS } from "./COLORS";
 export default function HomeScreen({ route }) {
   const [journal, setJournal] = useState("");
  const { userName } = route.params;
+ 
   return (
     <View style={styles.root}>
       {/* Header */}
@@ -18,7 +19,7 @@ export default function HomeScreen({ route }) {
 
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.title}>
-          היי, ${userName}{"\n"}איך היום שלך בינתיים?
+          היי, {userName}{"\n"}איך היום שלך בינתיים?
         </Text>
 
         <Input

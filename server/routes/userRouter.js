@@ -85,13 +85,13 @@ router.post("/login", async (req, res) => {
 
     // יצירת טוקן
     const token = jwt.sign(
-      { userId: user._id, email: user.email,name: user.name },
+      { userId: user._id, email: user.email },
       JWT_SECRET,
-      { expiresIn: "12h" } // תוקף הטוקן
+      // { expiresIn: "12h" } // תוקף הטוקן
     );
 
     // החזרת תשובה מוצלחת עם הטוקן
-    return res.json({ ok: true, token, userId: user._id });
+    return res.json({ ok: true, token, userId: user._id,name: user.name });
 
   } catch (err) {
     console.error("Login error:", err);

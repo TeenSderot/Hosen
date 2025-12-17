@@ -37,9 +37,10 @@ export default function UserInfo() {
       try {
         const id = await SecureStore.getItemAsync("_id")
         const exists = await SecureStore.getItemAsync("exists")
+        const full_name = await SecureStore.getItemAsync("full_name")||"אורח"
+        
         if (id && exists === "true") {
-          await getSetToken(id)
-          navigate.navigate("Hand") // כניסה אוטומטית
+          navigate.navigate("Hand",{userName:full_name}) // כניסה אוטומטית
           return
         }
       } catch (err) {
@@ -52,23 +53,7 @@ export default function UserInfo() {
     checkExistingUser()
   }, [])
 
-  const getSetToken = async (_id) => {
-    try {
-      const response = await fetch(API_BASE + "/gettoken", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ user_id: _id }),
-      })
-      if (!response.ok) throw new Error("שגיאת נתונים/רשת")
-      const data = await response.json()
-      if (data.message === "Success") {
-        await SecureStore.setItemAsync("access_token", data.token)
-      } else warning("אירעה שגיאה בהזדהות.")
-    } catch (err) {
-      error("משהו השתבש בניתוח הנתונים, אנא נסה שוב")
-    }
-  }
-
+  
   const validateFields = () => {
     if (password && !passwordRegex.test(password.trim())) {
       warning("אנא הזן סיסמה תקינה")
@@ -89,7 +74,7 @@ export default function UserInfo() {
   }
 
   const handleSave = async () => {
-    if (!validateFields()) return
+    //if (!validateFields()) return
     setLoading(true)
     try {
       // 1) Register
@@ -101,7 +86,7 @@ export default function UserInfo() {
 
       if (!regRes.ok) throw new Error("Register failed")
       const regData = await regRes.json()
-
+      
       const registeredOk = !!(regData._id || regData.id || regData.message === "Success")
       if (!registeredOk) throw new Error("Register response not recognized")
 
@@ -115,15 +100,16 @@ export default function UserInfo() {
       if (!loginRes.ok) throw new Error("Login failed")
       const loginData = await loginRes.json()
 
-      const token = loginData.token || loginData.access_token || loginData.accessToken
-      const userId = loginData.userId || loginData.id || (loginData.user && loginData.user.id)
-      const full_name = loginData.name || loginData.user_name || ""
+      const token = loginData?.token 
+      const userId = loginData?.userId 
+      const full_name = loginData?.name || ""
       if (!token || !userId) throw new Error("Missing token/userId from login response")
 
       await SecureStore.setItemAsync("_id", String(userId))
       await SecureStore.setItemAsync("access_token", String(token))
       await SecureStore.setItemAsync("exists", "true")
-
+      await SecureStore.setItemAsync("full_name", full_name)
+  
       success("ברוך הבא 🙌")
       navigate.navigate("Hand",{ userName: full_name  || name || "אורח" })
     } catch (err) {
