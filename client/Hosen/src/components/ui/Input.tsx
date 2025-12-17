@@ -1,15 +1,13 @@
-import React from 'react';
-import {StyleSheet, TextInput, ViewStyle, TextStyle} from 'react-native';
+import React from "react";
+import { StyleSheet, TextInput } from "react-native";
 
-type Props = {
-  value: string;
-  onChangeText: (t: string) => void;
-  placeholder?: string;
-  style?: ViewStyle;
-  inputStyle?: TextStyle;
-};
-
-export default function Input({value, onChangeText, placeholder, style, inputStyle}: Props) {
+export default function Input({
+  value,
+  onChangeText,
+  placeholder,
+  style,
+  inputStyle,
+}) {
   return (
     <TextInput
       value={value}
@@ -24,13 +22,13 @@ export default function Input({value, onChangeText, placeholder, style, inputSty
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: '#101824',
-    borderColor: '#2A3340',
+    backgroundColor: "#101824",
+    borderColor: "#2A3340",
     borderWidth: 2,
     borderRadius: 14,
     paddingHorizontal: 14,
     paddingVertical: 14,
     fontSize: 18,
-    color: '#E6EEF8',
+    color: "#E6EEF8",
   },
 });

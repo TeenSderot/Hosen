@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Pressable } from 'react-native';
-import AppLayout from '../layout/AppLayout';
-import Button from '../ui/Button';
-import Input from '../ui/Input';
-import { setString } from '../lib/storage';
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Pressable } from "react-native";
+import AppLayout from "../layout/AppLayout";
+import Button from "../ui/Button";
+import Input from "../ui/Input";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const suggestions = ['ביחד ננצח', 'משפחה חזקה', 'אנחנו צוות', 'יש בנו כוח'];
+const suggestions = ["ביחד ננצח", "משפחה חזקה", "אנחנו צוות", "יש בנו כוח"];
 
 export default function SC35_Slogan({ navigation }) {
-  const [slogan, setSlogan] = useState('');
+  const [slogan, setSlogan] = useState("");
 
   const handleSave = async () => {
-    await setString('familySlogan', slogan || 'אנחנו משפחה חזקה');
-    navigation.navigate('Communication');
+    const finalSlogan = (slogan || "").trim() || "אנחנו משפחה חזקה";
+    await AsyncStorage.setItem("familySlogan", finalSlogan);
+    navigation.navigate("Communication");
   };
 
   return (
@@ -21,7 +22,7 @@ export default function SC35_Slogan({ navigation }) {
         <Text style={styles.bigIcon}>🛡️</Text>
         <Text style={styles.h1}>הכוח המשפחתי שלנו</Text>
         <Text style={styles.p}>
-          בחרו משפט אחד, קצר וחזק, שילווה אתכם.{'\n'}
+          בחרו משפט אחד, קצר וחזק, שילווה אתכם.{"\n"}
           משהו שרק אתם מבינים ונותן לכם כוח.
         </Text>
       </View>
@@ -42,48 +43,38 @@ export default function SC35_Slogan({ navigation }) {
         ))}
       </View>
 
-      <Button
-  title="שמור סיסמה"
-  onPress={handleSave}
-  disabled={false}
-  loading={false}
-  style={undefined}
-  textStyle={undefined}
-  leftIcon={null}
-  rightIcon={null}
-/>
-
+      <Button title="שמור סיסמה" onPress={handleSave} />
     </AppLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  header: { alignItems: 'center', gap: 10, paddingVertical: 10 },
+  header: { alignItems: "center", gap: 10, paddingVertical: 10 },
   bigIcon: { fontSize: 44 },
-  h1: { color: '#E6EEF8', fontSize: 28, fontWeight: '900', textAlign: 'center' },
-  p: { color: '#AFC0D6', fontSize: 16, lineHeight: 22, textAlign: 'center' },
+  h1: { color: "#E6EEF8", fontSize: 28, fontWeight: "900", textAlign: "center" },
+  p: { color: "#AFC0D6", fontSize: 16, lineHeight: 22, textAlign: "center" },
   card: {
-    backgroundColor: '#101824',
+    backgroundColor: "#101824",
     borderRadius: 18,
     padding: 14,
     borderWidth: 1,
-    borderColor: '#233043',
+    borderColor: "#233043",
     marginVertical: 10,
   },
   chips: {
-    flexDirection: 'row-reverse',
-    flexWrap: 'wrap',
+    flexDirection: "row-reverse",
+    flexWrap: "wrap",
     gap: 8,
-    justifyContent: 'center',
+    justifyContent: "center",
     marginBottom: 14,
   },
   chip: {
     paddingHorizontal: 14,
     paddingVertical: 10,
     borderRadius: 999,
-    backgroundColor: '#111A27',
+    backgroundColor: "#111A27",
     borderWidth: 1,
-    borderColor: '#233043',
+    borderColor: "#233043",
   },
-  chipText: { color: '#AFC0D6', fontSize: 13, textAlign: 'center' },
+  chipText: { color: "#AFC0D6", fontSize: 13, textAlign: "center" },
 });
