@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Pressable } from 'react-native';
-import AppLayout from './layout/AppLayout';
-import Button from './ui/Button';
-import Input from './ui/Input';
-import { setString } from './lib/storage';
+import AppLayout from '../layout/AppLayout';
+import Button from '../ui/Button';
+import Input from '../ui/Input';
+import { setString } from '../lib/storage';
 
 const suggestions = ['ביחד ננצח', 'משפחה חזקה', 'אנחנו צוות', 'יש בנו כוח'];
 
