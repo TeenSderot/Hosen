@@ -2,14 +2,14 @@ import { Router} from "express";
 import { getDb } from "../db.js";
 import { ObjectId } from "mongodb";
 
-const RESOURCES_COLLECTION = "resources";
+const FAVORITES_COLLECTION = "favorites";
 const router = Router();
 const db = await getDb()
-const resources = db.collection(RESOURCES_COLLECTION);
+const favorites = db.collection(FAVORITES_COLLECTION);
 
-router.post("/getresources", async(req, res) => {
+router.post("/getfavorites", async(req, res) => {
     const {user_id} = req.body;
-    const resourcesList = await resources
+    const resourcesList = await favorites
       .find({ user_id: user_id })
       .sort({ createdAt: -1 })
       .toArray();
@@ -19,7 +19,7 @@ router.post("/getresources", async(req, res) => {
     res.status(200).json(resourcesList);
 });
 
-router.post("/addresource", async (req, res) => {
+router.post("/addfavorite", async (req, res) => {
     const { title, description, user_id } = req.body;
     if (!title) {
         return res.status(400).json({ error: "title is required" });
@@ -30,14 +30,14 @@ router.post("/addresource", async (req, res) => {
         user_id,
         createdAt: new Date().toISOString()
     };
-    await resources.insertOne({...newItem});
+    await favorites.insertOne({...newItem});
     res.status(200).json({ message: "Success" });
 });
 
-router.post("/deleteresource/", async (req, res) => {
+router.post("/deletefavorite/", async (req, res) => {
   try {
     const { user_id, resources_id } = req.body;
-    const result = await resources.deleteOne({
+    const result = await favorites.deleteOne({
         _id: new ObjectId(resources_id)
     });
     if (result.deletedCount === 0) {
@@ -49,35 +49,34 @@ router.post("/deleteresource/", async (req, res) => {
     res.status(400).json({ error: "Invalid id" });
   }
 });
-router.post("/updateresource", async (req, res) => {
-try {
-    const { id, field, value } = req.body;
-
-    if (!id) {
-      return res.status(400).json({ error: "id is required" });
-    }
-
-    if (!field) {
-      return res.status(400).json({ error: "field is required" });
-    }
-
-    const update = { [field]: value };
-
-    const result = await resources.findOneAndUpdate(
-      { _id: new ObjectId(id) },
-      { $set: update },
-      { returnDocument: "after" }
-    );
-
-    if (!result.value) {
-      return res.status(404).json({ error: "conversation not found" });
-    }
-
-    return res.status(200).json(result.value);
-  } catch (err) {
-    console.error(err);
-    return res.status(400).json({ error: "Invalid id" });
-  }
-});
-
+router.post("/updatefavorite", async (req, res) => {
+ try {
+     const { id, field, value } = req.body;
+ 
+     if (!id) {
+       return res.status(400).json({ error: "id is required" });
+     }
+ 
+     if (!field) {
+       return res.status(400).json({ error: "field is required" });
+     }
+ 
+     const update = { [field]: value };
+ 
+     const result = await favorites.findOneAndUpdate(
+       { _id: new ObjectId(id) },
+       { $set: update },
+       { returnDocument: "after" }
+     );
+ 
+     if (!result.value) {
+       return res.status(404).json({ error: "conversation not found" });
+     }
+ 
+     return res.status(200).json(result.value);
+   } catch (err) {
+     console.error(err);
+     return res.status(400).json({ error: "Invalid id" });
+   }
+ });
 export default router;
