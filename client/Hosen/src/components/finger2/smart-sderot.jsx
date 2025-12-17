@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { AppLayout } from './AppLayout';
+import { AppLayout } from '../components/AppLayout';
 
 export default function SmartSderotScreen() {
   return (
@@ -13,3 +13,5 @@ export default function SmartSderotScreen() {
     </AppLayout>
   );
 }
+
+

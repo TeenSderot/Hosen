@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Svg, { Path, Circle, Rect, Line } from 'react-native-svg';
 
-
-
-export const ThermometerView= ({
-  percentage,
-  size = 'md'
-}) => {
+export const ThermometerView = ({ percentage, size = 'md' }) => {
   const [displayPercent, setDisplayPercent] = useState(0);
 
   useEffect(() => {
@@ -82,7 +77,7 @@ export const ThermometerView= ({
           stroke="#CBD5E1"
           strokeWidth="2"
         />
-        <Line
+       <Line
           x1={width * 0.7}
           y1={height * 0.3}
           x2={width * 0.85}
@@ -110,3 +105,5 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
 });
+
+

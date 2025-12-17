@@ -1,12 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-export const AppLayout = ({
-  children,
-  title,
-  subtitle,
-  footerContent,
-}) => {
+export const AppLayout = ({ children, title, subtitle, footerContent }) => {
   return (
     <View style={styles.container}>
       <ScrollView
@@ -74,6 +69,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 24,
     paddingTop: 8,
+    // Make sure all inner content is laid out RTL-friendly by default
+    writingDirection: 'rtl',
   },
   spacer: {
     height: 32,
@@ -87,3 +84,5 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 });
+
+
