@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Alert, Share, StyleSheet, Text, View } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-import AppLayout from './layout/AppLayout';
-import Button from './ui/Button';
-import { getString } from './lib/storage';
+import AppLayout from '../layout/AppLayout';
+import Button from '../ui/Button';
+import { getString } from '../lib/storage';
 
 
 

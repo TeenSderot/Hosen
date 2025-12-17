@@ -6,27 +6,28 @@ const RESOURCES_COLLECTION = "resources";
 const router = Router();
 const db = await getDb()
 const resources = db.collection(RESOURCES_COLLECTION);
-router.post("/getallresources", async (req, res) => {
-    const all = await resources.find({}).toArray();
-    res.status(200).json(all);
-});
-router.post("/getresource", (req, res) => {
-    const {id} = req.body;
-    const one = resources.findOne({_id: new ObjectId(id)});
-    if (!one) {
-      return res.status(404).json({err});
+
+router.post("/getresources", async(req, res) => {
+    const {user_id} = req.body;
+    const resourcesList = await resources
+      .find({ user_id: user_id })
+      .sort({ createdAt: -1 })
+      .toArray();
+    if (!resourcesList) {
+      return res.status(404).json({"no user found":user_id});
     }
-    res.status(200).json(one);
+    res.status(200).json(resourcesList);
 });
 
 router.post("/addresource", async (req, res) => {
-    const { title, description } = req.body;
+    const { title, description, user_id } = req.body;
     if (!title) {
         return res.status(400).json({ error: "title is required" });
     }
     const newItem = {
         title,
         description: description ?? "",
+        user_id,
         createdAt: new Date().toISOString()
     };
     await resources.insertOne({...newItem});
@@ -35,9 +36,9 @@ router.post("/addresource", async (req, res) => {
 
 router.post("/deleteresource/", async (req, res) => {
   try {
-    const { id } = req.body;
+    const { user_id, resources_id } = req.body;
     const result = await resources.deleteOne({
-        _id: new ObjectId(id)
+        _id: new ObjectId(resources_id)
     });
     if (result.deletedCount === 0) {
       return res.status(404).json({ error: "Resource not found" });
