@@ -1,6 +1,7 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
+import jwt from "jsonwebtoken";
 import { getDb } from "../db.js";
 
 const router = express.Router();
@@ -8,10 +9,10 @@ const router = express.Router();
 const USERS_COLLECTION = "users";
 const SALT_ROUNDS = 12;
 
-// POST /users  -> Create user
-router.post("/", async (req, res) => {
+// POST /users  -> Create user 
+router.post("/register", async (req, res) => {
   try {
-    const { email, password, role } = req.body;
+    const { email, password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ ok: false, error: "email and password are required" });
@@ -33,11 +34,7 @@ router.post("/", async (req, res) => {
     const now = new Date();
     const doc = {
       email: normalizedEmail,
-      passwordHash,
-      role: role || "user",
-      isActive: true,
-      createdAt: now,
-      updatedAt: now,
+      password,
     };
 
     const result = await users.insertOne(doc);
@@ -49,20 +46,18 @@ router.post("/", async (req, res) => {
 });
 
 // PUT /users/:id -> Update user
-router.put("/:id", async (req, res) => {
+router.post("/updateuser", async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
 
     if (!ObjectId.isValid(id)) {
       return res.status(400).json({ ok: false, error: "Invalid id" });
     }
 
-    const { email, password, role, isActive } = req.body;
+    const { email, password } = req.body;
 
     const updates = {};
     if (email) updates.email = String(email).trim().toLowerCase();
-    if (role) updates.role = role;
-    if (typeof isActive === "boolean") updates.isActive = isActive;
 
     if (password) {
       updates.passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
@@ -105,9 +100,9 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE /users/:id -> Soft delete user (isActive=false)
-router.delete("/:id", async (req, res) => {
+router.post("/deleteuser", async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.body;
 
     if (!ObjectId.isValid(id)) {
       return res.status(400).json({ ok: false, error: "Invalid id" });
@@ -116,9 +111,8 @@ router.delete("/:id", async (req, res) => {
     const db = await getDb();
     const users = db.collection(USERS_COLLECTION);
 
-    const result = await users.updateOne(
+    const result = await users.deleteOne(
       { _id: new ObjectId(id) },
-      { $set: { isActive: false, updatedAt: new Date() } }
     );
 
     if (result.matchedCount === 0) {
@@ -157,12 +151,22 @@ router.post("/login", async (req, res) => {
     if (!match) {
       return res.status(401).json({ ok: false, error: "Invalid credentials" });
     }
+    // create JWT token and return it along with the user id
+    const secret = process.env.JWT_SECRET;
+    if (!secret) {
+      console.error("JWT_SECRET is not set");
+      return res.status(500).json({ ok: false, error: "Server configuration error" });
+    }
 
-    // return minimal user info
+    const payload = { id: String(user._id), email: user.email, role: user.role };
+    const token = jwt.sign(payload, secret, { expiresIn: "1h" });
+
     return res.json({
       ok: true,
+      id: String(user._id),
+      token,
       user: {
-        id: user._id,
+        id: String(user._id),
         email: user.email,
         role: user.role,
       },

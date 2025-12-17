@@ -7,6 +7,8 @@ import userRouter from "./routes/userRouter.js";
 import checklistsRouter from "./routes/checklistsRouter.js";
 import feelingsRouter from "./routes/feelingsRouter.js";
 import pressuresRouter from "./routes/pressuresRouter.js";
+import constraintsRouter from "./routes/constraintsRouter.js";
+import resourcesRouter from "./routes/resourcesRouter.js";
 
 dotenv.config();
 
@@ -114,11 +116,30 @@ async function sendPushNotification(expoPushToken, title, body) {
 // )
 
 
+
+//         await sendPushNotification(
+//           u.pushtoken,
+//           "מטרה לא הושלמה",
+//           "יש לך מטרות שדורשות תשומת לב!"
+//         );
+//       }
+//     } catch (err) {
+//       console.error("🔥 CRON ERROR:", err);
+//     }
+
+//     console.log("⏳ CRON HEARTBEAT END\n");
+//   },
+//   {
+//     timezone: "Asia/Jerusalem", // הפעלה לפי זמן ישראל
+//   }
+// )
 const PORT = process.env.PORT || 3000;
 app.use("/feelings", feelingsRouter);
 app.use("/pressures", pressuresRouter);
 app.use("/checklists", checklistsRouter);
 app.use("/users", userRouter);
+app.use("/constraints", constraintsRouter);
+app.use("/resources", resourcesRouter);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`🚀 Listening on http://localhost:${port}`));
