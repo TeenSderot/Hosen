@@ -10,7 +10,6 @@ import SC33_Communication from "./src/components/finger4/SC33_Communication";
 import SC36_Dashboard from "./src/components/finger4/SC36_Dashboard";
 import Index from "./src/components/finger2/index";
 import Hand from "./src/components/hand/HomeScreen";
-import index from "./src/components/toolbox/app/index"
 import { ErrorProvider } from "./src/components/hooks/context/ErrorContext";
 import Lotus from "./src/components/ui/Lotus";
 import ResourcesTab from "./src/components/finger3/Resources";
@@ -59,7 +58,6 @@ export default function App() {
               <Stack.Screen name="Hand" component={Hand} />
               <Stack.Screen name="index" component={SC32_Onboarding} />
               <Stack.Screen name="pinky" component={Index} />
-              <Stack.Screen name="toolbox" component={ToolboxLobby} />
               <Stack.Screen name="Communication" component={SC33_Communication} />
               <Stack.Screen name="Slogan" component={SC35_Slogan} />
               <Stack.Screen name="Dashboard" component={SC36_Dashboard} />

@@ -42,9 +42,9 @@ export default function RegisterScreen() {
         try {
           const token = await SecureStore.getItemAsync("access_token")
         
-         
           if (token) {
             navigate.navigate("Hand") // כניסה אוטומטית
+            
           }
         } catch (err) {
           console.log("Error checking existing user:", err)
@@ -52,7 +52,7 @@ export default function RegisterScreen() {
           setLoading(false)
         }
       }
-  
+      
       checkExistingUser()
     }, [])
 

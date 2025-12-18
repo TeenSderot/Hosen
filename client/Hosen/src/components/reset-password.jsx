@@ -27,7 +27,7 @@ export default function ResetPasswordScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const {postData} = useApi();
+  const {postData,API_BASE} = useApi();
   const { warning, success, error } = useError()
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
   const navigation = useNavigation();
@@ -52,8 +52,14 @@ try{
     }
     const _id = await SecureStore.getItemAsync("_id")
     
-    await postData('sendpasswordreset', {_id, password })
-
+    const regRes = await fetch(API_BASE + "/users/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ _id}),
+          })
+    
+          if (!regRes.ok) throw new Error("Register failed")
+          
     setLoading(true);
 
       success('הסיסמה עודכנה בהצלחה!');

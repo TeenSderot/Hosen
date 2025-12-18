@@ -11,9 +11,10 @@ import {
   ActivityIndicator,
   I18nManager,
 } from 'react-native';
-
+import * as SecureStore from "expo-secure-store"
 import { Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useApi } from './hooks/useApiService';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
@@ -24,6 +25,7 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigation();
+  const { API_BASE} = useApi();
   const handleLogin = async () => {
     // 2) Login
     try{
@@ -40,7 +42,8 @@ export default function LoginScreen() {
     const userId = loginData?.userId 
     const full_name = loginData?.name || ""
     if (!token || !userId) throw new Error("Missing token/userId from login response")
-
+      console.log(token,userId);
+      
     await SecureStore.setItemAsync("_id", String(userId))
     await SecureStore.setItemAsync("access_token", String(token))
     await SecureStore.setItemAsync("full_name", full_name)
