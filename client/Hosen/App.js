@@ -9,12 +9,14 @@ import SC35_Slogan from "./src/components/finger4/SC35_Slogan";
 import SC33_Communication from "./src/components/finger4/SC33_Communication";
 import SC36_Dashboard from "./src/components/finger4/SC36_Dashboard";
 import Index from "./src/components/finger2/index";
-import UserInfo from "./src/components/UserInfo";
-import HomeScreen from "./src/components/hand/HomeScreen";
+import Hand from "./src/components/hand/HomeScreen";
 import ToolboxLobby from "./src/components/toolbox/index";
 import { ErrorProvider } from "./src/components/hooks/context/ErrorContext";
 import Lotus from "./src/components/ui/Lotus";
 import ResourcesTab from "./src/components/finger3/Resources";
+import RegisterScreen from "./src/components/register";
+import LoginScreen from "./src/components/login";
+import ResetPasswordScreen from "./src/components/reset-password";
 
 // 1. יצירת Ref לניווט - זה מה שמאפשר לסרגלים החיצוניים לנווט
 const navigationRef = createNavigationContainerRef();
@@ -34,11 +36,10 @@ export default function App() {
         
         {/* --- באר עליון קבוע (2 אייקונים) --- */}
         <View style={styles.topBar}>
-          
           <TouchableOpacity onPress={() => console.log('Menu Pressed')}>
             <Image source={require("./assets/menu-dots.png")} style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigateTo('UserInfo')}>
+          <TouchableOpacity onPress={() => navigateTo('Home')}>
             <Lotus /> 
           </TouchableOpacity>
         </View>
@@ -47,11 +48,14 @@ export default function App() {
         <View style={styles.content}>
           <NavigationContainer ref={navigationRef}>
             <Stack.Navigator
-              initialRouteName="UserInfo"
+              initialRouteName="Register"
               screenOptions={{ headerShown: false }}
             >
-              <Stack.Screen name="UserInfo" component={UserInfo} />
-              <Stack.Screen name="Hand" component={HomeScreen} />
+              <Stack.Screen name="Register" component={RegisterScreen} />
+              <Stack.Screen name="Login" component={LoginScreen} />
+              <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
+
+              <Stack.Screen name="Hand" component={Hand} />
               <Stack.Screen name="index" component={SC32_Onboarding} />
               <Stack.Screen name="pinky" component={Index} />
               <Stack.Screen name="toolbox" component={ToolboxLobby} />

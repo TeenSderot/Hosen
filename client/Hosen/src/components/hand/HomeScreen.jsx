@@ -5,9 +5,8 @@ import HandIllustration from "./HandIllustration";
 // import BottomNav from "./BottomNav";
 import { Input } from "./Input";
 import { COLORS } from "./COLORS";
-import Lotus from "../ui/Lotus";
 
-export default function HomeScreen() {
+export default function Hand() {
   //const [journal, setJournal] = useState("");
   const [full_name, setFullName] = useState("");
   useEffect(()=>{
@@ -23,9 +22,11 @@ export default function HomeScreen() {
       
 
       <ScrollView contentContainerStyle={styles.content}>
+      <View style={{ width: '100%', alignItems: 'flex-start' ,textAlign: 'right', marginBottom: 20}}>
         <Text style={styles.title}>
-          היי, {full_name || ""} טוב לראות אותך.{"\n"}איך היום שלך בינתיים?
+          היי, {full_name} טוב לראות אותך.{"\n"}איך היום שלך בינתיים?
         </Text>
+      </View>
 
         {/* <Input
           value={journal}

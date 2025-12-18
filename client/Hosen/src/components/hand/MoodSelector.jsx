@@ -10,7 +10,7 @@ export default function MoodSelector({ onMoodSelect }) {
   const moods = [
     { color: "yellow", icon: require('../../../assets/yellow.png') ,nav:()=>navigation.navigate('')}, 
     { color: "cyan",   icon: require('../../../assets/cyan.png'),nav:()=>navigation.navigate('pinky') }, 
-    { color: "orange", icon: require('../../../assets/orange.png') ,nav:()=>navigation.navigate('')}, 
+    { color: "orange", icon: require('../../../assets/orange.png') ,nav:()=>navigation.navigate('middle')}, 
     { color: "lime",   icon: require('../../../assets/lime.png') ,nav:()=>navigation.navigate('index')}, 
     { color: "green",  icon: require('../../../assets/green.png') ,nav:()=>navigation.navigate('')}
   ];
