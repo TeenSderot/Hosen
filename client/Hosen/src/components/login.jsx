@@ -15,6 +15,7 @@ import * as SecureStore from "expo-secure-store"
 import { Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useApi } from './hooks/useApiService';
+import { useError } from './hooks/context/ErrorContext';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
@@ -26,6 +27,7 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigation();
   const { API_BASE} = useApi();
+  const {error,success} = useError()
   const handleLogin = async () => {
     // 2) Login
     try{
