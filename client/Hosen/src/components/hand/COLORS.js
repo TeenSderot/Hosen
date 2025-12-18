@@ -6,17 +6,22 @@ export const COLORS = {
   border: "#E5E7EB",
 
   mood: {
-    yellow: "#FACC15",
-    cyan: "#22D3EE",
-    orange: "#FB923C",
-    lime: "#A3E635",
-    green: "#22C55E",
+    yellow: "#F9F081",
+    cyan: "#84C7DA",
+    orange: "#FD954E",
+    lime: "#D1E38F",
+    green: "#71A674",
   },
 
   hand: "#EDE7E3",
-  ring: "#FACC15",
-    pinky: "#22D3EE",
-    middle: "#FB923C",
-    index: "#A3E635",
-    thumb: "#22C55E",
+  ring: "#71A674",
+    pinky: "#D1E38F",
+    middle: "#FD954E",
+    index: "#84C7DA",
+    thumb: "#F9F081",
 };
+
+
+
+
+

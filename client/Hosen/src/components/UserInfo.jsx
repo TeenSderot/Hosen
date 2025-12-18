@@ -40,7 +40,7 @@ export default function UserInfo() {
         const full_name = await SecureStore.getItemAsync("full_name")||"אורח"
         
         if (id && exists === "true") {
-          navigate.navigate("Hand",{userName:full_name}) // כניסה אוטומטית
+          navigate.navigate("Hand") // כניסה אוטומטית
           return
         }
       } catch (err) {
@@ -111,7 +111,7 @@ export default function UserInfo() {
       await SecureStore.setItemAsync("full_name", full_name)
      
       success("ברוך הבא 🙌")
-      navigate.navigate("Hand",{ userName: full_name  || name || "אורח" })
+      navigate.navigate("Hand")
     } catch (err) {
       console.log("handleSave error:", err)
       error(err?.message || "משהו השתבש, אנא נסה שוב")

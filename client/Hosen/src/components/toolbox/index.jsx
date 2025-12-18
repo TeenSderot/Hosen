@@ -42,15 +42,7 @@ export default function ToolboxLobby() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.breathingButton}
-            onPress={() => navigation.navigate('/exercise/breathing')}
-          >
-            <Image
-              source={require('../../../assets/lotus.png')}
-              style={styles.lotusImage}
-            />
-          </TouchableOpacity>
+          
           <Text style={styles.title}>ארגז הכלים</Text>
           <Text style={styles.subtitle}>מה יעזור לי עכשיו?</Text>
         </View>

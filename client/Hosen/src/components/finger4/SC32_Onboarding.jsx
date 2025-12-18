@@ -37,7 +37,7 @@ export default function SC32_Onboarding({ navigation }) {
       <Button title="בואו נתחיל" onPress={() => navigation.navigate("Slogan")} />
     </AppLayout>
   );
-}מ
+}
 
 const styles = StyleSheet.create({
   hero: { gap: 10, paddingVertical: 8 },
