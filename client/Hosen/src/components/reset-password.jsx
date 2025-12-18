@@ -29,10 +29,10 @@ export default function ResetPasswordScreen() {
   const [loading, setLoading] = useState(false);
   const {postData} = useApi();
   const { warning, success, error } = useError()
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
-const navigation = useNavigation();
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+  const navigation = useNavigation();
 
-const validateFields = () => {
+  const validateFields = () => {
      if (password && !passwordRegex.test(password.trim())) {
       warning("אנא הזן סיסמה תקינה")
       return false
@@ -41,8 +41,6 @@ const validateFields = () => {
       warning("הסיסמאות לא תואמות")
       return false
     }
-
-   
 
     return true
   }
@@ -81,18 +79,6 @@ try{
         <View style={styles.content}>
           <Text style={styles.title}>איפוס סיסמה</Text>
           <Text style={styles.subtitle}>הזן את הסיסמה החדשה שלך</Text>
-
-          {error ? (
-            <View style={styles.errorContainer}>
-              <Text style={styles.errorText}>{error}</Text>
-            </View>
-          ) : null}
-
-          {success ? (
-            <View style={styles.successContainer}>
-              <Text style={styles.successText}>{success}</Text>
-            </View>
-          ) : null}
 
           <View style={styles.form}>
 
@@ -166,7 +152,7 @@ try{
                 זוכר את הסיסמה?{' '}
                 <Text
                   style={styles.linkText}
-                  onPress={() => !loading && {}}
+                  onPress={() => !loading && navigation.navigate("Login")}
                 >
                   חזרה להתחברות
                 </Text>

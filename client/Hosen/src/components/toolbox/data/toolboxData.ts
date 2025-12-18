@@ -1,6 +1,6 @@
-import { Category, Tool, CommunityTip } from './toolbox';
+import { Category, Tool, CommunityTip } from '@/types/toolbox';
 
-export const categories= [
+export const categories: Category[] = [
   {
     id: "mind",
     emoji: "🧠",
@@ -31,7 +31,7 @@ export const categories= [
   },
 ];
 
-export const tools= [
+export const tools: Tool[] = [
   {
     id: "routine",
     categoryId: "mind",
@@ -410,7 +410,7 @@ export const tools= [
   },
 ];
 
-export const communityTips = [
+export const communityTips: CommunityTip[] = [
   {
     id: "1",
     text: "הכנו \"תיק הפתעות\" לילדים עם צבעים, מדבקות ופאזלים קטנים. מציל בממ\"ד.",

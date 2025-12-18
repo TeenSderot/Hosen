@@ -41,6 +41,7 @@ export default function RegisterScreen() {
       const checkExistingUser = async () => {
         try {
           const token = await SecureStore.getItemAsync("access_token")
+        
          
           if (token) {
             navigate.navigate("Hand") // כניסה אוטומטית
@@ -116,7 +117,6 @@ export default function RegisterScreen() {
         <View style={styles.content}>
           <Text style={styles.title}>יצירת חשבון</Text>
           <Text style={styles.subtitle}>הצטרפו אלינו והתחילו את המסע</Text>
-
           <View style={styles.form}>
             <Text style={styles.label}>שם (אופציונלי)</Text>
             <View style={styles.inputWrapper}>
@@ -216,7 +216,7 @@ export default function RegisterScreen() {
                 כבר יש לכם חשבון?{' '}
                 <Text
                   style={styles.linkText}
-                  onPress={() => {}}
+                  onPress={() => {navigate.navigate("Login")}}
                 >
                   התחברות
                 </Text>
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-Regular',
     color: '#000',
     textAlign: 'right',
-    writingDirection: 'rtl',
+ 
   },
   inputIconRight: {
     position: 'absolute',

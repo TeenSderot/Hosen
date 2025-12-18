@@ -1,8 +1,14 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 
+interface CardProps {
+  children: React.ReactNode;
+  onPress?: () => void;
+  style?: ViewStyle;
+  accentColor?: string;
+}
 
-export function Card({ children, onPress, style, accentColor }) {
+export function Card({ children, onPress, style, accentColor }: CardProps) {
   const CardContent = () => (
     <View style={[styles.card, style]}>
       <View style={styles.content}>

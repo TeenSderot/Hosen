@@ -8,16 +8,16 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-
-import { categories, tools } from './data/toolboxData';
-import { Card } from './Card';
-import { Pill } from './Pill';
-import { Colors, cardColors } from './Colors';
-import { useNavigation } from "@react-navigation/native";
+import { useRouter } from 'expo-router';
+import { categories, tools } from '@/data/toolboxData';
+import { Card } from '@/components/Card';
+import { Pill } from '@/components/Pill';
+import { Colors, cardColors } from '@/constants/colors';
 
 export default function ToolboxLobby() {
+  const router = useRouter();
   const [search, setSearch] = useState('');
-  const navigation = useNavigation()
+
   const searchResults = useMemo(() => {
     if (!search.trim()) return [];
     const query = search.trim().toLowerCase();
@@ -42,7 +42,15 @@ export default function ToolboxLobby() {
     <View style={styles.container}>
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.content}>
         <View style={styles.header}>
-          
+          <TouchableOpacity
+            style={styles.breathingButton}
+            onPress={() => router.push('/exercise/breathing')}
+          >
+            <Image
+              source={require('@/assets/images/image.png')}
+              style={styles.lotusImage}
+            />
+          </TouchableOpacity>
           <Text style={styles.title}>ארגז הכלים</Text>
           <Text style={styles.subtitle}>מה יעזור לי עכשיו?</Text>
         </View>
@@ -63,7 +71,7 @@ export default function ToolboxLobby() {
                   key={tool.id}
                   onPress={() => {
                     setSearch('');
-                    navigation.navigate(`/tool/${tool.id}`);
+                    router.push(`/tool/${tool.id}`);
                   }}
                   accentColor={cardColors[index % cardColors.length]}
                 >
@@ -89,7 +97,7 @@ export default function ToolboxLobby() {
           {categories.map((category, index) => (
             <Card
               key={category.id}
-              onPress={() => navigation.navigate(`/category/${category.id}`)}
+              onPress={() => router.push(`/category/${category.id}`)}
               accentColor={cardColors[index % cardColors.length]}
             >
               <View style={styles.categoryRow}>
@@ -110,14 +118,14 @@ export default function ToolboxLobby() {
         <View style={styles.bottomButtons}>
           <TouchableOpacity
             style={styles.wisdomButton}
-            onPress={() => navigation.navigate('/wisdom')}
+            onPress={() => router.push('/wisdom')}
           >
             <Text style={styles.wisdomButtonText}>💡 חוכמת ההמונים</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.favoritesButton}
-            onPress={() => navigation.navigate('/favorites')}
+            onPress={() => router.push('/favorites')}
           >
             <Text style={styles.favoritesButtonText}>⭐ מועדפים</Text>
           </TouchableOpacity>

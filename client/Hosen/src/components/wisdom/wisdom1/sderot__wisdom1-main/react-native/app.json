@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "wisdom-of-crowds-rn",
+    "slug": "wisdom-of-crowds-rn",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.wisdomofcrowds.rn"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.wisdomofcrowds.rn"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}

@@ -17,6 +17,7 @@ import ResourcesTab from "./src/components/finger3/Resources";
 import RegisterScreen from "./src/components/register";
 import LoginScreen from "./src/components/login";
 import ResetPasswordScreen from "./src/components/reset-password";
+import ErrorAlert from "./src/components/hooks/context/ErrorAlert";
 
 // 1. יצירת Ref לניווט - זה מה שמאפשר לסרגלים החיצוניים לנווט
 const navigationRef = createNavigationContainerRef();
@@ -80,7 +81,7 @@ export default function App() {
              <Image source={require("./assets/divrot.png")} style={styles.icon} />
           </TouchableOpacity>
         </View>
-
+        <ErrorAlert/>
       </SafeAreaView>
     </ErrorProvider>
   );

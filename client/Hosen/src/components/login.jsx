@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import { Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
@@ -21,11 +22,11 @@ export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
- 
+  const navigate = useNavigation();
   const handleLogin = async () => {
     // 2) Login
+    try{
     const loginRes = await fetch(API_BASE + "/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -46,6 +47,8 @@ export default function LoginScreen() {
     
     success("ברוך הבא 🙌")
     navigate.navigate("Hand")
+}catch(error){console.log(error);
+}
   };
 
   return (
@@ -61,11 +64,6 @@ export default function LoginScreen() {
           <Text style={styles.title}>התחברות</Text>
           <Text style={styles.subtitle}>הזינו את הפרטים שלכם כדי להמשיך</Text>
 
-          {error ? (
-            <View style={styles.errorContainer}>
-              <Text style={styles.errorText}>{error}</Text>
-            </View>
-          ) : null}
 
           <View style={styles.form}>
             <Text style={styles.label}>אימייל</Text>

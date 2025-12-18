@@ -1,8 +1,13 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Colors } from './Colors';
+import { Colors } from '@/constants/colors';
 
-export function Pill({ children, color }) {
+interface PillProps {
+  children: React.ReactNode;
+  color?: string;
+}
+
+export function Pill({ children, color }: PillProps) {
   return (
     <View style={[styles.pill, color && { backgroundColor: color }]}>
       <Text style={styles.text}>{children}</Text>
