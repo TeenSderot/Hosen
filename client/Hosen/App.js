@@ -10,7 +10,7 @@ import SC33_Communication from "./src/components/finger4/SC33_Communication";
 import SC36_Dashboard from "./src/components/finger4/SC36_Dashboard";
 import Index from "./src/components/finger2/index";
 import Hand from "./src/components/hand/HomeScreen";
-import ToolboxLobby from "./src/components/toolbox/index";
+import index from "./src/components/toolbox/app/index"
 import { ErrorProvider } from "./src/components/hooks/context/ErrorContext";
 import Lotus from "./src/components/ui/Lotus";
 import ResourcesTab from "./src/components/finger3/Resources";
