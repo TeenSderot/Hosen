@@ -52,10 +52,10 @@ try{
     }
     const _id = await SecureStore.getItemAsync("_id")
     
-    const regRes = await fetch(API_BASE + "/users/register", {
+    const regRes = await fetch(API_BASE + "/users/restpassword", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ _id}),
+            body: JSON.stringify({ _id,password}),
           })
     
           if (!regRes.ok) throw new Error("Register failed")

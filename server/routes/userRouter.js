@@ -105,7 +105,38 @@ router.post("/login", async (req, res) => {
     return res.status(500).json({ ok: false, error: "Server error" });
   }
 });
+router.post("/resetpassword", async (req, res) => {
+  try {
+    const { _id, password } = req.body;
 
+    if ( !password) {
+      return res.status(400).json({ ok: false, error: "Email and password are required" });
+    }
+
+    const db = await getDb();
+    const users = db.collection(USERS_COLLECTION);
+
+    // חיפוש המשתמש
+    const user = await users.findOne({ email: normalizedEmail });
+    
+    // אם המשתמש לא קיים
+    if (!user) {
+      return res.status(401).json({ ok: false, error: "Invalid email or password" });
+    }
+
+    const passwordHash = await bcrypt.hash(String(password), SALT_ROUNDS);
+    const result = await users.updateOne({_id:_id},{$set:{password:passwordHash}});
+     if (result.matchedCount === 0) {
+      return res.status(404).json({ ok: false, error: "Password not changed" });
+    }
+    // החזרת תשובה מוצלחת עם הטוקן
+    return res.json({ ok: true});
+
+  } catch (err) {
+    console.error("Login error:", err);
+    return res.status(500).json({ ok: false, error: "Server error" });
+  }
+});
 // ==========================================
 // 3. UPDATE USER (תוקן: שמות שדות)
 // ==========================================
