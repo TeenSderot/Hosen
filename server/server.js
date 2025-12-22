@@ -34,53 +34,53 @@ app.use(express.json());
 app.get("/health", (_req, res) => {
   res.json({ ok: true, time: new Date().toISOString() });
 });
-async function sendPushNotification(expoPushToken, title, body) {
-  console.log(`🔔 Preparing to send push to token: ${expoPushToken}`);
+// async function sendPushNotification(expoPushToken, title, body) {
+//   console.log(`🔔 Preparing to send push to token: ${expoPushToken}`);
 
-  if (!expoPushToken || typeof expoPushToken !== "string") {
-    console.error("❌ Invalid expoPushToken:", expoPushToken);
-    return;
-  }
+//   if (!expoPushToken || typeof expoPushToken !== "string") {
+//     console.error("❌ Invalid expoPushToken:", expoPushToken);
+//     return;
+//   }
 
-  const message = {
-    to: expoPushToken,
-    sound: "default",
-    title,
-    body,
-    channelId: "default",
-    android: {
-        icon:"notification_ic",
-    // Large Icon: URL לתמונת הלוגו הצבעונית שלך
-    // חשוב: זה צריך להיות URL שניתן לגשת אליו מהאינטרנט
-    largeIcon: 'https://storage.googleapis.com/gokee_goals/evanto_gokee_logo.png', 
-  }
-  };
-  try {
-    const response = await fetch("https://exp.host/--/api/v2/push/send", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Accept-encoding": "gzip, deflate",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(message),
-    });
+//   const message = {
+//     to: expoPushToken,
+//     sound: "default",
+//     title,
+//     body,
+//     channelId: "default",
+//     android: {
+//         icon:"notification_ic",
+//     // Large Icon: URL לתמונת הלוגו הצבעונית שלך
+//     // חשוב: זה צריך להיות URL שניתן לגשת אליו מהאינטרנט
+//     largeIcon: 'https://storage.googleapis.com/gokee_goals/evanto_gokee_logo.png', 
+//   }
+//   };
+//   try {
+//     const response = await fetch("https://exp.host/--/api/v2/push/send", {
+//       method: "POST",
+//       headers: {
+//         Accept: "application/json",
+//         "Accept-encoding": "gzip, deflate",
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(message),
+//     });
 
-    const data = await response.json().catch(() => null);
+//     const data = await response.json().catch(() => null);
 
-    console.log("📡 Expo response status:", response.status);
-    console.log("📡 Expo response body:", data);
+//     console.log("📡 Expo response status:", response.status);
+//     console.log("📡 Expo response body:", data);
 
-    if (!response.ok) {
-      console.error("❌ Expo push failed with status:", response.status);
-      throw new Error(JSON.stringify(data));
-    }
+//     if (!response.ok) {
+//       console.error("❌ Expo push failed with status:", response.status);
+//       throw new Error(JSON.stringify(data));
+//     }
 
-    console.log("✅ Push sent successfully!");
-  } catch (err) {
-    console.error("🔥 ERROR sending Expo Push:", err);
-  }
-}
+//     console.log("✅ Push sent successfully!");
+//   } catch (err) {
+//     console.error("🔥 ERROR sending Expo Push:", err);
+//   }
+// }
 
 // -----------------------------------------------------------
 // ⏰ משימה מתוזמנת כל 3 שעות
