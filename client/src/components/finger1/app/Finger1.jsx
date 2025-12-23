@@ -13,7 +13,7 @@ import { DashboardScreen } from '../components/DashboardScreen';
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
 
-export default function App() {
+export default function Finger1() {
   const [currentStep, setCurrentStep] = useState(ScreenStep.SPLASH);
   const [stressors, setStressors] = useState([]);
   const [traits, setTraits] = useState({

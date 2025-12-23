@@ -10,8 +10,9 @@ import {
   NavigationContainer,
   createNavigationContainerRef,
 } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+// ⬇️ שינוי כאן: מחליפים את ה-Import מ-native-stack ל-stack הרגיל
+import { createStackNavigator } from "@react-navigation/stack";
 
 // מסכים
 import SC32_Onboarding from "./src/components/finger4/SC32_Onboarding";
@@ -21,6 +22,7 @@ import SC36_Dashboard from "./src/components/finger4/SC36_Dashboard";
 import Index from "./src/components/finger2/index";
 import Hand from "./src/components/hand/HomeScreen";
 import ResourcesTab from "./src/components/finger3/Resources";
+import Finger1 from "./src/components/finger1/app/Finger1";
 
 import RegisterScreen from "./src/components/register";
 import LoginScreen from "./src/components/login";
@@ -33,19 +35,20 @@ import ToolboxLobby from "./src/components/toolbox/app/index";
 import CommunityWisdom from "./src/components/toolbox/app/wisdom";
 import FavoritesPage from "./src/components/toolbox/app/favorites";
 import CategoryFeed from "./src/components/toolbox/app/category/categoryId";
-// import BreathingExercise from "./src/components/toolbox/app/exercise/breathing";
 
 const navigationRef = createNavigationContainerRef();
-const Stack = createNativeStackNavigator();
+// ⬇️ שינוי כאן: שימוש ב-createStackNavigator
+const Stack = createStackNavigator();
 
-/* 🔥 מסכים בלי Bars */
 const NO_BARS_SCREENS = ["Register", "Login", "ResetPassword"];
 
 export function navigateTo(name) {
-  if (navigationRef && navigationRef.current) {
-    navigationRef.current.navigate(name);
+  console.log("Attempting to navigate to:", name);
+  if (navigationRef.isReady()) {
+    console.log("Navigation is ready, calling navigate...");
+    navigationRef.navigate(name);
   } else {
-    console.warn('Navigation not ready yet for', name);
+    console.error("Navigation NOT ready! current status:", navigationRef.isReady());
   }
 }
 
@@ -67,7 +70,7 @@ export default function App() {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigateTo("Breathing")}>
+            <TouchableOpacity onPress={() => navigateTo("Hand")}>
               <Lotus />
             </TouchableOpacity>
           </View>
@@ -75,44 +78,38 @@ export default function App() {
 
         {/* 🔁 Navigation */}
         <View style={styles.content}>
-          <NavigationContainer
+         <NavigationContainer
             ref={navigationRef}
-            onStateChange={() => {
-              const route = navigationRef.getCurrentRoute();
-              if (route) setCurrentRoute(route.name);
-            }}
+           onStateChange={() => {
+    const route = navigationRef.getCurrentRoute();
+    if (route) {
+      setCurrentRoute(route.name);
+    }
+  }}
           >
             <Stack.Navigator
               initialRouteName="Register"
-              screenOptions={{ headerShown: false }}
+              screenOptions={{ 
+                headerShown: false,
+                // אופציונלי: אנימציה חלקה יותר ב-JS Stack
+                animationEnabled: true 
+              }}
             >
-              {/* Auth */}
               <Stack.Screen name="Register" component={RegisterScreen} />
               <Stack.Screen name="Login" component={LoginScreen} />
-              <Stack.Screen
-                name="ResetPassword"
-                component={ResetPasswordScreen}
-              />
-
-              {/* App */}
+              <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
               <Stack.Screen name="Hand" component={Hand} />
               <Stack.Screen name="index" component={SC32_Onboarding} />
               <Stack.Screen name="pinky" component={Index} />
-              <Stack.Screen
-                name="Communication"
-                component={SC33_Communication}
-              />
+              <Stack.Screen name="ring" component={Finger1} />
+              <Stack.Screen name="Communication" component={SC33_Communication} />
               <Stack.Screen name="Slogan" component={SC35_Slogan} />
               <Stack.Screen name="Dashboard" component={SC36_Dashboard} />
               <Stack.Screen name="middle" component={ResourcesTab} />
-              
               <Stack.Screen name="toolbox" component={ToolboxLobby} />
               <Stack.Screen name="wisdom" component={CommunityWisdom} />
               <Stack.Screen name="favorites" component={FavoritesPage} />
               <Stack.Screen name="categoryFeed" component={CategoryFeed} />
-              {/* <Stack.Screen name="Breathing" component={BreathingExercise} /> */}
-
-
             </Stack.Navigator>
           </NavigationContainer>
         </View>
@@ -124,27 +121,18 @@ export default function App() {
               style={styles.tab}
               onPress={() => navigateTo("toolbox")}
             >
-              <Image
-                source={require("./assets/toolbox.png")}
-                style={styles.icon}
-              />
+              <Image source={require("./assets/toolbox.png")} style={styles.icon} />
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.tab}
               onPress={() => navigateTo("Hand")}
             >
-              <Image
-                source={require("./assets/home.png")}
-                style={styles.icon}
-              />
+              <Image source={require("./assets/home.png")} style={styles.icon} />
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.tab}>
-              <Image
-                source={require("./assets/divrot.png")}
-                style={styles.icon}
-              />
+              <Image source={require("./assets/divrot.png")} style={styles.icon} />
             </TouchableOpacity>
           </View>
         )}
@@ -155,6 +143,7 @@ export default function App() {
   );
 }
 
+// ... (שאר ה-styles ללא שינוי)
 const styles = StyleSheet.create({
   container: {
     flex: 1,

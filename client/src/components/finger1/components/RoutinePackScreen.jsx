@@ -172,6 +172,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 24,
     paddingBottom: 120,
+    alignItems:"flex-start"
   },
   title: {
     fontSize: 26,
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.regular,
     color: '#6B7280',
     marginBottom: 24,
-    textAlign: 'right',
+    
   },
   categoryTabs: {
     flexDirection: 'row-reverse',
@@ -220,7 +221,7 @@ const styles = StyleSheet.create({
     color: THEME.blue,
   },
   presetsGrid: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
     marginBottom: 24,
@@ -318,6 +319,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 10,
     elevation: 5,
+    marginBottom:50
   },
   nextButtonText: {
     color: 'white',

@@ -8,11 +8,11 @@ export default function MoodSelector({ onMoodSelect }) {
   const navigation = useNavigation();
   // הוספנו את ה-require ישירות לכל אייקון
   const moods = [
-    { color: "yellow", icon: require('../../../assets/yellow.png') ,nav:()=>navigation.navigate('')}, 
+    { color: "yellow", icon: require('../../../assets/yellow.png') ,nav:()=>navigation.navigate('thumb')}, 
     { color: "cyan",   icon: require('../../../assets/cyan.png'),nav:()=>navigation.navigate('pinky') }, 
     { color: "orange", icon: require('../../../assets/orange.png') ,nav:()=>navigation.navigate('middle')}, 
     { color: "lime",   icon: require('../../../assets/lime.png') ,nav:()=>navigation.navigate('index')}, 
-    { color: "green",  icon: require('../../../assets/green.png') ,nav:()=>navigation.navigate('')}
+    { color: "green",  icon: require('../../../assets/green.png') ,nav:()=>navigation.navigate('ring')}
   ];
 
   return (

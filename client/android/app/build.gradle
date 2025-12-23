@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.wishgoods.gokee'
+    namespace 'com.wishgoods.hosen'
     defaultConfig {
-        applicationId 'com.wishgoods.gokee'
+        applicationId 'com.wishgoods.hosen'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 70

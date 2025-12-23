@@ -8,14 +8,13 @@ import {
   Platform,
   ScrollView,
   ActivityIndicator,
+  TextInput,
 } from 'react-native';
-import * as SecureStore from "expo-secure-store"
+import * as SecureStore from "expo-secure-store";
 import { Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useApi } from './hooks/useApiService';
 import { useError } from './hooks/context/ErrorContext';
-
-
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -23,34 +22,32 @@ export default function LoginScreen() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigation();
-  const { API_BASE} = useApi();
-  const {error,success} = useError()
+  const { API_BASE } = useApi();
+  const { error,success } = useError();
+
   const handleLogin = async () => {
-    // 2) Login
-    try{
-    const loginRes = await fetch(API_BASE + "/users/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
+    setLoading(true);
+    try {
+      const loginRes = await fetch(API_BASE + "/users/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (!loginRes.ok) throw new Error("Login failed")
-    const loginData = await loginRes.json()
-
-    const token = loginData?.token 
-    const userId = loginData?.userId 
-    const full_name = loginData?.name || ""
-    if (!token || !userId) throw new Error("Missing token/userId from login response")
-      console.log(token,userId);
+      if (!loginRes.ok) throw new Error("Login failed");
+      const loginData = await loginRes.json();
       
-    await SecureStore.setItemAsync("_id", String(userId))
-    await SecureStore.setItemAsync("access_token", String(token))
-    await SecureStore.setItemAsync("full_name", full_name)
-    
-    success("ברוך הבא 🙌")
-    navigate.navigate("Hand")
-}catch(error){console.log(error);
-}
+      await SecureStore.setItemAsync("_id", String(loginData?.userId));
+      await SecureStore.setItemAsync("access_token", String(loginData?.token));
+      await SecureStore.setItemAsync("full_name", loginData?.name || "");
+      
+      success("ברוך הבא 🙌");
+      navigate.navigate("Hand");
+    } catch (err) {
+      error("שגיאה בהתחברות")
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -66,11 +63,13 @@ export default function LoginScreen() {
           <Text style={styles.title}>התחברות</Text>
           <Text style={styles.subtitle}>הזינו את הפרטים שלכם כדי להמשיך</Text>
 
-
           <View style={styles.form}>
-            <Text style={styles.label}>אימייל</Text>
+            {/* אימייל */}
+            <View style={styles.text_container}>
+              <Text style={styles.label}>אימייל</Text>
+            </View>
             <View style={styles.inputWrapper}>
-              <Input
+              <TextInput
                 style={styles.input}
                 placeholder="name@example.com"
                 placeholderTextColor="#999"
@@ -79,13 +78,17 @@ export default function LoginScreen() {
                 autoCapitalize="none"
                 keyboardType="email-address"
                 editable={!loading}
+                textAlign="right"
               />
-              <Mail size={20} color="#84C7DA" style={styles.inputIconRight} />
+              <Mail size={20} color="#84C7DA" style={styles.inputIconLeft} />
             </View>
 
-            <Text style={styles.label}>סיסמה</Text>
+            {/* סיסמה */}
+            <View style={styles.text_container}>
+              <Text style={styles.label}>סיסמה</Text>
+            </View>
             <View style={styles.inputWrapper}>
-              <Input
+              <TextInput
                 style={styles.input}
                 placeholder="הזינו סיסמה"
                 placeholderTextColor="#999"
@@ -93,11 +96,13 @@ export default function LoginScreen() {
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
                 editable={!loading}
+                textAlign="right"
               />
-              <Lock size={20} color="#84C7DA" style={styles.inputIconRight} />
+              <Lock size={20} color="#84C7DA" style={styles.inputIconLeft} />
+              
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
-                style={styles.inputIconLeft}
+                style={styles.inputIconRight}
               >
                 {showPassword ? (
                   <EyeOff size={20} color="#84C7DA" />
@@ -107,9 +112,11 @@ export default function LoginScreen() {
               </TouchableOpacity>
             </View>
 
+            {/* שכחתי סיסמה - מיושר לאמצע */}
             <TouchableOpacity
-              onPress={() => {navigate.navigate("ResetPassword")}}
+              onPress={() => navigate.navigate("ResetPassword")}
               disabled={loading}
+              style={styles.forgotPasswordContainer}
             >
               <Text style={styles.forgotPassword}>שכחתי סיסמה</Text>
             </TouchableOpacity>
@@ -142,42 +149,13 @@ export default function LoginScreen() {
                 </Text>
               </Text>
             </View>
-
-            <Text style={styles.termsText}>
-              בהתחברות אתם מסכימים לי תנאי השימוש ומי מדיניות הפרטיות
-            </Text>
           </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
 }
-/* ---------- Input Component ---------- */
-function Input({ icon, toggleIcon, onToggle, ...props }) {
-  return (
-    <View style={styles.inputWrapper}>
-      <View style={styles.inputContainer}>
-        {/* אייקון ימין */}
-        <View style={styles.iconEnd}>{icon}</View>
 
-        {/* Input */}
-        <Input
-          {...props}
-          style={styles.input}
-          placeholderTextColor="#999"
-          textAlign="right"
-        />
-
-        {/* אייקון שמאל (עין) */}
-        {toggleIcon && (
-          <TouchableOpacity style={styles.iconStart} onPress={onToggle}>
-            {toggleIcon}
-          </TouchableOpacity>
-        )}
-      </View>
-    </View>
-  );
-}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -209,16 +187,20 @@ const styles = StyleSheet.create({
   form: {
     width: '100%',
   },
+  text_container:{
+    width:'100%',
+    alignItems: 'flex-start',
+  },
   label: {
     fontSize: 14,
     fontFamily: 'Rubik-Medium',
     color: '#000',
     marginBottom: 8,
-    textAlign: 'right',
   },
   inputWrapper: {
     position: 'relative',
     marginBottom: 24,
+    justifyContent: 'center',
   },
   input: {
     backgroundColor: '#fff',
@@ -226,8 +208,8 @@ const styles = StyleSheet.create({
     borderColor: '#84C7DA',
     borderRadius: 25,
     padding: 16,
-    paddingRight: 50,
-    paddingLeft: 50,
+    paddingRight: 50, 
+    paddingLeft: 50,  
     fontSize: 16,
     fontFamily: 'Rubik-Regular',
     color: '#000',
@@ -237,19 +219,20 @@ const styles = StyleSheet.create({
   inputIconRight: {
     position: 'absolute',
     right: 16,
-    top: 16,
   },
   inputIconLeft: {
     position: 'absolute',
     left: 16,
-    top: 16,
+  },
+  forgotPasswordContainer: {
+    alignItems: 'center', // מיישר את כפתור הטאצ' לאמצע
+    marginBottom: 32,
   },
   forgotPassword: {
     color: '#71A674',
     fontSize: 14,
     fontFamily: 'Rubik-Regular',
-    textAlign: 'right',
-    marginBottom: 32,
+    textAlign: 'center', // טקסט במרכז
   },
   button: {
     backgroundColor: '#FD954E',
@@ -257,13 +240,6 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     alignItems: 'center',
     marginBottom: 24,
-    shadowColor: '#FD954E',
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
     elevation: 6,
   },
   buttonDisabled: {
@@ -295,24 +271,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: 'Rubik-SemiBold',
     color: '#71A674',
-  },
-  errorContainer: {
-    backgroundColor: '#ffebee',
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  errorText: {
-    color: '#c62828',
-    fontSize: 14,
-    fontFamily: 'Rubik-Regular',
-    textAlign: 'center',
-  },
-  termsText: {
-    fontSize: 12,
-    fontFamily: 'Rubik-Regular',
-    color: '#999',
-    textAlign: 'center',
-    lineHeight: 18,
   },
 });

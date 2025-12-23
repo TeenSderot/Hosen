@@ -1,41 +1,12 @@
 {
   "expo": {
-    "name": "GoKee",
-    "slug": "gokee",
+    "name": "Hosen",
+    "slug": "hosen",
     "version": "1.0.22",
     "jsEngine": "hermes",
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "ios": {
-      "supportsTablet": true,
-      "infoPlist": {
-        "NSSpeechRecognitionUsageDescription": "Allow $(PRODUCT_NAME) to use speech recognition.",
-        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone.",
-        "ITSAppUsesNonExemptEncryption": false
-      },
-      "bundleIdentifier": "com.wishgoods.gokee"
-    },
-   "android": {
-      // "notification": {
-      //     "icon": "./assets/evanto_gokee_logo.png"
-      //   },
-      // "adaptiveIcon": {
-      //   "foregroundImage": "./assets/evanto_gokee_logo.png",
-      //   "backgroundColor": "#FFFFFF"
-      // },
-      "icon": "./assets/icon.png",
-      "edgeToEdgeEnabled": true,
-      "permissions": [
-        "android.permission.RECORD_AUDIO",
-        "CAMERA",
-        "READ_EXTERNAL_STORAGE",
-        "WRITE_EXTERNAL_STORAGE"
-      ],
-      "package": "com.wishgoods.gokee",
-      "googleServicesFile": "./google-services.json",
-      "versionCode": 70
-    },
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/icon.png",
@@ -50,32 +21,50 @@
           "supportsBackgroundPlayback": true,
           "supportsPictureInPicture": true
         }
-      ]
-      // "expo-secure-store", 
-      // [
-      //   "expo-notifications",
-      //   {
-      //     "icon": "./assets/notification_icon.png",
-      //     "color": "#9b4cff"
-      //   }
-      // ]
+      ],
+      "expo-secure-store"
     ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSSpeechRecognitionUsageDescription": "Allow $(PRODUCT_NAME) to use speech recognition.",
+        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone.",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.innovation.hosen"
+    },
+    "android": {
+      "icon": "./assets/icon.png",
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ],
+      "package": "com.wishgoods.hosen",
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 70
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "manifest": {
+        "name": "Hosen",
+        "short_name": "Hosen",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#1e88e5",
+        "description": "Hosen Sderot - Family resilience kit"
+      }
+    },
     "extra": {
       "eas": {
         "projectId": "e736380f-265a-4dce-b5f7-cb0c51656ff3"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png",
-      "manifest": {
-        "name": "GOKEE - AI Goal & Task Manager",
-        "short_name": "GOKEE",
-        "start_url": ".",
-        "display": "standalone",
-        "background_color": "#ffffff",
-        "theme_color": "#1e88e5",
-        "description": "Manage your goals, share tasks, and get AI insights with GOKEE."
-      }
+    "updates": {
+      "fallbackToCacheTimeout": 0
     }
   }
 }

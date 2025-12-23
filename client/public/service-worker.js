@@ -1,4 +1,4 @@
-const CACHE_NAME = "gokee-cache-v1";
+const CACHE_NAME = "hosen-cache-v1";
 const urlsToCache = [
   "/",
   "/index.html",

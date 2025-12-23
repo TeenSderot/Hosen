@@ -31,7 +31,7 @@ export default function RegisterScreen() {
   const { warning, error } = useError();
   const { API_BASE } = useApi();
   const navigation = useNavigation();
-console.log('navigation', navigation);
+  
   useEffect(() => {
     const checkExistingUser = async () => {
       try {
@@ -207,6 +207,7 @@ const styles = StyleSheet.create({
   subtitle: { textAlign: 'center', color: '#666', marginBottom: 32 },
   label_container:{
     alignItems:'flex-start'
+    
   },
   label: { textAlign: 'right', marginBottom: 8 },
 

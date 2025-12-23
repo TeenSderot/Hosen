@@ -252,5 +252,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 22,
     fontFamily: FONTS.bold,
+    width:'50%'
   },
 });

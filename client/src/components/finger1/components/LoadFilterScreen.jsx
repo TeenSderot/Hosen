@@ -91,14 +91,15 @@ export const LoadFilterScreen = ({ stressors, onUpdateLevel, onNext }) => {
       </ScrollView>
 
       <View style={styles.footer}>
+        <Text style={styles.nextButtonText}>
+            {heavyCount > 0 ? `המשך עם ${heavyCount||0} משימות מכבידות` : 'המשך (הכל משוחרר)'}
+          </Text>
         <TouchableOpacity
           onPress={onNext}
           style={styles.nextButton}
           activeOpacity={0.8}
         >
-          <Text style={styles.nextButtonText}>
-            {heavyCount > 0 ? `המשך עם ${heavyCount} משימות מכבידות` : 'המשך (הכל משוחרר)'}
-          </Text>
+          
           <Check size={24} color="white" />
         </TouchableOpacity>
       </View>
@@ -117,19 +118,18 @@ const styles = StyleSheet.create({
   scrollContent: {
     padding: 24,
     paddingBottom: 120,
+    alignItems:'flex-start'
   },
   title: {
     fontSize: 28,
     fontFamily: FONTS.bold,
     color: THEME.blue,
     marginBottom: 8,
-    textAlign: 'right',
   },
   subtitle: {
     fontSize: 18,
     fontFamily: FONTS.regular,
     color: '#6B7280',
-    textAlign: 'right',
   },
   highlight: {
     fontFamily: FONTS.bold,
@@ -239,10 +239,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 5,
+    marginBottom:50
   },
   nextButtonText: {
-    color: 'white',
+    color: 'black',
     fontSize: 16,
     fontFamily: FONTS.bold,
+    
   },
 });

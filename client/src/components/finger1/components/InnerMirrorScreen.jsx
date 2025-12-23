@@ -142,10 +142,12 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
-  scrollContent: {
-    padding: 24,
-    paddingBottom: 120,
-  },
+ scrollContent: {
+  padding: 24,
+  paddingBottom: 120,
+  width: '100%', // חשוב כדי שהchildren יתפרסו על כל הרוחב
+  alignItems: 'flex-start',
+},
   title: {
     fontSize: 26,
     fontFamily: FONTS.bold,
@@ -158,21 +160,21 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.regular,
     color: '#6B7280',
     marginBottom: 32,
-    textAlign: 'right',
   },
   slidersCard: {
-    backgroundColor: 'white',
-    padding: 24,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: '#F3F4F6',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 8,
-    elevation: 2,
-    marginBottom: 24,
-  },
+  backgroundColor: 'white',
+  padding: 24,
+  borderRadius: 16,
+  borderWidth: 1,
+  borderColor: '#F3F4F6',
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.05,
+  shadowRadius: 8,
+  elevation: 2,
+  marginBottom: 24,
+  width: '100%', // הוסף את זה
+},
   sliderContainer: {
     marginBottom: 32,
   },
@@ -259,6 +261,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 10,
     elevation: 5,
+    marginBottom:50,
+    justifyContent:'center',
+    textAlign:'center'
   },
   nextButtonText: {
     color: 'white',

@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     padding: 24,
     paddingBottom: 32,
     backgroundColor: 'transparent',
+    marginBottom:50
   },
   footerContent: {
     width: '100%',

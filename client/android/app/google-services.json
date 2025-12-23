@@ -1,15 +1,15 @@
 {
   "project_info": {
     "project_number": "499849871012",
-    "project_id": "gokee-7eb4b",
-    "storage_bucket": "gokee-7eb4b.firebasestorage.app"
+    "project_id": "hosen-7eb4b",
+    "storage_bucket": "hosen-7eb4b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
         "mobilesdk_app_id": "1:499849871012:android:aa2315c0d4965686097031",
         "android_client_info": {
-          "package_name": "com.wishgoods.gokee"
+          "package_name": "com.wishgoods.hosen"
         }
       },
       "oauth_client": [],

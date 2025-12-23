@@ -1,4 +1,4 @@
-package com.wishgoods.gokee
+package com.wishgoods.hosen
 
 import android.os.Build
 import android.os.Bundle

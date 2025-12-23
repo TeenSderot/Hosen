@@ -97,7 +97,7 @@ export const DashboardScreen = ({ stressors, traits }) => {
             </>
           ) : (
             <>
-              <Text style={styles.toggleText}>השווה ללפני הסינון</Text>
+              <Text style={styles.toggleText}>השווה לפני הסינון</Text>
               <Eye size={16} color={THEME.orange} />
             </>
           )}
@@ -230,7 +230,6 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: 'white',
     fontSize: 16,
-    fontFamily: FONTS.bold,
   },
   secondaryButton: {
     paddingVertical: 14,
@@ -238,6 +237,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderColor: THEME.blue,
+    marginBottom:50
   },
   secondaryButtonText: {
     color: THEME.blue,

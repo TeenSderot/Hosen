@@ -10,9 +10,6 @@ import {
 import { Bell } from 'lucide-react-native';
 import { useFonts, Rubik_400Regular, Rubik_500Medium, Rubik_700Bold } from '@expo-google-fonts/rubik';
 
-I18nManager.allowRTL(true);
-I18nManager.forceRTL(true);
-
 
 const resources = [
   { id: 1, text: 'רכב פרטי / ניידות', color: '#71A674' },
@@ -61,17 +58,18 @@ export default function ResourcesTab() {
       </View>
 
       <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title}>המשאבים ה"שקופים" שלך</Text>
+        <View style={styles.rtlWrapper}>
+          <Text style={styles.title}>המשאבים ה"שקופים" שלך</Text>
 
-        <Text style={styles.description}>
-          לפעמים אנחנו שוכחים את מה שכן יש לנו. אלו המשאבים הבסיסיים, ה"שקופים",
-          שאם לא היו לנו – המצב היה קשה הרבה יותר.
-        </Text>
+          <Text style={styles.description}>
+            לפעמים אנחנו שוכחים את מה שכן יש לנו. אלו המשאבים הבסיסיים, ה"שקופים",
+            שאם לא היו לנו – המצב היה קשה הרבה יותר.
+          </Text>
 
-        <Text style={styles.subtitle}>
-          סמן כל משאב שזמין לך כרגע (גם אם באופן חלקי):
-        </Text>
-
+          <Text style={styles.subtitle}>
+            סמן כל משאב שזמין לך כרגע (גם אם באופן חלקי):
+          </Text>
+        </View>
         <View style={styles.checklistContainer}>
           {resources.map((resource, index) => (
             <TouchableOpacity
@@ -127,7 +125,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 20,
     paddingBottom: 10,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#F5F5F5',
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
@@ -157,7 +155,15 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginBottom: 20,
     lineHeight: 40,
+    textAlign:'left'
+    
   },
+    rtlWrapper: {
+    width: '100%',
+    alignItems: 'flex-end',      // דוחף את הילדים לימין
+    writingDirection: 'rtl',     // קובע כיוון כתיבה אמיתי
+  },
+
   description: {
     fontSize: 16,
     fontFamily: 'Rubik-Regular',
@@ -165,6 +171,8 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     lineHeight: 24,
     marginBottom: 25,
+    
+    textAlign:'left'
   },
   subtitle: {
     fontSize: 18,
@@ -173,6 +181,8 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginBottom: 20,
     lineHeight: 26,
+    
+    textAlign:'left'
   },
   checklistContainer: {
     gap: 16,
@@ -188,11 +198,12 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   checkItemContent: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     padding: 20,
     gap: 16,
   },
+  
   textContainer: {
     flex: 1,
   },

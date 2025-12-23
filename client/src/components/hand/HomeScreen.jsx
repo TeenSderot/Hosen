@@ -22,17 +22,11 @@ export default function Hand() {
       
 
       <ScrollView contentContainerStyle={styles.content}>
-      <View style={{ width: '100%', alignItems: 'flex-start' ,textAlign: 'right', marginBottom: 20}}>
+      <View style={{ width: '100%', alignItems: 'flex-start' ,textAlign: 'right', marginTop:10}}>
         <Text style={styles.title}>
           היי, {full_name} טוב לראות אותך.{"\n"}איך היום שלך בינתיים?
         </Text>
       </View>
-
-        {/* <Input
-          value={journal}
-          onChangeText={setJournal}
-          placeholder="כתוב כאן..."
-        /> */}
 
         <MoodSelector />
 

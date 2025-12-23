@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
     overflow: 'hidden',
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
   },
   accent: {
     width: 8,
@@ -48,5 +48,6 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 20,
+    
   },
 });

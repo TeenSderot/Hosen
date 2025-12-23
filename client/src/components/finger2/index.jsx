@@ -354,7 +354,7 @@ export default function Index() {
             variant="secondary"
             onPress={() => setStep(AppStep.SCALES_SC24)}
           >
-            חוכמת שדרות
+            חכמת שדרות
           </Button>
           <Button
             variant="outline"
@@ -387,9 +387,7 @@ export default function Index() {
           את השליטה.
         </Text>
 
-        <View style={styles.demoEndCard}>
-          <Text style={styles.demoEndText}>סוף הדמו לאצבע 2</Text>
-        </View>
+       
 
         <View style={{ marginTop: 24 }}>
           <Button variant="outline" onPress={() => setStep(AppStep.INTRO_SC17)}>
@@ -622,7 +620,7 @@ tagButton: {
     elevation: 2,
   },
   symptomHeaderContent: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     flex: 1,
   },
@@ -646,7 +644,6 @@ tagButton: {
 tagsContainer: {
   flexDirection: 'row',        // חשוב!
   flexWrap: 'wrap',
-  justifyContent: 'flex-end',  // דוחף הכל לימין
   alignItems: 'flex-start',
   width: '100%',
 },

@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
   },
   toolContent: {
     flex: 1,
-  },
+},
   toolTitle: {
     fontSize: 17,
     fontWeight: '600',
@@ -220,6 +220,7 @@ const styles = StyleSheet.create({
   },
   categories: {
     marginBottom: 24,
+    
   },
   categoryRow: {
     flexDirection: 'row',
