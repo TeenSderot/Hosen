@@ -222,12 +222,12 @@ export default function StretchingExercise() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.backButton}
             onPress={() => {}}
           >
             <Text style={styles.backButtonText}>חזרה</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Text style={styles.headerTitle}>הרפיית שרירים</Text>
           <View style={styles.spacer} />
         </View>
@@ -284,12 +284,12 @@ export default function StretchingExercise() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() => {}}
         >
           <Text style={styles.backButtonText}>חזרה</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.headerTitle}>הרפיית שרירים</Text>
         <TouchableOpacity
           style={styles.infoButton}

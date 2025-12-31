@@ -121,11 +121,11 @@ export default function Index() {
           <Text style={styles.introSubtitle}>
             בפרק זה נתייחס למד חום אישי
           </Text>
-          <View style={styles.futureNote}>
+          {/* <View style={styles.futureNote}>
             <Text style={styles.futureNoteText}>
               בקרוב: מד חום זוגי ומשפחתי
             </Text>
-          </View>
+          </View> */}
         </View>
       </View>
     </AppLayout>
@@ -144,7 +144,7 @@ export default function Index() {
         <View style={styles.normalizeCard}>
           <Text style={styles.normalizeTitle}>זה נורמלי להרגיש ככה</Text>
           <Text style={styles.normalizeText}>
-            זה לא אומר שמשהו לא בסדר איתך, זה אומר שהמערכת שלך בגיוס גבוה.
+            זה לא אומר שמשהו לא בסדר איתך, זה אומר שהמערכת שלך בעומס גבוה.
           </Text>
           <Text style={styles.normalizeHighlight}>
             בואו נבדוק את הטמפרטורה.
@@ -182,6 +182,7 @@ export default function Index() {
             onPress={() => setStep(nextStep)}
             disabled={!hasSelection(category)}
           >
+            
             {hasSelection(category) ? 'המשך' : 'יש לבחור אפשרות'} ←
           </Button>
         }
@@ -376,7 +377,7 @@ export default function Index() {
   );
 
   const renderScalesSC24 = () => (
-    <AppLayout screenId="SC24">
+    <View >
       <View style={styles.centerContainer}>
         <View style={styles.scaleIconCircle}>
           <Scale size={64} color="#84C7DA" />
@@ -395,7 +396,7 @@ export default function Index() {
           </Button>
         </View>
       </View>
-    </AppLayout>
+    </View>
   );
 
   switch (step) {
@@ -519,6 +520,8 @@ tagButton: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderRadius: 24,
+    
   },
 
   /* ========= Intro ========= */
@@ -527,7 +530,7 @@ tagButton: {
     borderRadius: 24,
     padding: 32,
     alignItems: 'center',
-    borderStartWidth: 4,
+    borderLeftWidth: 4,
     borderStartColor: '#84C7DA',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
@@ -691,6 +694,7 @@ tagsContainer: {
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
+    
   },
   summaryTitle: {
     fontSize: 16,
@@ -701,6 +705,7 @@ tagsContainer: {
   },
   summaryContent: {
     gap: 8,
+    alignItems:'flex-start'
   },
   summaryItemText: {
     fontSize: 12,

@@ -30,12 +30,12 @@ export default function CategoryFeed() {
       <View style={styles.container}>
         <View style={styles.centerContent}>
           <Text style={styles.errorText}>קטגוריה לא נמצאה</Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.backButton}
             onPress={() => navigation.navigate('toolbox')}
           >
             <Text style={styles.backButtonText}>חזרה</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );
@@ -44,12 +44,12 @@ export default function CategoryFeed() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() => navigation.navigate('toolbox')}
         >
           <Text style={styles.backButtonText}>חזרה</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.title}>
           {category.emoji} {category.title}
         </Text>

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Vibration,
+  ScrollView,
 } from 'react-native';
 import Animated, {
   useSharedValue,
@@ -24,10 +25,10 @@ const techniques= [
 ];
 
 export default function BreathingExercise() {
-  
-  const [selectedTechnique, setSelectedTechnique] = useState<BreathingTechnique>(techniques[0]);
+
+const [selectedTechnique, setSelectedTechnique] = useState(techniques[0]);
   const [isActive, setIsActive] = useState(false);
-  const [currentPhase, setCurrentPhase] = useState<'inhale' | 'hold' | 'exhale' | 'holdAfter'>('inhale');
+  const [currentPhase, setCurrentPhase] = useState('inhale');
   const [countdown, setCountdown] = useState(selectedTechnique.inhale);
   const [cycleCount, setCycleCount] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
@@ -152,15 +153,13 @@ export default function BreathingExercise() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity style={styles.settingsButton}>
-          <Text style={styles.settingsIcon}>⚙️</Text>
-        </TouchableOpacity>
+      
         <Text style={styles.headerTitle}>מנוע נשימות</Text>
-        <TouchableOpacity style={styles.closeButton} onPress={()=>{}}>
+        {/* <TouchableOpacity style={styles.closeButton} onPress={()=>{}}>
           <Text style={styles.closeIcon}>✕</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
 
       <View style={styles.content}>
@@ -229,13 +228,15 @@ export default function BreathingExercise() {
         <View style={styles.controls}>
           {!isActive ? (
             <TouchableOpacity style={styles.startButton} onPress={startBreathing}>
-              <Text style={styles.startButtonIcon}>▶</Text>
+              
               <Text style={styles.startButtonText}>התחלה</Text>
+              <Text style={styles.startButtonIcon}>◀</Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={styles.pauseButton} onPress={stopBreathing}>
-              <Text style={styles.pauseButtonIcon}>⏸</Text>
+              
               <Text style={styles.pauseButtonText}>השהה</Text>
+              <Text style={styles.pauseButtonIcon}>⏸</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -246,7 +247,7 @@ export default function BreathingExercise() {
           </Text>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -258,8 +259,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 16,
+    justifyContent: 'center',
     paddingTop: 48,
     paddingBottom: 16,
     backgroundColor: Colors.white,
@@ -270,6 +270,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   settingsButton: {
+    
     width: 40,
     height: 40,
     alignItems: 'center',
@@ -280,10 +281,10 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: 'Rubik-Bold',
     color: Colors.text.primary,
-    textAlign: 'right',
+   
   },
   closeButton: {
     width: 40,
@@ -370,7 +371,6 @@ const styles = StyleSheet.create({
   circleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 40,
   },
   circle: {
     width: 280,

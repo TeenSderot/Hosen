@@ -1,11 +1,12 @@
 import { Image, StyleSheet, TouchableOpacity } from "react-native"
 
-export default function Lotus () {
+export default function Lotus ({navigateTo}) {
     return (
-                <Image source={require("../../../assets/lotus.png")} style={styles.logo} />
+      <TouchableOpacity onPress={() => navigateTo("Breathing")}>
+                <Image source={require("../../../assets/lotus.png")} style={styles.logo} /></TouchableOpacity>
       )
 }
 const styles = StyleSheet.create({
 
-  logo: { width: 48, height: 48 },
+  logo: { width: 50, height: 48 },
 })

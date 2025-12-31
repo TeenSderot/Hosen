@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-import { commandments } from "../data/commandments";
-import NotebookHeader from "@/components/NotebookHeader";
-import CommandmentItem from "@/components/CommandmentItem";
-import CommandmentDetail from "@/components/CommandmentDetail";
+import { StyleSheet, View, ScrollView } from "react-native";
+import { commandments } from "./commandments";
+import NotebookHeader from "./NotebookHeader";
+import CommandmentItem from "./CommandmentItem";
+import CommandmentDetail from "./CommandmentDetail";
 
-const Index = () => {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+const Divrot = () => {
+  const [selectedId, setSelectedId] = useState(null);
   
   const selectedCommandment = selectedId 
     ? commandments.find(c => c.id === selectedId) 
@@ -84,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+export default Divrot;

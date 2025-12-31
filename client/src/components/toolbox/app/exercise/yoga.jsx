@@ -170,12 +170,12 @@ export default function YogaExercise() {
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.backButton}
             onPress={() => {}}
           >
             <Text style={styles.backButtonText}>חזרה</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Text style={styles.headerTitle}>תרגיל יוגה</Text>
           <View style={styles.spacer} />
         </View>
@@ -212,12 +212,12 @@ export default function YogaExercise() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() =>{}}
         >
           <Text style={styles.backButtonText}>חזרה</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.headerTitle}>תרגיל יוגה</Text>
         <View style={styles.spacer} />
       </View>

@@ -6,7 +6,7 @@ import Index from './src/pages/Index';
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);
 
-export default function App() {
+export default function Wisdom1() {
   return (
     <>
       <StatusBar style="dark" />

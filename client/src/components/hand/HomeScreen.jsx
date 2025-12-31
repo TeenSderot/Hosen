@@ -21,19 +21,20 @@ export default function Hand() {
       {/* Header */}
       
 
-      <ScrollView contentContainerStyle={styles.content}>
-      <View style={{ width: '100%', alignItems: 'flex-start' ,textAlign: 'right', marginTop:10}}>
+      
+      <View style={{ width: '100%', alignItems: 'flex-start' ,textAlign: 'right', marginTop:50,marginLeft:25}}>
         <Text style={styles.title}>
-          היי, {full_name} טוב לראות אותך.{"\n"}איך היום שלך בינתיים?
+       היי, {full_name}טוב לראות אותך.
+        </Text>
+        <Text style={styles.title}>
+     איך היום שלך בינתיים?
+
         </Text>
       </View>
 
-        <MoodSelector />
+        
 
-        <View style={styles.hand}>
           <HandIllustration />
-        </View>
-      </ScrollView>
 
       {/* <BottomNav /> */}
     </View>
@@ -60,7 +61,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     textAlign: "right",
-    marginBottom: 24,
   },
   hand: {
     alignItems: "center",

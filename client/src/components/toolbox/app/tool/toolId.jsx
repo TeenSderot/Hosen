@@ -39,12 +39,12 @@ export default function ToolDetail() {
       <View style={styles.container}>
         <View style={styles.centerContent}>
           <Text style={styles.errorText}>כלי לא נמצא</Text>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={() => router.back()}
           >
             <Text style={styles.buttonText}>חזרה</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     );
@@ -53,12 +53,12 @@ export default function ToolDetail() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.button}
           onPress={() => router.back()}
         >
           <Text style={styles.buttonText}>חזרה</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.title}>{tool.title}</Text>
         <TouchableOpacity
           style={styles.button}

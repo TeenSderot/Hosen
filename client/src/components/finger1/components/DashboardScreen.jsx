@@ -16,6 +16,7 @@ import Animated, {
 import { Eye, EyeOff } from 'lucide-react-native';
 import { StressLevel, THEME, FONTS } from '../types';
 import { SunVisualization } from './SunVisualization';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
@@ -37,7 +38,6 @@ const Bubble = ({ text, index, total }) => {
   const translateY = useSharedValue(startY);
   const translateX = useSharedValue(startX);
   const scale = useSharedValue(0.5);
-
   useEffect(() => {
     opacity.value = withDelay(
       delay,
@@ -71,6 +71,7 @@ const Bubble = ({ text, index, total }) => {
 export const DashboardScreen = ({ stressors, traits }) => {
   const [showOriginal, setShowOriginal] = useState(false);
   const sunSize = Math.min(width * 0.7, height * 0.35);
+  const navigation = useNavigation();
 
   const sunStressors = showOriginal
     ? stressors.map(s => s.level === StressLevel.RELEASED ? { ...s, level: StressLevel.NORMAL } : s)
@@ -122,10 +123,10 @@ export const DashboardScreen = ({ stressors, traits }) => {
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.primaryButton}>
+        <TouchableOpacity style={styles.primaryButton}  onPress={()=>navigation.navigate('middle')}>
           <Text style={styles.primaryButtonText}>המשך לאצבע המאזניים</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.secondaryButton}>
+        <TouchableOpacity style={styles.secondaryButton} onPress={()=>navigation.navigate('wisdom')}>
           <Text style={styles.secondaryButtonText}>חכמת שדרות</Text>
         </TouchableOpacity>
       </View>
@@ -215,6 +216,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#E5E7EB',
     gap: 10,
+    justifyContent:'flex-end'
   },
   primaryButton: {
     backgroundColor: THEME.blue,
@@ -237,7 +239,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 2,
     borderColor: THEME.blue,
-    marginBottom:50
   },
   secondaryButtonText: {
     color: THEME.blue,

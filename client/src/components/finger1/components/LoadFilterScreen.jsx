@@ -32,11 +32,11 @@ export const LoadFilterScreen = ({ stressors, onUpdateLevel, onNext }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
+     <ScrollView
+  style={{ flex: 1 }}
+  contentContainerStyle={styles.scrollContent}
+  showsVerticalScrollIndicator={false}
+>
         <Text style={styles.title}>בואו נמקד:</Text>
         <Text style={styles.subtitle}>
           סמנו את המשימות שהכי{' '}
@@ -99,8 +99,10 @@ export const LoadFilterScreen = ({ stressors, onUpdateLevel, onNext }) => {
           style={styles.nextButton}
           activeOpacity={0.8}
         >
-          
-          <Check size={24} color="white" />
+          <Text style={styles.nextButtonText}>
+            סימנתי
+          </Text>
+          {/* <Check size={24} color="white" /> */}
         </TouchableOpacity>
       </View>
     </View>
@@ -150,9 +152,10 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 16,
     borderWidth: 2,
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    width:'100%'
   },
   listItemHeavy: {
     backgroundColor: '#FFF7ED',
@@ -169,7 +172,7 @@ const styles = StyleSheet.create({
   },
   itemContent: {
     flex: 1,
-    alignItems: 'flex-end',
+    alignItems: 'space-bwtween',
   },
   itemText: {
     fontSize: 18,
@@ -225,9 +228,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 10,
     elevation: 10,
+    
   },
   nextButton: {
-    backgroundColor: THEME.orange,
+    backgroundColor: THEME.blue,
     paddingVertical: 16,
     borderRadius: 999,
     flexDirection: 'row-reverse',
@@ -239,10 +243,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 10,
     elevation: 5,
-    marginBottom:50
   },
   nextButtonText: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
     fontFamily: FONTS.bold,
     

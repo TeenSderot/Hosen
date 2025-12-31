@@ -37,7 +37,7 @@ export default function RegisterScreen() {
       try {
         const token = await SecureStore.getItemAsync('access_token');
         if (token) {
-          navigation.navigate('Hand');
+          navigation.navigate('CopingInfo');
         }
       } catch (e) {
         console.log(e);

@@ -2,15 +2,9 @@ import React from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import { ChevronLeft } from 'lucide-react-native';
 
-interface CommandmentItemProps {
-  id: number;
-  title: string;
-  color: string;
-  onClick: () => void;
-  delay?: number;
-}
 
-const colorClasses: Record<string, string> = {
+
+const colorClasses= {
   "notebook-green": "#34D399", // Example color code
   "notebook-lime": "#A3E635",
   "notebook-orange": "#FB923C",
@@ -18,7 +12,7 @@ const colorClasses: Record<string, string> = {
   "notebook-yellow": "#FBBF24",
 };
 
-const CommandmentItem = ({ id, title, color, onClick, delay = 0 }: CommandmentItemProps) => {
+const CommandmentItem = ({ id, title, color, onClick, delay = 0 }) => {
   return (
     <Pressable
       onPress={onClick}
@@ -27,18 +21,22 @@ const CommandmentItem = ({ id, title, color, onClick, delay = 0 }: CommandmentIt
       {/* Colored accent bar on right */}
       <View style={[styles.accentBar, { backgroundColor: colorClasses[color] || "#3B82F6" }]} />
 
-      {/* Chevron indicator on left */}
-      <ChevronLeft style={styles.chevronIcon} />
-
-      {/* Title */}
-      <Text style={styles.title}>
-        {title}
-      </Text>
-
-      {/* Number badge */}
+       {/* Number badge */}
       <View style={[styles.badge, { backgroundColor: colorClasses[color] || "#3B82F6" }]}>
         <Text style={styles.badgeText}>{id}</Text>
       </View>
+      {/* Title */}
+            <View  style={{alignItems:'flex-start',width:'85%'}}>
+
+      <Text style={styles.title}>
+        {title}
+      </Text>
+      </View>
+      {/* Chevron indicator on left */}
+
+     
+      <ChevronLeft style={styles.chevronIcon} />
+
     </Pressable>
   );
 };
@@ -56,11 +54,12 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     overflow: 'hidden',
     position: 'relative',
+    justifyContent:'flex-start',
   },
   accentBar: {
     position: 'absolute',
     top: 0,
-    right: 0,
+    left: 0,
     bottom: 0,
     width: 8,
     borderRadius: 100,
@@ -86,6 +85,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     transform: [{ scale: 1 }],
+    textAlign:'right',
+    
   },
   badgeText: {
     color: '#FFFFFF',

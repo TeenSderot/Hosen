@@ -35,12 +35,12 @@ export default function CommunityWisdom() {
     <View style={styles.container}>
       {/* Header Bar */}
       <View style={styles.headerBar}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() => {navigation.navigate('toolbox')}}
         >
           <Text style={styles.backButtonText}>חזרה</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <Text style={styles.headerTitle}>💡 חוכמת ההמונים</Text>
 
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 8,
     elevation: 2,
+    
   },
   backButton: {
     padding: 10,
@@ -134,6 +135,7 @@ const styles = StyleSheet.create({
   },
   section: {
     marginBottom: 32,
+    alignItems:'flex-start'
   },
   categoryTitle: {
     fontSize: 20,

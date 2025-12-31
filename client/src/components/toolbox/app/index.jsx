@@ -111,14 +111,14 @@ export default function ToolboxLobby() {
             style={styles.wisdomButton}
             onPress={() => navigation.navigate('wisdom')}
           >
-            <Text style={styles.wisdomButtonText}>💡 חוכמת ההמונים</Text>
+            <Text style={styles.wisdomButtonText}> חוכמת ההמונים</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.favoritesButton}
             onPress={() => navigation.navigate('favorites')}
           >
-            <Text style={styles.favoritesButtonText}>⭐ מועדפים</Text>
+            <Text style={styles.favoritesButtonText}> מועדפים</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 24,
   },
   title: {
-    fontSize: 32,
+    fontSize: 24,
     fontWeight: 'bold',
     color: Colors.text.primary,
     marginBottom: 8,
@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
   },
   searchResults: {
     marginTop: 12,
+    
   },
   toolContent: {
     flex: 1,
@@ -238,6 +239,8 @@ const styles = StyleSheet.create({
   },
   categoryText: {
     flex: 1,
+    textAlign:'right',
+    alignItems:'flex-start'
   },
   categoryTitle: {
     fontSize: 18,
@@ -257,7 +260,7 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   wisdomButton: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.blue,
     padding: 20,
     borderRadius: 24,
     alignItems: 'center',
@@ -274,7 +277,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Rubik-SemiBold',
   },
   favoritesButton: {
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.accent,
     padding: 20,
     borderRadius: 24,
     alignItems: 'center',

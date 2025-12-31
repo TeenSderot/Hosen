@@ -25,20 +25,20 @@ const CustomSlider = ({ labelLeft, labelRight, value, onChange }) => {
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {
       if (trackWidth.value > 0) {
-        const ltrPercentage = Math.min(Math.max(e.x / trackWidth.value, 0), 1);
-        const rtlValue = (1 - ltrPercentage) * 100;
-        thumbPosition.value = rtlValue;
-        runOnJS(updateValue)(rtlValue);
+        const percentage = Math.min(Math.max(e.x / trackWidth.value, 0), 1);
+const newValue = percentage * 100;
+thumbPosition.value = newValue;
+runOnJS(updateValue)(newValue);
       }
     });
 
   const tapGesture = Gesture.Tap()
     .onEnd((e) => {
       if (trackWidth.value > 0) {
-        const ltrPercentage = Math.min(Math.max(e.x / trackWidth.value, 0), 1);
-        const rtlValue = (1 - ltrPercentage) * 100;
-        thumbPosition.value = rtlValue;
-        runOnJS(updateValue)(rtlValue);
+        const percentage = Math.min(Math.max(e.x / trackWidth.value, 0), 1);
+const newValue = percentage * 100;
+thumbPosition.value = newValue;
+runOnJS(updateValue)(newValue);
       }
     });
 
@@ -50,7 +50,7 @@ const CustomSlider = ({ labelLeft, labelRight, value, onChange }) => {
 
   const thumbStyle = useAnimatedStyle(() => ({
     right: `${thumbPosition.value}%`,
-    transform: [{ translateX: 14 }],
+    transform: [{ translateX:-20 }],
   }));
 
   return (
@@ -92,7 +92,7 @@ export const InnerMirrorScreen = ({ traits, setTraits, onNext }) => {
       >
         <Text style={styles.title}>המראה הפנימית</Text>
         <Text style={styles.subtitle}>
-          לפעמים האופי שלנו מקל, ולפעמים הוא מכביד. איפה אתם נמצאים על הסקאלה?
+          לפעמים האופי שלנו מקל, ולפעמים הוא מכביד. איפה אתם נמצאים על הטווח?
         </Text>
 
         <View style={styles.slidersCard}>
@@ -227,6 +227,7 @@ const styles = StyleSheet.create({
     height: 8,
     borderRadius: 4,
     backgroundColor: THEME.orange,
+    
   },
   insightBox: {
     backgroundColor: `${THEME.yellow}50`,
@@ -242,17 +243,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+    
     padding: 24,
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: '#E5E7EB',
+    justifyContent:'flex-end'
   },
   nextButton: {
-    backgroundColor: THEME.blue,
+    backgroundColor: THEME.orange,
     paddingVertical: 16,
     borderRadius: 999,
     alignItems: 'center',
@@ -261,7 +260,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 10,
     elevation: 5,
-    marginBottom:50,
     justifyContent:'center',
     textAlign:'center'
   },

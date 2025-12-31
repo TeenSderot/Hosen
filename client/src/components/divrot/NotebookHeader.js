@@ -2,11 +2,8 @@ import React from "react";
 import { Pressable, Text, View, StyleSheet } from "react-native";
 import { X, BookOpen } from "lucide-react-native";
 
-interface NotebookHeaderProps {
-  onClose?: () => void;
-}
 
-const NotebookHeader = ({ onClose }: NotebookHeaderProps) => {
+const NotebookHeader = ({ onClose }) => {
   return (
     <View style={styles.headerContainer}>
       {/* Close button */}
@@ -20,11 +17,11 @@ const NotebookHeader = ({ onClose }: NotebookHeaderProps) => {
       )}
 
       {/* Icon */}
-      <View style={styles.iconContainer}>
+      {/* <View style={styles.iconContainer}>
         <View style={styles.iconBackground}>
           <BookOpen style={styles.bookIcon} />
         </View>
-      </View>
+      </View> */}
 
       {/* Title */}
       <Text style={styles.title}>

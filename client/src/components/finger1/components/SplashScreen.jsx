@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -180,9 +180,11 @@ export const SplashScreen = ({ onNext }) => {
 
       <View style={styles.content}>
         <Animated.Text style={[styles.title, titleStyle]}>
-          שמש של חוסן
+          שמש של 
         </Animated.Text>
-
+        <Animated.Text style={[styles.title, titleStyle]}>
+        חוסן
+        </Animated.Text>
         <Animated.Text style={[styles.subtitle, subtitleStyle]}>
           נושמים, ממפים, מחזקים.
         </Animated.Text>
@@ -207,21 +209,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    top:-30
   },
   sunContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 40,
   },
   content: {
     alignItems: 'center',
-    paddingHorizontal: 24,
   },
   title: {
     fontSize: 52,
     fontFamily: FONTS.bold,
     color: THEME.blue,
-    marginBottom: 12,
     textAlign: 'center',
     textShadowColor: 'rgba(132, 199, 218, 0.2)',
     textShadowOffset: { width: 0, height: 2 },
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    justifyContent:'center',
     shadowColor: THEME.orange,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.35,
@@ -253,5 +253,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: FONTS.bold,
     width:'50%'
+    
   },
 });

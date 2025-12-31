@@ -76,7 +76,7 @@ export default function SC33_Communication({ navigation }) {
   const currentTab = tabs.find((t) => t.key === activeTab);
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Text style={styles.header}>מה אומרים עכשיו?</Text>
 
       <View style={styles.tabs}>
@@ -102,19 +102,19 @@ export default function SC33_Communication({ navigation }) {
         {currentTab.phrases.map((phrase, index) => (
           <View key={phrase} style={{ width: "100%" }}>
             <TouchableOpacity style={styles.checkItem} onPress={() => toggleCheck(phrase)}>
-              <Ionicons
+              
+              <Text style={styles.checkText}>{phrase}</Text>
+                <Ionicons
                 name={checked[phrase] ? "radio-button-on" : "radio-button-off"}
                 size={26}
                 color="#898c8e"
               />
-              <Text style={styles.checkText}>{phrase}</Text>
             </TouchableOpacity>
 
             {index < currentTab.phrases.length - 1 ? <Divider /> : null}
           </View>
         ))}
       </View>
-
       <TouchableOpacity
         style={styles.doneButton}
         onPress={async () => {
@@ -125,18 +125,21 @@ export default function SC33_Communication({ navigation }) {
       >
         <Text style={styles.doneText}>סיימתי – מעבר לסיכום</Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 120,
+    paddingTop: 60,
     width: "100%",
+    height:'100%',
     padding: 16,
     backgroundColor: "#F8F9FB",
     borderLeftColor: "#84C7DA",
     borderLeftWidth: 1,
+    
+    justifyContent:'space-between'
   },
   header: {
     padding: 10,
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   tabs: {
-    flexDirection: "row-reverse",
+    flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 16,
     height: 80,
@@ -169,13 +172,23 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 16,
     marginBottom: 20,
-    alignItems: "flex-end",
+    alignItems: "flex-start",
     paddingBottom: 30,
   },
   cardTitle: { fontSize: 26, fontWeight: "700", marginBottom: 12 },
   tip: { backgroundColor: "#FFF3CD", padding: 12, borderRadius: 10, marginBottom: 12 },
-  checkItem: { flexDirection: "row-reverse", alignItems: "center", marginBottom: 12 },
-  checkText: { textAlign: "right", marginRight: 8, flex: 1, fontSize: 18 },
+checkItem: {
+  flexDirection: "row-reverse",
+  alignItems: "center",
+  marginBottom: 12,
+  width: "100%",
+},  checkText: {
+  flex: 1,
+  fontSize: 18,
+  textAlign: "right",
+  writingDirection: "rtl",
+  alignSelf: "stretch",
+},
   doneButton: { backgroundColor: "#FD954E", padding: 16, borderRadius: 30, alignItems: "center" },
   doneText: { color: "#fff", fontSize: 16, fontWeight: "600" },
 });

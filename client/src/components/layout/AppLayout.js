@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   safe: {
     flex: 1,
     width: wp('100%'),
-    backgroundColor: "#0F1D33",
+    backgroundColor: "white",
   },
   container: {
     flex: 1,

@@ -3,16 +3,16 @@ import { View, Pressable, StyleSheet, Image } from "react-native";
 import { COLORS } from "./COLORS";
 import { useNavigation } from "@react-navigation/native";
 
-export default function MoodSelector({ onMoodSelect }) {
+export default function MoodSelector({ onMoodSelect,toggleFinger }) {
   const [selected, setSelected] = useState(null);
   const navigation = useNavigation();
   // הוספנו את ה-require ישירות לכל אייקון
   const moods = [
-    { color: "yellow", icon: require('../../../assets/yellow.png') ,nav:()=>navigation.navigate('thumb')}, 
-    { color: "cyan",   icon: require('../../../assets/cyan.png'),nav:()=>navigation.navigate('pinky') }, 
-    { color: "orange", icon: require('../../../assets/orange.png') ,nav:()=>navigation.navigate('middle')}, 
-    { color: "lime",   icon: require('../../../assets/lime.png') ,nav:()=>navigation.navigate('index')}, 
-    { color: "green",  icon: require('../../../assets/green.png') ,nav:()=>navigation.navigate('ring')}
+    { color: "yellow", icon: require('../../../assets/yellow.png') ,nav:()=>navigation.navigate('ring'),name:'thumb'}, 
+    { color: "cyan",   icon: require('../../../assets/cyan.png'),nav:()=>navigation.navigate('pinky'),name:'index' }, 
+    { color: "orange", icon: require('../../../assets/orange.png') ,nav:()=>navigation.navigate('middle'),name:'middle'}, 
+    { color: "lime",   icon: require('../../../assets/lime.png') ,nav:()=>navigation.navigate('index'),name:'pinky'}, 
+    { color: "green",  icon: require('../../../assets/green.png') ,nav:()=>navigation.navigate('thumb'),name:'ring'}
   ];
 
   return (
@@ -21,19 +21,20 @@ export default function MoodSelector({ onMoodSelect }) {
         <Pressable
           key={mood.color}
          onPress={() => {
+          toggleFinger(mood.name)
           setSelected(mood.color);
           if (onMoodSelect) onMoodSelect({ color: mood.color, icon: mood.icon });
           
-          // הוסף את השורה הזו:
-          if (mood.nav) mood.nav(); 
+          
+          if (mood.nav) setTimeout(()=>{mood.nav()},1000); 
         }}
           style={[
             styles.circle,
             { backgroundColor: COLORS.mood[mood.color] },
-            selected === mood.color && styles.selected, // שים לב: השווינו ל-mood.color
+            selected === mood.color && styles.selected, 
           ]}
         >
-          {/* עכשיו mood.icon הוא כבר ה-require המוכן */}
+          
           <Image source={mood.icon} style={styles.icon} />
         </Pressable>
       ))}

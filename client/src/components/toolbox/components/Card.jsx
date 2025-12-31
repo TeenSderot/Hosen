@@ -3,9 +3,9 @@ import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 
 
 
-export function Card({ children, onPress, style, accentColor }) {
+export function Card({ children, onPress, accentColor }) {
   const CardContent = () => (
-    <View style={[styles.card, style]}>
+    <View style={[styles.card]}>
       <View style={styles.content}>
         {children}
       </View>
@@ -48,6 +48,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 20,
+    alignItems:'flex-start',
+    textAlign:'right'
     
   },
 });

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 
 // המערך Commandments כמו שהצגת
-const commandments = [
+export const commandments = [
   {
     id: 1,
     title: "הערכות מוקדמת כבסיס לחוסן",

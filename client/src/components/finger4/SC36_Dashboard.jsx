@@ -116,7 +116,7 @@ export default function SC36_Dashboard({ navigation }) {
   };
 
   return (
-    <AppLayout>
+    <View style={{justifyContent:'space-between',height:"100%",alignItems:'center'}}>
       <View style={styles.header}>
         <Text style={styles.headerIcon}>🛡️</Text>
         <Text style={styles.h1}>הערכה המוכנה שלכם</Text>
@@ -151,7 +151,7 @@ export default function SC36_Dashboard({ navigation }) {
 
 
       <View style={{ gap: 10, marginTop: 14 }}>
-        <Button style={{ backgroundColor: "#FD954E" }} title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
+        <Button style={{ backgroundColor: "#FD954E",paddingHorizontal:"50" }} title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
         <Button
           title="חזרה למסך הבית"
           onPress={() => navigation.replace("Communication")}
@@ -163,7 +163,7 @@ export default function SC36_Dashboard({ navigation }) {
           }}
         />
       </View>
-    </AppLayout>
+    </View>
   );
 }
 
@@ -199,8 +199,7 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: "right",
     paddingRight: 10,
-    borderRightWidth: 2,
-    borderRightColor: "#4F8CFF",
+    alignSelf:'center'
   },
   empty: {
     backgroundColor: "#111A27",

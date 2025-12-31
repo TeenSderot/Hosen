@@ -73,10 +73,10 @@ export const Oct7WeightsScreen = ({ stressors, onAdd, onRemove, onNext }) => {
   );
 
   return (
-    <LinearGradient
-      colors={['#F9FAFB', '#FFF7ED']}
-      style={styles.container}
-    >
+    // <LinearGradient
+    //   colors={['#F9FAFB', '#FFF7ED']}
+    //   style={styles.container}
+    // >
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
@@ -90,7 +90,7 @@ export const Oct7WeightsScreen = ({ stressors, onAdd, onRemove, onNext }) => {
         {renderSection('תנאים פיזיים', 'physical', THEME.orange)}
         {renderSection('משפחה וקשרים', 'family', THEME.blue)}
         {renderSection('רגשי', 'emotional', THEME.yellow)}
-      </ScrollView>
+     
 
       <View style={styles.footer}>
         <TouchableOpacity
@@ -99,8 +99,8 @@ export const Oct7WeightsScreen = ({ stressors, onAdd, onRemove, onNext }) => {
         >
           <Text style={styles.nextButtonText}>הוספתי את המשקולות שלי</Text>
         </TouchableOpacity>
-      </View>
-    </LinearGradient>
+      </View> </ScrollView>
+   // </LinearGradient>
   );
 };
 
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     alignItems:'flex-start'
   },
   sectionHeader: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
     marginBottom: 12,
@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     borderTopColor: '#E5E7EB',
   },
   nextButton: {
-    backgroundColor: THEME.orange,
+    backgroundColor: THEME.blue,
     paddingVertical: 16,
     borderRadius: 999,
     alignItems: 'center',
@@ -188,7 +188,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 10,
     elevation: 5,
-    marginBottom:50
   },
   nextButtonText: {
     color: 'white',

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   Image,
   SafeAreaView,
+  I18nManager,
 } from "react-native";
 import {
   NavigationContainer,
@@ -35,12 +36,29 @@ import ToolboxLobby from "./src/components/toolbox/app/index";
 import CommunityWisdom from "./src/components/toolbox/app/wisdom";
 import FavoritesPage from "./src/components/toolbox/app/favorites";
 import CategoryFeed from "./src/components/toolbox/app/category/categoryId";
+import BreathingExercise from "./src/components/toolbox/app/exercise/breathing";
+import Divrot from './src/components/divrot/Divrot'
+import Finger5Intro from "./src/components/finger5/src/screens/Finger5Intro";
+import WhoSavesTheSaviorScreen from "./src/components/finger5/src/screens/WhoSavesTheSaviorScreen";
+import RechargeChecklistScreen from "./src/components/finger5/src/screens/RechargeChecklistScreen";
+import SelfCareChecklistScreen from "./src/components/finger5/src/screens/SelfCareChecklistScreen";
+import GoodEnoughParentScreen from "./src/components/finger5/src/screens/GoodEnoughParentScreen";
+import CopingInfo from './src/components/info/CopingInfo'
+import StressDefinitionScreen from "./src/components/opening/stress-definition";
+import { Dashboard } from "./src/components/opening/Dashboard";
+import { Gauge } from "./src/components/Gauge";
+import WelcomeScreen from "./src/components/opening/Intro";
 
 const navigationRef = createNavigationContainerRef();
 // ⬇️ שינוי כאן: שימוש ב-createStackNavigator
 const Stack = createStackNavigator();
 
 const NO_BARS_SCREENS = ["Register", "Login", "ResetPassword"];
+
+
+I18nManager.allowRTL(true);
+I18nManager.forceRTL(true);
+
 
 export function navigateTo(name) {
   console.log("Attempting to navigate to:", name);
@@ -63,15 +81,16 @@ export default function App() {
         {/* 🔝 Top Bar */}
         {!hideBars && (
           <View style={styles.topBar}>
-            <TouchableOpacity onPress={() => console.log("Menu Pressed")}>
+            <TouchableOpacity onPress={() => console.log("menu pressed")
+            }>
               <Image
                 source={require("./assets/menu-dots.png")}
                 style={styles.icon}
               />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigateTo("Hand")}>
-              <Lotus />
+            <TouchableOpacity onPress={() => navigateTo("Breathing")}>
+              <Lotus navigateTo={navigateTo}/>
             </TouchableOpacity>
           </View>
         )}
@@ -88,13 +107,14 @@ export default function App() {
   }}
           >
             <Stack.Navigator
-              initialRouteName="Register"
+              initialRouteName="Intro"
               screenOptions={{ 
                 headerShown: false,
                 // אופציונלי: אנימציה חלקה יותר ב-JS Stack
                 animationEnabled: true 
               }}
             >
+              <Stack.Screen name="Intro" component={WelcomeScreen} />
               <Stack.Screen name="Register" component={RegisterScreen} />
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
@@ -102,6 +122,7 @@ export default function App() {
               <Stack.Screen name="index" component={SC32_Onboarding} />
               <Stack.Screen name="pinky" component={Index} />
               <Stack.Screen name="ring" component={Finger1} />
+              <Stack.Screen name="thumb" component={Finger5Intro} />
               <Stack.Screen name="Communication" component={SC33_Communication} />
               <Stack.Screen name="Slogan" component={SC35_Slogan} />
               <Stack.Screen name="Dashboard" component={SC36_Dashboard} />
@@ -110,6 +131,18 @@ export default function App() {
               <Stack.Screen name="wisdom" component={CommunityWisdom} />
               <Stack.Screen name="favorites" component={FavoritesPage} />
               <Stack.Screen name="categoryFeed" component={CategoryFeed} />
+              <Stack.Screen name="Breathing" component={BreathingExercise} />
+              <Stack.Screen name="Divrot" component={Divrot} />
+              <Stack.Screen name="Finger5Intro" component={Finger5Intro} />
+              <Stack.Screen name="WhoSavesTheSavior" component={WhoSavesTheSaviorScreen} />
+              <Stack.Screen name="RechargeChecklist" component={RechargeChecklistScreen} />
+              <Stack.Screen name="SelfCareChecklist" component={SelfCareChecklistScreen} />
+              <Stack.Screen name="GoodEnoughParent" component={GoodEnoughParentScreen} />
+              <Stack.Screen name="CopingInfo" component={CopingInfo} />
+              <Stack.Screen name="StressDefinitionScreen" component={StressDefinitionScreen} />
+              <Stack.Screen name="Dashboard_Dashborad" component={Dashboard} />
+              <Stack.Screen name="Gauge" component={Gauge} />
+              
             </Stack.Navigator>
           </NavigationContainer>
         </View>
@@ -131,7 +164,7 @@ export default function App() {
               <Image source={require("./assets/home.png")} style={styles.icon} />
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.tab}>
+            <TouchableOpacity style={styles.tab} onPress={() => navigateTo("Divrot")}>
               <Image source={require("./assets/divrot.png")} style={styles.icon} />
             </TouchableOpacity>
           </View>

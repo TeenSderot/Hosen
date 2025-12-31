@@ -1,12 +1,9 @@
 import React from 'react';
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import { ChevronRight } from 'lucide-react-native'; // Assuming you're using lucide-react-native for icons
-import type { Commandment } from "@/data/commandments";
+import { Commandment } from "./commandments";
 
-interface CommandmentDetailProps {
-  commandment: Commandment;
-  onClose: () => void;
-}
+
 
 const colorClasses = {
   "notebook-green": { bg: "#10B981", border: "#065F46", light: "#D1F7E6" },
@@ -16,7 +13,7 @@ const colorClasses = {
   "notebook-yellow": { bg: "#FBBF24", border: "#9A6F20", light: "#FBE4A8" },
 };
 
-const CommandmentDetail = ({ commandment, onClose }: CommandmentDetailProps) => {
+const CommandmentDetail = ({ commandment, onClose }) => {
   const colors = colorClasses[commandment.color] || { bg: "#3B82F6", border: "#1E40AF", light: "#BFDBFE" };
 
   return (
@@ -50,8 +47,8 @@ const CommandmentDetail = ({ commandment, onClose }: CommandmentDetailProps) => 
             onPress={onClose}
             style={[styles.backButton, { backgroundColor: '#FD954E' }]}
           >
-            <ChevronRight style={styles.icon} />
-            <Text style={styles.buttonText}>חזרה</Text>
+            {/* <ChevronRight style={styles.icon} />
+            <Text style={styles.buttonText}>חזרה</Text> */}
           </Pressable>
         </View>
       </View>

@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     
   },
   categoryTabs: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     backgroundColor: '#F3F4F6',
     borderRadius: 12,
     padding: 4,
@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   inputRow: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     gap: 8,
     marginBottom: 24,
   },
@@ -279,10 +279,12 @@ const styles = StyleSheet.create({
   },
   sunContainer: {
     alignItems: 'center',
+    justifyContent:'center',
     marginVertical: 24,
+    width:'100%'
   },
   tagsList: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
   },
@@ -300,17 +302,15 @@ const styles = StyleSheet.create({
     color: '#374151',
   },
   footer: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
+   
     padding: 24,
     backgroundColor: 'white',
     borderTopWidth: 1,
     borderTopColor: '#E5E7EB',
+    justifyContent:'center'
   },
   nextButton: {
-    backgroundColor: THEME.orange,
+    backgroundColor: THEME.blue,
     paddingVertical: 16,
     borderRadius: 999,
     alignItems: 'center',
@@ -319,7 +319,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 10,
     elevation: 5,
-    marginBottom:50
   },
   nextButtonText: {
     color: 'white',

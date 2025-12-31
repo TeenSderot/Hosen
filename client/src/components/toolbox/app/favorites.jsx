@@ -38,12 +38,12 @@ export default function FavoritesPage() {
   return (
     <View style={styles.container}>
       <View style={styles.headerBar}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.backButton}
           onPress={() => {navigation.navigate('toolbox')}}
         >
           <Text style={styles.backButtonText}>חזרה</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.headerTitle}>⭐ מועדפים</Text>
         <View style={styles.spacer} />
       </View>
