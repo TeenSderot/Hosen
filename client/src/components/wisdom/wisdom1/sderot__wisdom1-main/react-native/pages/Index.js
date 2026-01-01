@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, View, Text, StyleSheet } from 'react-native';
-import ResilienceCard from '../components/ResilienceCard';
-import InsightBox from '../components/InsightBox';
+import ResilienceCard from '../ResilienceCard';
+import InsightBox from '../InsightBox';
 
 export default function Index() {
   return (

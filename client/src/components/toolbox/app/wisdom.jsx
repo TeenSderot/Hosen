@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { communityTips } from '../data/toolboxData';
-import { Card } from '../components/Card';
+import { Card } from '../Card';
 import { Colors, cardColors } from '../colors';
 import { useNavigation } from '@react-navigation/native';
 

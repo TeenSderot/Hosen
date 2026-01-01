@@ -8,7 +8,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import Svg, { Circle, G } from 'react-native-svg';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES } from '../constants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES } from './constants';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 

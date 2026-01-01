@@ -9,8 +9,8 @@ import {
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { categories, tools } from '../../data/toolboxData';
 import { useFavorites } from '../../hooks/useFavorites';
-import { Card } from '../../components/Card';
-import { Pill } from '../../components/Pill';
+import { Card } from '../../Card';
+import { Pill } from '../../Pill';
 import { Colors, cardColors } from '../../colors';
 
 export default function ToolDetail() {

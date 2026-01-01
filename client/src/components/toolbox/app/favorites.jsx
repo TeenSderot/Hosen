@@ -9,8 +9,8 @@ import {
 } from 'react-native';
 import { useFavorites } from '../hooks/useFavorites';
 import { tools } from '../data/toolboxData';
-import { Card } from '../components/Card';
-import { Pill } from '../components/Pill';
+import { Card } from '../Card';
+import { Pill } from '../Pill';
 import { Colors, cardColors } from '../colors';
 import { useNavigation } from '@react-navigation/native';
 

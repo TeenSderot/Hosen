@@ -8,8 +8,8 @@ import {
   I18nManager,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ResilienceCard } from '../components/ResilienceCard';
-import { InsightBox } from '../components/InsightBox';
+import { ResilienceCard } from '../ResilienceCard';
+import { InsightBox } from '../InsightBox';
 import { COLORS, SPACING, FONT_SIZES } from '../constants';
 
 I18nManager.allowRTL(true);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES } from '../constants';
+import { COLORS, SPACING, BORDER_RADIUS, FONT_SIZES } from './constants';
 
 export const InsightBox = ({ title, children }) => {
   return (
