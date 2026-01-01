@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import ScreenLayout from "../components/ScreenLayout";
-import Button from "../components/ui/Button";
+import ScreenLayout from "../ScreenLayout";
+import Button from "../ui/Button";
 import { COLORS } from "../theme/colors";
 
 const steps = [

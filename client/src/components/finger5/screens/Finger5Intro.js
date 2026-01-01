@@ -1,14 +1,13 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import ScreenLayout from "../components/ScreenLayout";
-import Button from "../components/ui/Button";
+import Button from "../ui/Button";
 import { COLORS } from "../theme/colors";
 
 export default function Finger5Intro({ navigation }) {
   return (
     <View style={{height:'100%',justifyContent:'space-between'}}>
       <Image
-        source={require("../assets_airplane.png")}
+        source={require("../assets/assets_airplane.png")}
         style={styles.img}
         resizeMode="cover"
       />

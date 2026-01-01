@@ -37,11 +37,11 @@ import FavoritesPage from "./src/components/toolbox/app/favorites";
 import CategoryFeed from "./src/components/toolbox/app/category/categoryId";
 import BreathingExercise from "./src/components/toolbox/app/exercise/breathing";
 import Divrot from './src/components/divrot/Divrot'
-import Finger5Intro from "./src/components/finger5/src/screens/Finger5Intro";
-import WhoSavesTheSaviorScreen from "./src/components/finger5/src/screens/WhoSavesTheSaviorScreen";
-import RechargeChecklistScreen from "./src/components/finger5/src/screens/RechargeChecklistScreen";
-import SelfCareChecklistScreen from "./src/components/finger5/src/screens/SelfCareChecklistScreen";
-import GoodEnoughParentScreen from "./src/components/finger5/src/screens/GoodEnoughParentScreen";
+import Finger5Intro from "./src/components/finger5/screens/Finger5Intro";
+import WhoSavesTheSaviorScreen from "./src/components/finger5/screens/WhoSavesTheSaviorScreen"
+import RechargeChecklistScreen from "./src/components/finger5/screens/RechargeChecklistScreen";
+import SelfCareChecklistScreen from "./src/components/finger5/screens/SelfCareChecklistScreen";
+import GoodEnoughParentScreen from "./src/components/finger5/screens/GoodEnoughParentScreen";
 import CopingInfo from './src/components/info/CopingInfo'
 import StressDefinitionScreen from "./src/components/opening/stress-definition";
 import { Dashboard } from "./src/components/opening/Dashboard";

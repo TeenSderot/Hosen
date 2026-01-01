@@ -15,7 +15,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Eye, EyeOff } from 'lucide-react-native';
 import { StressLevel, THEME, FONTS } from '../types';
-import { SunVisualization } from './SunVisualization';
+import { SunVisualization } from '../app/SunVisualization';
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');

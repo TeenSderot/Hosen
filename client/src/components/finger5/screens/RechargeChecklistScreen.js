@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import ScreenLayout from "../components/ScreenLayout";
-import Button from "../components/ui/Button";
+import Button from "../ui/Button";
 import { COLORS } from "../theme/colors";
 
 const tips = [

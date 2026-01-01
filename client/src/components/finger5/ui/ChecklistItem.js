@@ -1,6 +1,6 @@
 import React from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
-import { COLORS } from "../../theme/colors";
+import { COLORS } from "../theme/colors";
 
 export default function ChecklistItem({ emoji, text, checked, onToggle, feedback }) {
   return (

@@ -3,12 +3,12 @@ import { View, StyleSheet, I18nManager } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ScreenStep, StressLevel } from '../types';
-import { SplashScreen } from '../components/SplashScreen';
-import { RoutinePackScreen } from '../components/RoutinePackScreen';
-import { Oct7WeightsScreen } from '../components/Oct7WeightsScreen';
-import { LoadFilterScreen } from '../components/LoadFilterScreen';
-import { InnerMirrorScreen } from '../components/InnerMirrorScreen';
-import { DashboardScreen } from '../components/DashboardScreen';
+import { SplashScreen } from './SplashScreen';
+import { RoutinePackScreen } from './RoutinePackScreen';
+import { Oct7WeightsScreen } from './Oct7WeightsScreen';
+import { LoadFilterScreen } from './LoadFilterScreen';
+import { InnerMirrorScreen } from './InnerMirrorScreen';
+import { DashboardScreen } from './DashboardScreen';
 
 I18nManager.allowRTL(true);
 I18nManager.forceRTL(true);

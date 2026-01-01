@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, View, StyleSheet, ScrollView, Platform } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { COLORS } from "../theme/colors";
+import { COLORS } from "../finger5/theme/colors";
 
 export default function ScreenLayout({ children, scroll = true }) {
   const Content = (

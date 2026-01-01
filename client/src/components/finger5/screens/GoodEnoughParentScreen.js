@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ScreenLayout from "../components/ScreenLayout";
-import Button from "../components/ui/Button";
+import Button from "../ui/Button";
 import { COLORS } from "../theme/colors";
 
 const STORAGE_KEY = "selfcare-checklist";
