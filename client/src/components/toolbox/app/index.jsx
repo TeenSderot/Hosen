@@ -198,6 +198,7 @@ const styles = StyleSheet.create({
   },
   toolContent: {
     flex: 1,
+    alignItems:'flex-start'
 },
   toolTitle: {
     fontSize: 17,
@@ -206,13 +207,17 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     fontFamily: 'Rubik-SemiBold',
     textAlign: 'right',
+    
+  writingDirection: 'rtl', // חשוב בעברית
+
   },
   toolDescription: {
     fontSize: 14,
     color: Colors.text.secondary,
     marginBottom: 10,
     fontFamily: 'Rubik-Regular',
-    textAlign: 'right',
+     writingDirection: 'rtl', // חשוב בעברית
+
   },
   pillRow: {
     flexDirection: 'row',
@@ -273,7 +278,7 @@ const styles = StyleSheet.create({
   wisdomButtonText: {
     fontSize: 17,
     fontWeight: '600',
-    color: Colors.text.primary,
+    color: 'white',
     fontFamily: 'Rubik-SemiBold',
   },
   favoritesButton: {
@@ -290,7 +295,7 @@ const styles = StyleSheet.create({
   favoritesButtonText: {
     fontSize: 17,
     fontWeight: '600',
-    color: Colors.text.primary,
+    color: 'white',
     fontFamily: 'Rubik-SemiBold',
   },
 });

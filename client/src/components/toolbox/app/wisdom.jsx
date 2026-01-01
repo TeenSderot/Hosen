@@ -42,7 +42,7 @@ export default function CommunityWisdom() {
           <Text style={styles.backButtonText}>חזרה</Text>
         </TouchableOpacity> */}
 
-        <Text style={styles.headerTitle}>💡 חוכמת ההמונים</Text>
+        <Text style={styles.headerTitle}> חוכמת ההמונים</Text>
 
         <View style={styles.spacer} />
       </View>
@@ -68,6 +68,7 @@ export default function CommunityWisdom() {
                   cardColors[(groupIndex + tipIndex) % cardColors.length]
                 }
               >
+                
                 <Text style={styles.tipText}>{tip.text}</Text>
               </Card>
             ))}
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background,
+    alignItems: 'center',
   },
   headerBar: {
     flexDirection: 'row',
@@ -114,9 +116,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Rubik-Bold',
   },
-  spacer: {
-    width: 60,
-  },
+  
   scrollView: {
     flex: 1,
   },

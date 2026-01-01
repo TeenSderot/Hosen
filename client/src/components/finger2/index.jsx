@@ -190,15 +190,15 @@ export default function Index() {
         <View style={styles.symptomContainer}>
           <View style={styles.symptomHeader}>
             <View style={styles.symptomHeaderContent}>
-              <View
+              {/* <View
                 style={[
                   styles.symptomIconContainer,
                   { backgroundColor: `${accentColor}33` },
                 ]}
               >
                 <Icon size={24} color={accentColor} />
-              </View>
-              <View>
+              </View> */}
+              <View style={{marginLeft:20}}>
                 <Text style={styles.symptomTitle}>{title}</Text>
                 <Text style={styles.symptomSubtitle}>{subtitle}</Text>
               </View>
@@ -525,19 +525,17 @@ tagButton: {
   },
 
   /* ========= Intro ========= */
-  introCard: {
-    backgroundColor: 'white',
-    borderRadius: 24,
-    padding: 32,
-    alignItems: 'center',
-    borderLeftWidth: 4,
-    borderStartColor: '#84C7DA',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    elevation: 3,
-  },
+ introCard: {
+  backgroundColor: 'white',
+  borderRadius: 24,
+  padding: 32,
+  alignItems: 'center',
+  borderLeftWidth: 4,
+  borderStartColor: '#84C7DA',
+
+  overflow: 'hidden', // 🔥
+  elevation: 3,
+},
   iconCircle: {
     width: 80,
     height: 80,
@@ -562,18 +560,16 @@ tagButton: {
   },
 
   /* ========= Normalize ========= */
-  normalizeCard: {
-    backgroundColor: 'white',
-    padding: 24,
-    borderRadius: 24,
-    borderTopWidth: 4,
-    borderTopColor: '#84C7DA',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    elevation: 3,
-  },
+normalizeCard: {
+  backgroundColor: 'white',
+  padding: 24,
+  borderRadius: 24,
+  borderLeftWidth: 4,
+  borderLeftColor: '#84C7DA',
+
+  overflow: 'hidden', // 🔥
+  elevation: 3,
+},
   normalizeTitle: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -609,19 +605,16 @@ tagButton: {
     alignItems: 'flex-end', // RTL alignment
   },
   symptomHeader: {
-    flexDirection: 'row-reverse',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    padding: 16,
-    borderRadius: 16,
-    marginBottom: 24,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    elevation: 2,
-  },
+  flexDirection: 'row-reverse',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  backgroundColor: 'white',
+  padding: 16,
+  borderRadius: 16,
+
+  overflow: 'hidden', // 🔥 זה העיקר – חותך את הריבוע
+  elevation: 2,       // משאיר צל באנדרואיד בלי ריבוע
+},
   symptomHeaderContent: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -649,6 +642,7 @@ tagsContainer: {
   flexWrap: 'wrap',
   alignItems: 'flex-start',
   width: '100%',
+  marginTop:20
 },
 
   divider: {
@@ -663,17 +657,15 @@ tagsContainer: {
     flex: 1,
   },
   thermometerCard: {
-    backgroundColor: 'white',
-    padding: 16,
-    borderRadius: 24,
-    alignItems: 'center',
-    marginBottom: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.05,
-    shadowRadius: 20,
-    elevation: 3,
-  },
+  backgroundColor: 'white',
+  padding: 16,
+  borderRadius: 24,
+  alignItems: 'center',
+  marginBottom: 16,
+
+  overflow: 'hidden', // 🔥
+  elevation: 3,
+},
   temperatureLabel: {
     marginTop: 8,
     fontSize: 20,

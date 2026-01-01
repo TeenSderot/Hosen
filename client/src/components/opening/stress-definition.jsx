@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#A8DBDE',
     padding: 32,
-    width: 200,
+    width: 300,
     aspectRatio: 1,
     alignSelf: 'center',
     marginBottom: 40,
@@ -271,8 +271,8 @@ const styles = StyleSheet.create({
   blockquoteCard: {
     backgroundColor: '#F5F5F5',
     borderRadius: 16,
-    borderRightWidth: 5,
-    borderRightColor: '#A8DBDE',
+    borderLeftWidth: 5,
+    borderLeftColor: '#A8DBDE',
     padding: 24,
     marginTop: 8,
     marginHorizontal: 4,
@@ -308,7 +308,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 19,
     fontFamily: 'Rubik-SemiBold',
-    color: '#1a1a1a',
+    color: 'white',
   },
 });
 

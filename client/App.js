@@ -22,7 +22,6 @@ import SC33_Communication from "./src/components/finger4/SC33_Communication";
 import SC36_Dashboard from "./src/components/finger4/SC36_Dashboard";
 import Index from "./src/components/finger2/index";
 import Hand from "./src/components/hand/HomeScreen";
-import ResourcesTab from "./src/components/finger3/Resources";
 import Finger1 from "./src/components/finger1/app/Finger1";
 
 import RegisterScreen from "./src/components/register";
@@ -48,7 +47,7 @@ import StressDefinitionScreen from "./src/components/opening/stress-definition";
 import { Dashboard } from "./src/components/opening/Dashboard";
 import { Gauge } from "./src/components/Gauge";
 import WelcomeScreen from "./src/components/opening/Intro";
-
+import Finger3App from "./src/components/finger3/Finger3App";
 const navigationRef = createNavigationContainerRef();
 // ⬇️ שינוי כאן: שימוש ב-createStackNavigator
 const Stack = createStackNavigator();
@@ -126,7 +125,6 @@ export default function App() {
               <Stack.Screen name="Communication" component={SC33_Communication} />
               <Stack.Screen name="Slogan" component={SC35_Slogan} />
               <Stack.Screen name="Dashboard" component={SC36_Dashboard} />
-              <Stack.Screen name="middle" component={ResourcesTab} />
               <Stack.Screen name="toolbox" component={ToolboxLobby} />
               <Stack.Screen name="wisdom" component={CommunityWisdom} />
               <Stack.Screen name="favorites" component={FavoritesPage} />
@@ -142,6 +140,7 @@ export default function App() {
               <Stack.Screen name="StressDefinitionScreen" component={StressDefinitionScreen} />
               <Stack.Screen name="Dashboard_Dashborad" component={Dashboard} />
               <Stack.Screen name="Gauge" component={Gauge} />
+              <Stack.Screen name="middle" component={Finger3App} />
               
             </Stack.Navigator>
           </NavigationContainer>

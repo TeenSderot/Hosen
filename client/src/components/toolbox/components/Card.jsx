@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     padding: 20,
-    alignItems:'flex-start',
-    textAlign:'right'
+    alignItems:'flex-end',
+    
     
   },
+ 
 });

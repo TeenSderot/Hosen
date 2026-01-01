@@ -44,7 +44,7 @@ export default function FavoritesPage() {
         >
           <Text style={styles.backButtonText}>חזרה</Text>
         </TouchableOpacity> */}
-        <Text style={styles.headerTitle}>⭐ מועדפים</Text>
+        <Text style={styles.headerTitle}> מועדפים</Text>
         <View style={styles.spacer} />
       </View>
 
