@@ -1,0 +1,12 @@
+# החרגת תיקיות זמניות
+node_modules/
+.expo/
+android/
+ios/
+
+# החרגת קבצי הגדרות של פרויקטים פנימיים שגורמים להתנגשויות
+**/package.json
+**/package-lock.json
+**/node_modules
+**/.env
+**/.gitignore
