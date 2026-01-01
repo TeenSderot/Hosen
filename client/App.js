@@ -48,6 +48,9 @@ import { Dashboard } from "./src/components/opening/Dashboard";
 import { Gauge } from "./src/components/Gauge";
 import WelcomeScreen from "./src/components/opening/Intro";
 import Finger3App from "./src/components/finger3/Finger3App";
+import CopingInfoFinger1 from "./src/components/finger1/info/CopingInfoFinger1";
+import CopingInfoFinger2 from "./src/components/finger2/info/CopingInfoFinger2";
+import CopingInfoFinger3 from "./src/components/finger3/info/CopingInfoFinger3";
 const navigationRef = createNavigationContainerRef();
 // ⬇️ שינוי כאן: שימוש ב-createStackNavigator
 const Stack = createStackNavigator();
@@ -119,8 +122,8 @@ export default function App() {
               <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} />
               <Stack.Screen name="Hand" component={Hand} />
               <Stack.Screen name="index" component={SC32_Onboarding} />
-              <Stack.Screen name="pinky" component={Index} />
-              <Stack.Screen name="ring" component={Finger1} />
+              <Stack.Screen name="pinky" component={CopingInfoFinger2} />
+              <Stack.Screen name="ring" component={CopingInfoFinger1} />
               <Stack.Screen name="thumb" component={Finger5Intro} />
               <Stack.Screen name="Communication" component={SC33_Communication} />
               <Stack.Screen name="Slogan" component={SC35_Slogan} />
@@ -140,8 +143,10 @@ export default function App() {
               <Stack.Screen name="StressDefinitionScreen" component={StressDefinitionScreen} />
               <Stack.Screen name="Dashboard_Dashborad" component={Dashboard} />
               <Stack.Screen name="Gauge" component={Gauge} />
-              <Stack.Screen name="middle" component={Finger3App} />
-              
+              <Stack.Screen name="middle" component={CopingInfoFinger3} />
+              <Stack.Screen name="Finger1" component={Finger1} />
+              <Stack.Screen name="Finger2" component={Index} />
+               <Stack.Screen name="Finger3" component={Finger3App} />
             </Stack.Navigator>
           </NavigationContainer>
         </View>

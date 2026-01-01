@@ -34,7 +34,7 @@ export default function Screen2({ onNext, onBack }) {
         </View>
 
         <TouchableOpacity style={styles.button} onPress={onNext}>
-          <Text style={styles.buttonText}>← עבור לארגז הכלים שלי</Text>
+          <Text style={styles.buttonText}> עבור לארגז הכלים שלי</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>

@@ -2,6 +2,7 @@
   "expo": {
     "name": "Hosen",
     "slug": "hosen",
+    "owner": "kobishunak",
     "version": "1.0.22",
     "jsEngine": "hermes",
     "orientation": "portrait",
@@ -58,13 +59,20 @@
         "description": "Hosen Sderot - Family resilience kit"
       }
     },
-    "extra": {
-      "eas": {
-        "projectId": "e736380f-265a-4dce-b5f7-cb0c51656ff3"
-      }
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
+    },
+    "extra": {
+      "eas": {
+        "projectId": "539c4a5b-797d-4d64-afa5-be1a0891b279"
+      }
+    }
+  },
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
     }
   }
 }

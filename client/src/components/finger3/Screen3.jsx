@@ -87,7 +87,7 @@ export default function Screen3({ onNext, onBack }) {
 
         {/* כפתור הבא */}
         <TouchableOpacity style={styles.button} onPress={onNext}>
-          <Text style={styles.buttonText}>← הבא</Text>
+          <Text style={styles.buttonText}> הבא</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
