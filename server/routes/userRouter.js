@@ -109,6 +109,8 @@ router.post("/login", async (req, res) => {
 router.post("/me", async (req, res) => {
   try {
     const { _id } = req.body;
+    const db = await getDb();
+    const users = db.collection(USERS_COLLECTION);
 
     
     // חיפוש המשתמש
