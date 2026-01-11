@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   optionSelected: {
-    borderColor: '#10B981',
+    borderColor: '#71A674',
     backgroundColor: '#10B98133',
   },
   optionCircle: {
@@ -169,8 +169,8 @@ const styles = StyleSheet.create({
   },
   optionCircleSelected: {
     borderWidth: 2,
-    borderColor: '#10B981',
-    backgroundColor: '#10B981',
+    borderColor: '#71A674',
+    backgroundColor: '#71A674',
   },
   optionText: {
     fontSize: 14,

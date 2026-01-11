@@ -196,7 +196,7 @@ export const SplashScreen = ({ onNext }) => {
             activeOpacity={0.85}
           >
             <Text style={styles.buttonText}>התחלנו</Text>
-            <ArrowLeft size={24} color="white" />
+            {/* <ArrowLeft size={24} color="white" /> */}
           </TouchableOpacity>
         </Animated.View>
       </View>

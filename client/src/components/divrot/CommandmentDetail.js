@@ -47,8 +47,8 @@ const CommandmentDetail = ({ commandment, onClose }) => {
             onPress={onClose}
             style={[styles.backButton, { backgroundColor: '#FD954E' }]}
           >
-            {/* <ChevronRight style={styles.icon} />
-            <Text style={styles.buttonText}>חזרה</Text> */}
+            {/* <ChevronRight style={styles.icon} />*/}
+            <Text style={styles.buttonText}>חזרה</Text> 
           </Pressable>
         </View>
       </View>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Backdrop with transparency
+    backgroundColor: 'rgba(0, 0, 0, 0.1)', // Backdrop with transparency
     justifyContent: 'center',
     alignItems: 'center',
     zIndex: 50,

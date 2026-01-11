@@ -151,7 +151,7 @@ export default function SC36_Dashboard({ navigation }) {
 
 
       <View style={{ gap: 10, marginTop: 14 }}>
-        <Button style={{ backgroundColor: "#FD954E",paddingHorizontal:"50" }} title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
+        <Button style={{ backgroundColor: "#FD954E",paddingHorizontal:"50" ,color:"white"}} title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
         <Button
           title="חזרה למסך הבית"
           onPress={() => navigation.replace("Communication")}
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     padding: 16,
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#1E2C41",
+    borderColor: "#84C7DA",
     marginVertical: 10,
   },
   heroLabel: { color: "#AFC0D6", fontSize: 13 },
@@ -199,7 +199,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     textAlign: "right",
     paddingRight: 10,
-    alignSelf:'center'
+    alignSelf:'center',
+    marginStart:30,
+    marginEnd:30
   },
   empty: {
     backgroundColor: "#111A27",

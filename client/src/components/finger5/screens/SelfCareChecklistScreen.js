@@ -90,7 +90,7 @@ export default function SelfCareChecklistScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  title: { fontSize: 24, fontWeight: "900", color: COLORS.text, textAlign: "center", marginBottom: 8 },
+  title: {marginTop:16, fontSize: 24, fontWeight: "900", color: COLORS.text, textAlign: "center", marginBottom: 8 },
   subtitle: { fontSize: 14.5, color: COLORS.muted, textAlign: "center", lineHeight: 20, marginBottom: 14 },
   progressBox: {
     alignSelf: "center",
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     borderRadius: 999,
     marginBottom: 14,
+    
   },
   progressText: { color: COLORS.text, fontWeight: "700" },
   listWrap: { flexDirection: "row-reverse", borderRadius: 18, overflow: "hidden", borderWidth: 1, borderColor: "rgba(43,52,64,0.10)" },

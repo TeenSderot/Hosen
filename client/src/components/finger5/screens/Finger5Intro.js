@@ -27,11 +27,12 @@ export default function Finger5Intro({ navigation }) {
       <View style={styles.quoteBox}>
         <Text style={styles.quoteText}>ילדים צריכים הורה מתפקד, לא הורה מושלם.</Text>
       </View>
-    <View>
+    <View style={{alignItems:'center'}}>
       <Button
         title="לקחת נשימה ולהמשיך"
         variant="calm"
         onPress={() => navigation.navigate("RechargeChecklist")}
+        style={{width:'90%'}}
       />
 
       <View style={{ height: 10 }} />
@@ -40,6 +41,7 @@ export default function Finger5Intro({ navigation }) {
         title="רגע… מי יציל את המציל?"
         variant="warm"
         onPress={() => navigation.navigate("WhoSavesTheSavior")}
+        style={{width:'90%'}}
       /></View>
     </View>
   );
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     alignSelf: "center",
     marginBottom: 16,
+    marginTop:16
   },
   title: {
     fontSize: 26,
@@ -66,10 +69,13 @@ const styles = StyleSheet.create({
     color: COLORS.text,
     textAlign: "center",
     marginBottom: 10,
+    marginEnd:20,
+    marginStart:20
   },
   highlight: {
     fontWeight: "800",
     color: COLORS.accent,
+    
   },
   warmBold: {
     fontWeight: "800",
@@ -78,12 +84,13 @@ const styles = StyleSheet.create({
   quoteBox: {
     borderWidth: 2,
     borderColor: COLORS.accent,
-    backgroundColor: "#fff",
     borderRadius: 20,
     paddingVertical: 14,
     paddingHorizontal: 16,
     marginTop: 6,
     marginBottom: 18,
+     marginEnd:20,
+    marginStart:20
   },
   quoteText: {
     fontSize: 16,

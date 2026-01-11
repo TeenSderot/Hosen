@@ -108,7 +108,7 @@ export default function Index() {
       screenId="SC17"
       footerContent={
         <Button onPress={() => setStep(AppStep.NORMALIZE_SC18)}>
-          התחל ←
+          התחל
         </Button>
       }
     >

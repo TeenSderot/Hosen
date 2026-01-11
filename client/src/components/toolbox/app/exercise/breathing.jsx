@@ -332,8 +332,8 @@ const styles = StyleSheet.create({
     borderColor: 'transparent',
   },
   techniqueButtonActive: {
-    backgroundColor: Colors.primary,
-    borderColor: Colors.primary,
+    backgroundColor: "#84C7DA",
+    borderColor: "#84C7DA",
   },
   techniqueButtonText: {
     fontSize: 15,
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
   countdownText: {
     fontSize: 72,
     fontFamily: 'Rubik-Bold',
-    color: Colors.primary,
+    color: "#84C7DA",
     marginBottom: 8,
     textAlign: 'right',
   },

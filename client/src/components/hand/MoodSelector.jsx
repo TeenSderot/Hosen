@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 24,
     flexDirection: "row-reverse",
-    justifyContent: "center",
+    justifyContent: "space-between",
     gap: 16,
+    width:"100%",
   },
   circle: {
     width: 50,           // הגדלתי מעט כדי שיהיה נוח ללחוץ

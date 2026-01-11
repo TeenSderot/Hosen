@@ -27,7 +27,7 @@ export default function RechargeChecklistScreen({ navigation }) {
         </Text>
       </View>
 
-      <View style={{ marginBottom: 18 }}>
+      <View style={{ marginBottom: 18,alignItems:'center' }}>
         {tips.map((tip, idx) => (
           <View key={tip.title} style={styles.tipRow}>
             <View style={{ flex: 1,  alignItems: "flex-start" }}>
@@ -73,7 +73,8 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     padding: 12,
     marginBottom: 10,
-    textAlign:'right'
+    textAlign:'right',
+    width:'90%'
   },
   tipEmojiBox: {
     flexDirection: "row-reverse",

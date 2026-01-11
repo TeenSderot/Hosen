@@ -47,7 +47,7 @@ export default function InfoCard({ title, children, accentColor = "blue", defaul
             ],
           }}
         >
-          <ChevronDown size={20} color="#333" />
+          <ChevronDown style={{marginLeft:10}} size={20} color="#333" />
         </Animated.View>
       </TouchableOpacity>
 
@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontFamily: 'Rubik-Bold',
     color: '#333',
+    width:'90%'
   },
   contentContainer: {
     padding: 16,

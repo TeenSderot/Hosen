@@ -41,7 +41,7 @@ export default function LoginScreen() {
       await SecureStore.setItemAsync("access_token", String(loginData?.token));
       await SecureStore.setItemAsync("full_name", loginData?.name || "");
       
-      success("ברוך הבא 🙌");
+    // success("ברוך הבא 🙌");
       navigate.navigate("Hand");
     } catch (err) {
       error("שגיאה בהתחברות")
@@ -131,7 +131,7 @@ export default function LoginScreen() {
                   <ActivityIndicator color="#fff" />
                 ) : (
                   <>
-                    <ArrowLeft size={20} color="#fff" />
+                    {/* <ArrowLeft size={20} color="#fff" /> */}
                     <Text style={styles.buttonText}>כניסה</Text>
                   </>
                 )}

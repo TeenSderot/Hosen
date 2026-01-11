@@ -61,6 +61,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "700",
     textAlign: "right",
+    fontFamily: 'Rubik-Bold',
+
   },
   hand: {
     alignItems: "center",

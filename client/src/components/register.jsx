@@ -146,7 +146,7 @@ export default function RegisterScreen() {
               <ActivityIndicator color="#fff" />
             ) : (
               <View style={styles.buttonContent}>
-                <ArrowLeft size={20} color="#fff" />
+                {/* <ArrowLeft size={20} color="#fff" /> */}
                 <Text style={styles.buttonText}>הרשמה</Text>
               </View>
             )}

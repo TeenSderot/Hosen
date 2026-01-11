@@ -91,7 +91,7 @@ export default function Screen5({ onNext, onBack }) {
                 style={[
                   styles.optionButton,
                   isSelected
-                    ? { borderColor: '#3B82F6', backgroundColor: '#3B82F633' }
+                    ? { borderColor: '#84C7DA', backgroundColor: '#3B82F633' }
                     : { borderColor: '#D1D5DB', backgroundColor: 'white' },
                 ]}
               >
@@ -99,7 +99,7 @@ export default function Screen5({ onNext, onBack }) {
                   style={[
                     styles.optionCircle,
                     isSelected
-                      ? { borderColor: '#3B82F6', backgroundColor: '#3B82F6' }
+                      ? { borderColor: '#84C7DA', backgroundColor: '#84C7DA' }
                       : { borderColor: '#D1D5DB', backgroundColor: 'white' },
                   ]}
                 />
@@ -110,7 +110,7 @@ export default function Screen5({ onNext, onBack }) {
         </View>
 
         {/* תובנה */}
-        <View style={[styles.card, { borderColor: '#FACC15', backgroundColor: '#FACC1533' }]}>
+        <View style={[styles.card, { borderColor: '#FACC15' }]}>
           <Text style={styles.cardHeader}>כף הלחצים עמוסה.</Text>
           <Text style={styles.cardText}>כשאין מספיק משקל נגד בצד השני -</Text>
           <Text style={styles.cardText}>אנחנו בסכנת קריסה.</Text>
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: 'white',
-    borderWidth: 4,
+    borderWidth: 2,
     borderRadius: 24,
     padding: 16,
     marginBottom: 16,
@@ -228,9 +228,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 8,
     elevation: 4,
+    backgroundColor:'#84C7DA'
   },
   buttonEnabled: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#84C7DA',
   },
   buttonDisabled: {
     backgroundColor: '#D1D5DB',

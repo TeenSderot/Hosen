@@ -161,6 +161,7 @@ const styles = StyleSheet.create({
   },
   toolContent: {
     flex: 1,
+    alignItems: 'flex-start',
   },
   toolTitle: {
     fontSize: 17,

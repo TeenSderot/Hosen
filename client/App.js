@@ -184,7 +184,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#f8f8f8",
+
   },
   topBar: {
     height: 60,
@@ -195,6 +196,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#eee",
+    backgroundColor: "#f8f8f8",
   },
   content: {
     flex: 1,
