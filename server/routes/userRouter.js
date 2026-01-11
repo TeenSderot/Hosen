@@ -3,8 +3,7 @@ import bcrypt from "bcrypt";
 import { ObjectId } from "mongodb";
 import jwt from "jsonwebtoken";
 import { getDb } from "../db.js";
-import "dotenv/config"; // ✔ מספיק
-import e from "express";
+import "dotenv/config"; 
 const router = express.Router();
 
 const USERS_COLLECTION = "users";
@@ -114,7 +113,7 @@ router.post("/me", async (req, res) => {
 
     
     // חיפוש המשתמש
-    const user = await users.findOne({ _id: _id});
+    const user = await users.findOne({ _id: new ObjectId(_id)});
     console.log(user);
     
     return res.json({ ok: true, user:user});

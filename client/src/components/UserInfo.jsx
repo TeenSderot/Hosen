@@ -45,9 +45,9 @@ export default function UserInfo() {
 
       if (!res.ok) throw new Error();
       const data = await res.json();
-
-      setName(data.name || '');
-      setEmail(data.email || '');
+      
+      setName(data.user?.name || '');
+      setEmail(data.user?.email || '');
     } catch (e) {
         
       error('לא ניתן לטעון פרטי משתמש');
