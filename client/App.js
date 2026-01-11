@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   StyleSheet,
@@ -51,6 +51,9 @@ import Finger3App from "./src/components/finger3/Finger3App";
 import CopingInfoFinger1 from "./src/components/finger1/info/CopingInfoFinger1";
 import CopingInfoFinger2 from "./src/components/finger2/info/CopingInfoFinger2";
 import CopingInfoFinger3 from "./src/components/finger3/info/CopingInfoFinger3";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import UserInfo from "./src/components/UserInfo";
+
 const navigationRef = createNavigationContainerRef();
 // ⬇️ שינוי כאן: שימוש ב-createStackNavigator
 const Stack = createStackNavigator();
@@ -75,6 +78,14 @@ export function navigateTo(name) {
 export default function App() {
   const [currentRoute, setCurrentRoute] = useState("Register");
   const hideBars = NO_BARS_SCREENS.includes(currentRoute);
+  useEffect(()=>{
+    const logoff=async ()=>{
+      await SecureStore.deleteItemAsync("_id");
+      await SecureStore.deleteItemAsync("access_token")
+      await SecureStore.deleteItemAsync("full_name")
+    }
+    //logoff()
+  },[])
 
   return (
     <ErrorProvider>
@@ -83,7 +94,10 @@ export default function App() {
         {/* 🔝 Top Bar */}
         {!hideBars && (
           <View style={styles.topBar}>
-            <TouchableOpacity onPress={() => console.log("menu pressed")
+            <TouchableOpacity onPress={() => navigateTo("Breathing")}>
+              <Lotus navigateTo={navigateTo}/>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigateTo("UserInfo")
             }>
               <Image
                 source={require("./assets/menu-dots.png")}
@@ -91,9 +105,7 @@ export default function App() {
               />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigateTo("Breathing")}>
-              <Lotus navigateTo={navigateTo}/>
-            </TouchableOpacity>
+            
           </View>
         )}
 
@@ -140,6 +152,7 @@ export default function App() {
               <Stack.Screen name="SelfCareChecklist" component={SelfCareChecklistScreen} />
               <Stack.Screen name="GoodEnoughParent" component={GoodEnoughParentScreen} />
               <Stack.Screen name="CopingInfo" component={CopingInfo} />
+              <Stack.Screen name="UserInfo" component={UserInfo} />
               <Stack.Screen name="StressDefinitionScreen" component={StressDefinitionScreen} />
               <Stack.Screen name="Dashboard_Dashborad" component={Dashboard} />
               <Stack.Screen name="Gauge" component={Gauge} />

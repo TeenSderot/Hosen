@@ -105,6 +105,24 @@ router.post("/login", async (req, res) => {
     return res.status(500).json({ ok: false, error: "Server error" });
   }
 });
+
+router.post("/me", async (req, res) => {
+  try {
+    const { _id } = req.body;
+
+    
+    // חיפוש המשתמש
+    const user = await users.findOne({ _id: _id});
+    console.log(user);
+    
+    return res.json({ ok: true, user:user});
+
+  } catch (err) {
+    console.error("get user error:", err);
+    return res.status(500).json({ ok: false, error: "Server error" });
+  }
+});
+
 router.post("/resetpassword", async (req, res) => {
   try {
     const { _id, password } = req.body;
@@ -148,7 +166,7 @@ router.post("/updateuser", async (req, res) => {
       return res.status(400).json({ ok: false, error: "Invalid id" });
     }
 
-    const { email, password } = req.body;
+    const { name,email, password } = req.body;
 
     const updates = {};
     if (email) updates.email = String(email).trim().toLowerCase();
@@ -157,6 +175,10 @@ router.post("/updateuser", async (req, res) => {
       // כאן תיקנתי שזה ישמור לשדה 'password' ולא 'passwordHash' כדי שיהיה תואם ל-Register
       updates.password = await bcrypt.hash(String(password), SALT_ROUNDS);
     }
+    
+    if (name) updates.name = String(name).trim().toLowerCase();
+
+    
 
     if (Object.keys(updates).length === 0) {
       return res.status(400).json({ ok: false, error: "No fields to update" });
