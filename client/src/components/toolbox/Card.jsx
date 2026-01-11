@@ -6,10 +6,11 @@ import { View, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 export function Card({ children, onPress, accentColor }) {
   const CardContent = () => (
     <View style={[styles.card]}>
+      {accentColor && <View style={[styles.accent, { backgroundColor: accentColor }]} />}
       <View style={styles.content}>
         {children}
       </View>
-      {accentColor && <View style={[styles.accent, { backgroundColor: accentColor }]} />}
+      
     </View>
   );
 
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
     overflow: 'hidden',
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
   },
   accent: {
     width: 8,
@@ -47,8 +48,8 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    padding: 20,
-    alignItems:'flex-end',
+      padding: 20,
+      alignItems:'flex-start',
     
     
   },

@@ -5,11 +5,11 @@ import { ChevronLeft } from 'lucide-react-native';
 
 
 const colorClasses= {
-  "notebook-green": "#34D399", // Example color code
-  "notebook-lime": "#A3E635",
-  "notebook-orange": "#FB923C",
-  "notebook-blue": "#3B82F6",
-  "notebook-yellow": "#FBBF24",
+  "notebook-green": "#71A674", // Example color code
+  "notebook-lime": "#D1E38F",
+  "notebook-orange": "#FD954E",
+  "notebook-blue": "#84C7DA",
+  "notebook-yellow": "#F9F081",
 };
 
 const CommandmentItem = ({ id, title, color, onClick, delay = 0 }) => {
@@ -72,11 +72,12 @@ const styles = StyleSheet.create({
   },
   title: {
     flex: 1,
-    textAlign: 'right',
+    textAlign: 'left',
     fontSize: 16,
     fontWeight: '500',
     color: '#111827', // Foreground text color
     paddingRight: 8,
+    marginLeft:15
   },
   badge: {
     width: 32,

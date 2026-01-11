@@ -19,6 +19,7 @@ export const THEME = {
   yellow: '#F9F081',
   lightBlue: '#84C7DA',
   red: '#EF4444',
+  lime:'#D1E38F',
 };
 
 export const FONTS = {

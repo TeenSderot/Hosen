@@ -183,7 +183,7 @@ export default function Index() {
             disabled={!hasSelection(category)}
           >
             
-            {hasSelection(category) ? 'המשך' : 'יש לבחור אפשרות'} ←
+            {hasSelection(category) ? 'המשך' : 'יש לבחור אפשרות'}
           </Button>
         }
       >

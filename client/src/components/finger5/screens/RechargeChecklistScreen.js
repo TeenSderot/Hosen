@@ -90,5 +90,5 @@ const styles = StyleSheet.create({
   },
   tipEmoji: { fontSize: 26, width: 34, textAlign: "center" },
   tipTitle: {fontSize: 15, fontWeight: "800", color: COLORS.text, textAlign: "right", marginBottom: 2 },
-  tipDesc: { fontSize: 13.5, color: COLORS.muted, textAlign: "right", lineHeight: 20 },
+  tipDesc: { fontSize: 13.5, color: COLORS.muted, textAlign: "left", lineHeight: 20 },
 });

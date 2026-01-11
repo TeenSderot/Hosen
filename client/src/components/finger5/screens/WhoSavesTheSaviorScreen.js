@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   badgeText: { color: "#fff", fontWeight: "900" },
   stepTitle: { fontSize: 15, fontWeight: "800", color: COLORS.text, textAlign: "right", marginBottom: 2 },
-  stepDesc: { fontSize: 13.5, color: COLORS.muted, textAlign: "right", lineHeight: 20 },
+  stepDesc: { fontSize: 13.5, color: COLORS.muted, textAlign: "left", lineHeight: 20 },
   sep: { height: 3, backgroundColor: COLORS.primary, borderRadius: 999, marginVertical: 14, opacity: 0.8 },
   highlightBox: { backgroundColor: "rgba(209,227,143,0.35)", borderRadius: 18, padding: 14, marginBottom: 16 },
   highlightText: { textAlign: "center", color: COLORS.text, fontWeight: "700", lineHeight: 20 },

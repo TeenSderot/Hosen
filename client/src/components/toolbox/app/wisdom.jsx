@@ -149,6 +149,6 @@ const styles = StyleSheet.create({
     color: Colors.text.primary,
     lineHeight: 24,
     fontFamily: 'Rubik-Regular',
-    textAlign: 'right',
+    textAlign: 'left',
   },
 });

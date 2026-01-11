@@ -185,7 +185,8 @@ checkItem: {
 },  checkText: {
   flex: 1,
   fontSize: 18,
-  textAlign: "right",
+  marginLeft:15,
+  textAlign: "left",
   writingDirection: "rtl",
   alignSelf: "stretch",
 },

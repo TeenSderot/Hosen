@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     marginBottom: 16,
     alignItems:'flex-start',
-    textAlign:'right'
+    textAlign:'center'
   },
   cardBorderGreen: {
     borderRightWidth: 4,
@@ -146,13 +146,13 @@ const styles = StyleSheet.create({
     color: '#1F2937',
     lineHeight: 22,
     marginBottom: 8,
-    textAlign: 'right',
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#1F2937',
-    textAlign: 'right',
+    textAlign: 'center',
     marginBottom: 4,
   },
   optionButton: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#1F2937',
     flexShrink: 1,
-    textAlign: 'right',
+    textAlign: 'center',
   },
   insightHeader: {
     flexDirection: 'row-reverse',

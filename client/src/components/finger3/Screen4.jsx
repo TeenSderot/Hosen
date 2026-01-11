@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#1F2937',
-    textAlign: 'right',
+    textAlign: 'left',
   },
   optionButton: {
     flexDirection: 'row',

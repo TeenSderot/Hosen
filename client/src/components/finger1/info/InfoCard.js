@@ -33,23 +33,25 @@ export default function InfoCard({ title, children, accentColor = "blue", defaul
   return (
     <View style={styles.card}>
       
-      <TouchableOpacity style={styles.header} onPress={() => setIsOpen(!isOpen)}>
-        <Text style={styles.title}>{title}</Text>
-        <Animated.View
-          style={{
-            transform: [
-              {
-                rotate: animation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: ["0deg", "180deg"],
-                }),
-              },
-            ],
-          }}
-        >
-          <ChevronDown size={20} color="#333" />
-        </Animated.View>
-      </TouchableOpacity>
+     <TouchableOpacity style={styles.header} onPress={() => setIsOpen(!isOpen)}>
+  <View style={{ flex: 1 }}> 
+    <Text style={styles.title}>{title}</Text>
+  </View>
+  <Animated.View
+    style={{
+      transform: [
+        {
+          rotate: animation.interpolate({
+            inputRange: [0, 1],
+            outputRange: ["0deg", "180deg"],
+          }),
+        },
+      ],
+    }}
+  >
+    <ChevronDown size={20} color="#333" />
+  </Animated.View>
+</TouchableOpacity>
 
       {showContent && (
         <Animated.View
@@ -94,6 +96,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontFamily: 'Rubik-Bold',
     color: '#333',
+    
   },
   contentContainer: {
     padding: 16,

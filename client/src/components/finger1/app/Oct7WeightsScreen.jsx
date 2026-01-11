@@ -89,7 +89,7 @@ export const Oct7WeightsScreen = ({ stressors, onAdd, onRemove, onNext }) => {
 
         {renderSection('תנאים פיזיים', 'physical', THEME.orange)}
         {renderSection('משפחה וקשרים', 'family', THEME.blue)}
-        {renderSection('רגשי', 'emotional', THEME.yellow)}
+        {renderSection('רגשי', 'emotional', THEME.lime)}
      
 
       <View style={styles.footer}>

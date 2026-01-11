@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 24,
     flexDirection: "row-reverse",
-    justifyContent: "space-between",
-    gap: 16,
+   justifyContent: "center",
+    gap: 25,
     width:"100%",
   },
   circle: {
