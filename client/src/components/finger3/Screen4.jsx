@@ -179,7 +179,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   button: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: '#84C7DA',
     paddingVertical: 16,
     paddingHorizontal: 24,
     borderRadius: 50,

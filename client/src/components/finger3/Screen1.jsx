@@ -29,28 +29,30 @@ export default function Screen1({ onNext }) {
 
         <View style={[styles.card, styles.orangeCard]}>
           <View style={styles.row}>
-            <View style={styles.iconWrapperOrange}>
-              <Brain size={24} color="#FD954E" />
-            </View>
+           
             <View style={styles.textWrapper}>
               <Text style={styles.cardTitle}>כף הדרישות</Text>
               <Text style={styles.cardTextSmall}>
                 כל מה שלוקח מאיתנו אנרגיה - לחצים, משימות, דאגות.
               </Text>
             </View>
+             <View style={styles.iconWrapperOrange}>
+              <Brain size={24} color="#FD954E" />
+            </View>
           </View>
         </View>
 
         <View style={[styles.card, styles.greenCard]}>
           <View style={styles.row}>
-            <View style={styles.iconWrapperGreen}>
-              <Heart size={24} color="#71A674" />
-            </View>
+            
             <View style={styles.textWrapper}>
               <Text style={styles.cardTitle}>כף המשאבים</Text>
               <Text style={styles.cardTextSmall}>
                 כל מה שטוען אותנו באנרגיה - כלים, תמיכה, נכסים, כוחות פנימיים.
               </Text>
+            </View>
+             <View style={styles.iconWrapperGreen}>
+              <Heart size={24} color="#71A674" />
             </View>
           </View>
         </View>
@@ -146,12 +148,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   orangeCard: {
-    borderRightWidth: 4,
-    borderRightColor: '#FD954E',
+    borderLeftWidth: 4,
+    borderLeftColor: '#FD954E',
   },
   greenCard: {
-    borderRightWidth: 4,
-    borderRightColor: '#71A674',
+    borderLeftWidth: 4,
+    borderLeftColor: '#71A674',
   },
   button: {
     backgroundColor: '#FD954E',

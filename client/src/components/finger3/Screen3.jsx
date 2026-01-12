@@ -133,12 +133,12 @@ const styles = StyleSheet.create({
     textAlign:'center'
   },
   cardBorderGreen: {
-    borderRightWidth: 4,
-    borderRightColor: '#10B981',
+    borderLeftWidth: 4,
+    borderLeftColor: '#10B981',
   },
   cardBorderYellow: {
-    borderRightWidth: 4,
-    borderRightColor: '#FBBF24',
+    borderLeftWidth: 4,
+    borderLeftColor: '#FBBF24',
     backgroundColor: '#FBBF2433',
   },
   text: {

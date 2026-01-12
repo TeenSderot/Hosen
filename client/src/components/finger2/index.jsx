@@ -701,7 +701,7 @@ tagsContainer: {
   },
   summaryItemText: {
     fontSize: 12,
-    textAlign: 'right',
+    textAlign: 'left',
     writingDirection: 'rtl',
   },
 
