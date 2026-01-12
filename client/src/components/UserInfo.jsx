@@ -14,6 +14,7 @@ import { Mail, Lock, Eye, EyeOff, User } from 'lucide-react-native';
 import { useApi } from './hooks/useApiService';
 import * as SecureStore from 'expo-secure-store';
 import { useError } from './hooks/context/ErrorContext';
+import { useNavigation } from '@react-navigation/native';
 
 export default function UserInfo() {
   const [loading, setLoading] = useState(true);
@@ -28,6 +29,7 @@ export default function UserInfo() {
 
   const { API_BASE } = useApi();
   const { error, warning } = useError();
+  const navigation = useNavigation()
 
   useEffect(() => {
     loadUser();
@@ -101,6 +103,11 @@ export default function UserInfo() {
       setSaving(false);
     }
   };
+  const handleLogoff=async ()=>{
+      await SecureStore.deleteItemAsync('access_token');
+      await SecureStore.deleteItemAsync('_id');
+      navigation.navigate('Login')
+  }
 
   if (loading) {
     return (
@@ -177,6 +184,17 @@ export default function UserInfo() {
               <ActivityIndicator color="#fff" />
             ) : (
               <Text style={styles.buttonText}>שמירת שינויים</Text>
+            )}
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button, saving && { opacity: 0.6 },{backgroundColor:'#84C7DA'}]}
+            onPress={handleLogoff}
+            disabled={saving}
+          >
+            {saving ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>התנתקות</Text>
             )}
           </TouchableOpacity>
         </View>

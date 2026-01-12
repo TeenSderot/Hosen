@@ -11,6 +11,7 @@ import {
   User,
   Scale,
 } from 'lucide-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const NONE_OPTION = 'שום דבר';
 
@@ -77,7 +78,7 @@ export default function Index() {
   });
 
   const currentTemp = calculateStressScore(selections);
-
+  const navigation = useNavigation()
   const toggleSelection = (category, item) => {
     setSelections((prev) => {
       const list = prev[category];
@@ -353,7 +354,7 @@ export default function Index() {
         <View style={styles.dashboardActions}>
           <Button
             variant="secondary"
-            onPress={() => setStep(AppStep.SCALES_SC24)}
+            onPress={() => navigation.navigate('wisdom')}
           >
             חכמת שדרות
           </Button>
@@ -612,8 +613,6 @@ normalizeCard: {
   padding: 16,
   borderRadius: 16,
 
-  overflow: 'hidden', // 🔥 זה העיקר – חותך את הריבוע
-  elevation: 2,       // משאיר צל באנדרואיד בלי ריבוע
 },
   symptomHeaderContent: {
     flexDirection: 'row',
@@ -632,9 +631,9 @@ normalizeCard: {
     textAlign: 'right',
   },
   symptomSubtitle: {
-    fontSize: 12,
+    fontSize: 14,
     color: '#6B7280',
-    textAlign: 'right',
+    textAlign: 'center',
   },
 
 tagsContainer: {
@@ -650,6 +649,7 @@ tagsContainer: {
     height: 1,
     backgroundColor: '#E5E7EB',
     marginVertical: 8,
+    
   },
 
   /* ========= Dashboard ========= */
@@ -663,8 +663,7 @@ tagsContainer: {
   alignItems: 'center',
   marginBottom: 16,
 
-  overflow: 'hidden', // 🔥
-  elevation: 3,
+ 
 },
   temperatureLabel: {
     marginTop: 8,

@@ -8,9 +8,9 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "icon": "./assets/icon.png",
+    "icon": "./assets/inHand.png",
     "splash": {
-      "image": "./assets/icon.png",
+      "image": "./assets/inHand.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -35,7 +35,7 @@
       "bundleIdentifier": "com.innovation.hosen"
     },
     "android": {
-      "icon": "./assets/icon.png",
+      "icon": "./assets/inHand.png",
       "edgeToEdgeEnabled": true,
       "permissions": [
         "android.permission.RECORD_AUDIO",
