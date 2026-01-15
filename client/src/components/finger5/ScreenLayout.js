@@ -12,10 +12,7 @@ export default function ScreenLayout({ children, scroll = true }) {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <LinearGradient
-        colors={[COLORS.background, "#FFFFFF"]}
-        style={styles.bg}
-      >
+      
         {scroll ? (
           <ScrollView
             contentContainerStyle={styles.scrollContent}
@@ -27,13 +24,12 @@ export default function ScreenLayout({ children, scroll = true }) {
         ) : (
           Content
         )}
-      </LinearGradient>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: COLORS.background },
+  safe: { flex: 1},
   bg: { flex: 1 },
   scrollContent: {
     flexGrow: 1,

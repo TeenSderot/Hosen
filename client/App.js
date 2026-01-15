@@ -101,7 +101,7 @@ export default function App() {
             }>
               <Image
                 source={require("./assets/menu-dots.png")}
-                style={styles.icon}
+                style={styles.menuicon}
               />
             </TouchableOpacity>
 
@@ -232,4 +232,11 @@ const styles = StyleSheet.create({
     height: 24,
     resizeMode: "contain",
   },
+  menuicon:{
+    width: 24,
+    height: 24,
+    resizeMode: "contain",
+    transform: [{ rotate: '90deg' }],
+
+  }
 });

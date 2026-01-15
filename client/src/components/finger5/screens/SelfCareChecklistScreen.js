@@ -82,9 +82,8 @@ export default function SelfCareChecklistScreen({ navigation }) {
         {/* <View style={styles.yellowBar} /> */}
       </View>
 
-      <View style={{ height: 14 }} />
-
-      <Button title="סיימתי לסמן, אפשר להמשיך" variant="calm" onPress={handleContinue} />
+     
+      <Button style={{marginBottom:20}} title="סיימתי לסמן, אפשר להמשיך" variant="calm" onPress={handleContinue} />
     </View>
   );
 }

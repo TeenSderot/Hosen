@@ -29,7 +29,7 @@ export default function GoodEnoughParentScreen({ navigation }) {
   };
 
   return (
- <View style ={{height:"100%",justifyContent:'space-between'}}>     
+ <View style ={{height:"100%",width:"80%",justifyContent:'space-between',alignItems:'center',alignSelf:'center'}}>     
   <View style={styles.iconWrap}>
         <View style={styles.iconCircle}>
           <Text style={styles.heart}>💙</Text>
@@ -44,13 +44,13 @@ export default function GoodEnoughParentScreen({ navigation }) {
       </View>
 
       <View style={styles.summaryBox}>
-        <Text style={styles.summaryTitle}>✨ סיכום אישי</Text>
+        <Text style={styles.summaryTitle}> סיכום אישי</Text>
 
         {checkedCount > 0 ? (
           <Text style={styles.summaryText}>
             היום כבר הצלחתם לדאוג לעצמכם
             <Text style={{ fontWeight: "900", color: "#468488" }}> {checkedCount} פעמים</Text>.
-            {"\n"}זה הדלק שלכם להמשך הדרך! 🌟
+            {"\n"}זה הדלק שלכם להמשך הדרך! 
           </Text>
         ) : (
           <Text style={styles.summaryText}>

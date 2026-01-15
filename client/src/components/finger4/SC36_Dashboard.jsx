@@ -154,7 +154,7 @@ export default function SC36_Dashboard({ navigation }) {
         <Button style={{ backgroundColor: "#FD954E",paddingHorizontal:"50" ,color:"white"}} title="שתף בוואטסאפ המשפחתי" onPress={handleShare} />
         <Button
           title="חזרה למסך הבית"
-          onPress={() => navigation.replace("Communication")}
+          onPress={() => navigation.navigate("Hand")}
           style={{
             color: "#1E2C41",
             backgroundColor: "white",

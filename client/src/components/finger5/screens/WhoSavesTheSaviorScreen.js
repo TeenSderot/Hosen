@@ -30,16 +30,12 @@ const steps = [
 export default function WhoSavesTheSaviorScreen({ navigation }) {
   return (
     <ScreenLayout>
-      <View style={styles.header}>
-        {/* <Pressable onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Text style={styles.backText}>חזרה</Text>
-          <Text style={styles.backArrow}>➡️</Text>
-        </Pressable> */}
-
+      {/* <View style={styles.header}>
+       
         <View style={styles.shield}>
           <Text style={{ fontSize: 14, fontWeight: "900", color: "#fff" }}>🛡️</Text>
         </View>
-      </View>
+      </View> */}
 
       <Text style={styles.title}>מי יציל את המציל?</Text>
 

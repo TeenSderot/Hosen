@@ -241,7 +241,7 @@ export default function Index() {
             onPress={() => setStep(AppStep.DASHBOARD_SC23)}
             disabled={!hasSelection('behavioral')}
           >
-            {hasSelection('behavioral') ? 'סיכום' : 'יש לבחור אפשרות'} ✓
+            {hasSelection('behavioral') ? 'סיכום' : 'יש לבחור אפשרות'} 
           </Button>
         }
       >
@@ -254,7 +254,7 @@ export default function Index() {
                   { backgroundColor: '#F9F08133' },
                 ]}
               >
-                <User size={24} color="#374151" />
+                {/* <User size={24} color="#374151" /> */}
               </View>
               <View>
                 <Text style={styles.symptomTitle}>מה רואים מבחוץ?</Text>
@@ -351,8 +351,9 @@ export default function Index() {
           </View>
         </View>
 
-        <View style={styles.dashboardActions}>
+       <View style={{gap:12}}>
           <Button
+          
             variant="secondary"
             onPress={() => navigation.navigate('wisdom')}
           >
@@ -372,7 +373,7 @@ export default function Index() {
           >
             התחל מחדש
           </Button>
-        </View>
+          </View>
       </View>
     </AppLayout>
   );
@@ -446,6 +447,7 @@ export default function Index() {
   }
 }
 const styles = StyleSheet.create({
+ 
   /* ========= Buttons ========= */
   button: {
     width: '100%',
