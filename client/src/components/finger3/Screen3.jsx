@@ -27,15 +27,16 @@ export default function Screen3({ onNext, onBack }) {
       <View style={styles.innerContainer}>
         {/* כותרת עם אייקון */}
         <View style={styles.header}>
+                    <Text style={styles.headerText}>למה המאזניים עדיין לא מאוזנים?</Text>
+
           <Scale size={32} color="#FD954E" style={{ marginTop: 4 }} />
-          <Text style={styles.headerText}>למה המאזניים עדיין לא מאוזנים?</Text>
         </View>
 
         {/* הסבר */}
         <View style={[styles.card, styles.cardBorderGreen]}>
           <Text style={styles.text}>הסיבה לשחיקה ולתחושת הכובד היא לא רק הלחץ,</Text>
-          <Text style={[styles.text, { color: '#FD954E', fontWeight: '600' }]}>
-            אלא המשאבים שנלקחו ממך.
+          <Text style={[styles.text, { color: '#FD954E', fontWeight: '600'}]}>
+            אלה המשאבים שנלקחו ממך.
           </Text>
           <Text style={styles.text}>
             במצב הנוכחי (פינוי או חירום), איבדנו עוגנים שהחזיקו אותנו בשגרה.
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 3,
     marginBottom: 16,
-    alignItems:'flex-start',
+    alignItems:'center',
     textAlign:'center'
   },
   cardBorderGreen: {

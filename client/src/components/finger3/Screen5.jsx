@@ -45,8 +45,8 @@ export default function Screen5({ onNext, onBack }) {
         <Text style={styles.subtitle}>המאזניים שלך נוטים בחדות. זה לא קורה סתם.</Text>
         <Text style={styles.subtitleMedium}>תראה עם מה אתה מתמודד כרגע:</Text>
 
-        {/* לחצי שגרה */}
-        <View style={[styles.card, { borderColor: '#F97316' }]}>
+        {/* לחצי שגרה */} 
+        <View style={[styles.card, { borderColor: '#FD954E' }]}>
           <Text style={styles.cardHeader}>לחצי השגרה שלא נעלמו</Text>
           <Text style={styles.cardSubtext}>עומסים יומיומיים שממשיכים להעיק</Text>
 
@@ -59,7 +59,7 @@ export default function Screen5({ onNext, onBack }) {
                 style={[
                   styles.optionButton,
                   isSelected
-                    ? { borderColor: '#F97316', backgroundColor: '#F9731633' }
+                    ? { borderColor: '#FD954E', backgroundColor: '#F9731633' }
                     : { borderColor: '#D1D5DB', backgroundColor: 'white' },
                 ]}
               >
@@ -67,7 +67,7 @@ export default function Screen5({ onNext, onBack }) {
                   style={[
                     styles.optionCircle,
                     isSelected
-                      ? { borderColor: '#F97316', backgroundColor: '#F97316' }
+                      ? { borderColor: '#FD954E', backgroundColor: '#FD954E' }
                       : { borderColor: '#D1D5DB', backgroundColor: 'white' },
                   ]}
                 />
@@ -78,7 +78,7 @@ export default function Screen5({ onNext, onBack }) {
         </View>
 
         {/* לחצי חירום */}
-        <View style={[styles.card, { borderColor: '#3B82F6' }]}>
+        <View style={[styles.card, { borderColor: "#84C7DA" }]}>
           <Text style={styles.cardHeader}>לחצי החירום והמצב</Text>
           <Text style={styles.cardSubtext}>אתגרים ייחודיים לתקופה הזו</Text>
 
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   optionButton: {
-    flexDirection: 'row-reverse',
+    flexDirection: 'row',
     alignItems: 'center',
     padding: 12,
     borderRadius: 12,
@@ -210,6 +210,7 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 10,
     marginLeft: 8,
+    marginRight: 8,
   },
   optionText: {
     fontSize: 14,
