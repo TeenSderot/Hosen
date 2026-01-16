@@ -62,7 +62,7 @@ export default function ToolboxLobby() {
                   key={tool.id}
                   onPress={() => {
                     setSearch('');
-                    navigation.navigate(tool.id);
+                    navigation.navigate('ToolDetail', { toolId: tool.id });
                   }}
                   accentColor={cardColors[index % cardColors.length]}
                 >

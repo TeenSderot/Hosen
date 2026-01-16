@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, ScrollView } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ScreenLayout from "../ScreenLayout";
 import Button from "../ui/Button";
@@ -51,7 +51,7 @@ export default function SelfCareChecklistScreen({ navigation }) {
   const checkedCount = checkedItems.length;
 
   return (
-    <View style ={{height:"100%",justifyContent:'space-between'}}>
+    <ScrollView  style ={{height:"100%",width:'90%',alignSelf:'center'}} contentContainerStyle={{justifyContent:'space-between',}}>
       <Text style={styles.title}>🩺 בדיקת חמצן יומית</Text>
 
       <Text style={styles.subtitle}>
@@ -83,8 +83,8 @@ export default function SelfCareChecklistScreen({ navigation }) {
       </View>
 
      
-      <Button style={{marginBottom:20}} title="סיימתי לסמן, אפשר להמשיך" variant="calm" onPress={handleContinue} />
-    </View>
+      <Button style={{marginTop:10}} title="סיימתי לסמן, אפשר להמשיך" variant="calm" onPress={handleContinue} />
+    </ScrollView>
   );
 }
 
@@ -105,5 +105,5 @@ const styles = StyleSheet.create({
   progressText: { color: COLORS.text, fontWeight: "700" },
   listWrap: { flexDirection: "row-reverse", borderRadius: 18, overflow: "hidden", borderWidth: 1, borderColor: "rgba(43,52,64,0.10)" },
   yellowBar: { width: 12, backgroundColor: "#F9F081" },
-  listCard: { flex: 1, backgroundColor: "#fff",textAlign:'right' },
+  listCard: { flex: 1, backgroundColor: "#fff",textAlign:'right' ,gap:10},
 });

@@ -72,15 +72,17 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 400,
     borderRadius: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    shadowColor: 'transparent',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0,
+    shadowRadius: 0,
     padding: 16,
     position: 'relative',
+    zIndex: 100,
   },
   content: {
     paddingBottom: 16,
+    
   },
   badge: {
     width: 64,

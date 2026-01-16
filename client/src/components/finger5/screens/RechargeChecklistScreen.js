@@ -5,7 +5,7 @@ import { COLORS } from "../theme/colors";
 
 const tips = [
   { emoji: "🍕", title: "צרכים בסיסיים", description: "לא לדלג על ארוחות, לשתות מים (לא רק קפה!)." },
-  { emoji: "🤝", title: "לבקש עזרה", description: "לא לעשות הכל לבד. למדו לבזר סמכויות." },
+  { emoji: "🤝", title: "לבקש עזרה", description: "לא לעשות הכל לבד.\nלמדו לבזר סמכויות."},
   { emoji: "🗣️", title: "לדבר", description: "לשתף רגשות. גם משפט קצר יכול לפרוק עומס." },
   { emoji: "🧠", title: "מינון חדשות", description: "להגביל חשיפה. אתם לא חייבים להיות מעודכנים כל דקה." },
   { emoji: "🌙", title: "שינה", description: "גם תנומת 15 דקות היא טעינה. כל מה שאפשר." },
@@ -13,7 +13,7 @@ const tips = [
 
 export default function RechargeChecklistScreen({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ alignItems: "center", gap: 12 }}>
       <Text style={styles.title}>⚡ טעינת כוחות</Text>
 
       <Text style={styles.subtitle}>
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
   title: { fontSize: 26, fontWeight: "900", color: COLORS.text, textAlign: "center", marginBottom: 8 },
   subtitle: { fontSize: 14, color: COLORS.muted, textAlign: "center", marginBottom: 14, lineHeight: 20 },
   box: {
+    width: "90%",
     borderWidth: 2,
     borderColor: "#A8DBDE",
     backgroundColor: "#fff",

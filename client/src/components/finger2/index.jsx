@@ -248,15 +248,15 @@ export default function Index() {
         <View style={styles.symptomContainer}>
           <View style={styles.symptomHeader}>
             <View style={styles.symptomHeaderContent}>
-              <View
+              {/* <View
                 style={[
                   styles.symptomIconContainer,
                   { backgroundColor: '#F9F08133' },
                 ]}
               >
                 {/* <User size={24} color="#374151" /> */}
-              </View>
-              <View>
+             {/* // </View> */}
+              <View style={{marginLeft:20}}>
                 <Text style={styles.symptomTitle}>מה רואים מבחוץ?</Text>
                 <Text style={styles.symptomSubtitle}>
                   המישור ההתנהגותי
@@ -635,7 +635,7 @@ normalizeCard: {
   symptomSubtitle: {
     fontSize: 14,
     color: '#6B7280',
-    textAlign: 'center',
+    textAlign: 'left',
   },
 
 tagsContainer: {

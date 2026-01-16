@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
     color: Colors.text.secondary,
     lineHeight: 22,
     fontFamily: 'Rubik-Regular',
-    textAlign: 'right',
+    textAlign: 'left',
   },
   stepRow: {
     flexDirection: 'row',
@@ -333,10 +333,10 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     lineHeight: 24,
     fontFamily: 'Rubik-Medium',
-    textAlign: 'right',
+    textAlign: 'left',
   },
   actionRow: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     gap: 12,
     marginTop: 8,
   },
@@ -344,7 +344,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 14,
     paddingHorizontal: 20,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.accent,
     borderRadius: 20,
     alignItems: 'center',
     shadowColor: '#000',
@@ -352,10 +352,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 8,
     elevation: 2,
+    
   },
   actionButtonText: {
     fontSize: 15,
-    color: Colors.text.primary,
+    color: 'white',
     fontFamily: 'Rubik-Medium',
   },
   exerciseButton: {

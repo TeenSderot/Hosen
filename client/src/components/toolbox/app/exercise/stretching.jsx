@@ -295,7 +295,7 @@ export default function StretchingExercise() {
           style={styles.infoButton}
           onPress={() => setShowDetails(!showDetails)}
         >
-          <Text style={styles.infoButtonText}>{showDetails ? '✕' : 'ℹ️'}</Text>
+          {/* <Text style={styles.infoButtonText}>{showDetails ? '✕' : 'ℹ️'}</Text> */}
         </TouchableOpacity>
       </View>
 
@@ -365,7 +365,7 @@ export default function StretchingExercise() {
             </TouchableOpacity>
             {currentExerciseIndex < stretchingExercises.length - 1 && (
               <TouchableOpacity
-                style={styles.controlButton}
+                style={styles.controlButtonSkip}
                 onPress={handleSkip}
               >
                 <Text style={styles.controlButtonText}>דלג</Text>
@@ -578,22 +578,30 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   secondaryControls: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     gap: 12,
   },
   controlButton: {
     flex: 1,
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.accent,
     padding: 12,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: Colors.lightGray,
     alignItems: 'center',
   },
+  controlButtonSkip:{ flex: 1,
+    backgroundColor: Colors.blue,
+    padding: 12,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: Colors.lightGray,
+    alignItems: 'center',},
+
   controlButtonText: {
     fontSize: 14,
     fontFamily: 'Rubik-Medium',
-    color: Colors.text.primary,
+    color: 'white',
     textAlign: 'right',
   },
   upcomingContainer: {

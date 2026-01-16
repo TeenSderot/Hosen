@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   borderBottomWidth: 1,
   borderBottomColor: "rgba(43,52,64,0.08)",
   backgroundColor: "#fff",
-  height:70
+  height:70,
 },
 
 rightContent: {

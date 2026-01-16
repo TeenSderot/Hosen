@@ -68,7 +68,7 @@ export default function Screen5({ onNext, onBack }) {
                     styles.optionCircle,
                     isSelected
                       ? { borderColor: '#FD954E', backgroundColor: '#FD954E' }
-                      : { borderColor: '#D1D5DB', backgroundColor: 'white' },
+                      : { borderColor: 'gray',borderWidth:1, backgroundColor: 'white' },
                   ]}
                 />
                 <Text style={styles.optionText}>{option}</Text>
@@ -92,7 +92,7 @@ export default function Screen5({ onNext, onBack }) {
                   styles.optionButton,
                   isSelected
                     ? { borderColor: '#84C7DA', backgroundColor: '#3B82F633' }
-                    : { borderColor: '#D1D5DB', backgroundColor: 'white' },
+                      : { borderColor: 'gray',borderWidth:1, backgroundColor: 'white' },
                 ]}
               >
                 <View
@@ -100,7 +100,7 @@ export default function Screen5({ onNext, onBack }) {
                     styles.optionCircle,
                     isSelected
                       ? { borderColor: '#84C7DA', backgroundColor: '#84C7DA' }
-                      : { borderColor: '#D1D5DB', backgroundColor: 'white' },
+                      : { borderColor: 'gray',borderWidth:1, backgroundColor: 'white' },
                   ]}
                 />
                 <Text style={styles.optionText}>{option}</Text>
