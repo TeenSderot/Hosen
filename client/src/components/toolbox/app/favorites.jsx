@@ -79,7 +79,7 @@ export default function FavoritesPage() {
                 <View style={styles.actions}>
                   <TouchableOpacity
                     style={styles.actionButton}
-                    onPress={() =>{}} //router.push(`/tool/${tool.id}`
+                    onPress={() =>{navigation.navigate('ToolDetail', { toolId: tool.id })}} //router.push(`/tool/${tool.id}`
                   >
                     <Text style={styles.actionButtonText}>פתיחה</Text>
                   </TouchableOpacity>
