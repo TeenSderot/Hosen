@@ -53,6 +53,9 @@ import CopingInfoFinger2 from "./src/components/finger2/info/CopingInfoFinger2";
 import CopingInfoFinger3 from "./src/components/finger3/info/CopingInfoFinger3";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import UserInfo from "./src/components/UserInfo";
+import ToolDetail from "./src/components/toolbox/app/tool/toolId";
+import YogaExercise from "./src/components/toolbox/app/exercise/yoga";
+import StretchingExercise from "./src/components/toolbox/app/exercise/stretching";
 
 const navigationRef = createNavigationContainerRef();
 // ⬇️ שינוי כאן: שימוש ב-createStackNavigator
@@ -144,6 +147,9 @@ export default function App() {
               <Stack.Screen name="wisdom" component={CommunityWisdom} />
               <Stack.Screen name="favorites" component={FavoritesPage} />
               <Stack.Screen name="categoryFeed" component={CategoryFeed} />
+              <Stack.Screen name="ToolDetail" component={ToolDetail} />
+              <Stack.Screen name="YogaExercise" component={YogaExercise} />
+              <Stack.Screen name="StretchingExercise" component={StretchingExercise} />
               <Stack.Screen name="Breathing" component={BreathingExercise} />
               <Stack.Screen name="Divrot" component={Divrot} />
               <Stack.Screen name="Finger5Intro" component={Finger5Intro} />

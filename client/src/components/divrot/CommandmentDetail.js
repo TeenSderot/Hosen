@@ -6,12 +6,12 @@ import { Commandment } from "./commandments";
 
 
 const colorClasses = {
-  "notebook-green": { bg: "#10B981", border: "#065F46", light: "#D1F7E6" },
-  "notebook-lime": { bg: "#84CC16", border: "#4D7C0F", light: "#E1F8B5" },
-  "notebook-orange": { bg: "#FB923C", border: "#9C4C26", light: "#FBE0C8" },
-  "notebook-blue": { bg: "#3B82F6", border: "#1E40AF", light: "#BFDBFE" },
-  "notebook-yellow": { bg: "#FBBF24", border: "#9A6F20", light: "#FBE4A8" },
-};
+  "notebook-green": { bg: "#71A674", border: "#065F46", light: "#D1F7E6" },
+  "notebook-lime": { bg: "#D1E38F", border: "#4D7C0F", light: "#E1F8B5" },
+  "notebook-orange": { bg: "#FD954E", border: "#9C4C26", light: "#FBE0C8" },
+  "notebook-blue": { bg: "#84C7DA", border: "#1E40AF", light: "#BFDBFE" },
+  "notebook-yellow": { bg: "#F9F081", border: "#9A6F20", light: "#FBE4A8" },
+}; 
 
 const CommandmentDetail = ({ commandment, onClose }) => {
   const colors = colorClasses[commandment.color] || { bg: "#3B82F6", border: "#1E40AF", light: "#BFDBFE" };

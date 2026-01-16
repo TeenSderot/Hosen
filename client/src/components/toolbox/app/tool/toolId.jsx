@@ -6,18 +6,20 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import { useRouter, useLocalSearchParams } from 'expo-router';
 import { categories, tools } from '../../data/toolboxData';
 import { useFavorites } from '../../hooks/useFavorites';
 import { Card } from '../../Card';
 import { Pill } from '../../Pill';
 import { Colors, cardColors } from '../../colors';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default function ToolDetail() {
-  const router = useRouter();
-  const { toolId } = useLocalSearchParams();
+  const route = useRoute();
+    const navigation = useNavigation();
+    // שולפים את categoryId מהפרמטרים
+  const {  toolId } = route.params;
   const { toggleFavorite, isFavorite } = useFavorites();
-  const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set());
+  const [completedSteps, setCompletedSteps] = useState(new Set());
 
   const tool = tools.find((t) => t.id === toolId);
   const category = tool ? categories.find((c) => c.id === tool.categoryId) : null;
@@ -91,7 +93,7 @@ export default function ToolDetail() {
         {tool.id === 'breathing' && (
           <TouchableOpacity
             style={styles.exerciseButton}
-            onPress={() => router.push('/exercise/breathing')}
+            onPress={() => navigation.navigate('/exercise/breathing')}
           >
             <Text style={styles.exerciseButtonArrow}>◀</Text>
             <View style={styles.exerciseButtonContent}>
@@ -107,7 +109,7 @@ export default function ToolDetail() {
         {tool.id === 'movement' && (
           <TouchableOpacity
             style={styles.exerciseButton}
-            onPress={() => router.push('/exercise/yoga')}
+            onPress={() => navigation.navigate('YogaExercise')}
           >
             <Text style={styles.exerciseButtonArrow}>◀</Text>
             <View style={styles.exerciseButtonContent}>
@@ -123,7 +125,7 @@ export default function ToolDetail() {
         {tool.id === 'relaxation' && (
           <TouchableOpacity
             style={styles.exerciseButton}
-            onPress={() => router.push('/exercise/stretching')}
+            onPress={() => navigation.navigate('StretchingExercise')}
           >
             <Text style={styles.exerciseButtonArrow}>◀</Text>
             <View style={styles.exerciseButtonContent}>
@@ -190,13 +192,13 @@ export default function ToolDetail() {
         <View style={styles.actionRow}>
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => router.push('/')}
+            onPress={() => navigation.navigate('toolbox')}
           >
             <Text style={styles.actionButtonText}>חזרה לארגז</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.actionButton}
-            onPress={() => router.push('/favorites')}
+            onPress={() => navigation.navigate('favorites')}
           >
             <Text style={styles.actionButtonText}>למועדפים</Text>
           </TouchableOpacity>
@@ -312,7 +314,7 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 22,
     fontFamily: 'Rubik-Regular',
-    textAlign: 'right',
+    textAlign: 'left',
   },
   stepTextCompleted: {
     textDecorationLine: 'line-through',

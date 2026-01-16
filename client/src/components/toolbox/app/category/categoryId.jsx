@@ -62,7 +62,7 @@ export default function CategoryFeed() {
         {categoryTools.map((tool, index) => (
           <Card
             key={tool.id}
-            onPress={() => navigation.navigate(tool.id)}
+            onPress={() => navigation.navigate('ToolDetail', { toolId: tool.id })}
             accentColor={cardColors[index % cardColors.length]}
           >
             <View style={styles.toolRow}>

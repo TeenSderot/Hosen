@@ -55,7 +55,7 @@ export default function FavoritesPage() {
             <Text style={styles.emptyText}>אין עדיין מועדפים.</Text>
             <TouchableOpacity
               style={styles.button}
-              onPress={() => {}}//}router.push('/')
+              onPress={() => {navigation.navigate('toolbox')}}
             >
               <Text style={styles.buttonText}>לבחור כלי</Text>
             </TouchableOpacity>
